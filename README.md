@@ -65,7 +65,7 @@ Source modules in `src/`:
 8. Build the escalation gate [Done]
 9. Build the evaluation harness [Done]
 10. Measure judge-vs-human agreement [Done]
-11. Perform failure analysis [Upcoming]
+11. Perform failure analysis [Done]
 12. Write the report [Upcoming]
 13. Make the project reproducible [Done]
 14. Final submission [Upcoming]
@@ -356,3 +356,48 @@ A single targeted prompt calibration was performed to create **Judge v2**:
 8. **Why exactly one prompt calibration iteration was executed**: Prevents iterative over-fitting to the calibration set and maintains audit integrity.
 9. **Why Judge v1 and v2 prompts were preserved to disk**: Stored in `results/judge_prompt_v1.txt` and `results/judge_prompt_v2.txt` for auditability and reproducibility.
 10. **Why both improvements and regressions are reported transparently**: Preserves scientific integrity by documenting where calibration improved agreement (Groundedness, Completeness, Tone) alongside where stricter penalties shifted disagreement (Correctness).
+
+---
+
+## Step 11 — Failure Analysis
+
+### 1. Execution Command
+To regenerate the full structured dataset and Markdown failure report:
+```bash
+python src/failure_analysis.py
+```
+Outputs generated:
+- `results/failure_analysis.csv`: Machine-readable dataset containing failure ranks, sanitized tweets, expected vs predicted labels, root-cause reasons, hypotheses, and proposed fixes.
+- `results/failure_analysis.md`: In-depth diagnostic report analyzing the top 5 failure modes with full provenance.
+
+### 2. Top 5 Mined Failure Modes
+
+| Rank | Failure Mode | Source Artifact | Representative Case (Anonymized) | Key Root-Cause Mechanism | Proposed Architectural Fix |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **1** | **Biggest Intent Confusion Pair** (`battery_drain_power` $\rightarrow$ `camera_photos_media`) | `results/all_runs.parquet` (#65, #95, #106) | *"@[USER] It looks like photos are disappearing from my Apple Photos / iCloud account..."* | Object nouns ('photos app') dominate token embeddings over the primary power/shutdown symptom. | Two-stage dependency parsing to separate container from fatal action. |
+| **2** | **Escalation False Negative** (Compounding Multi-System Cascade) | `results/all_runs.parquet` (#32) | *"@[USER] I have an iPhone 6. My apps keep force closing. My podcast library keeps having to be restored. My text thread is out of order."* | Rule layer missed implicit cascading failures because no overt legal/safety keywords appeared; confidence exceeded cutoff. | Add Multi-Symptom Density Rule ($\ge 3$ distinct failing subsystems trigger human escalation). |
+| **3** | **Lowest Reply Quality / Groundedness Failure** (Hallucinated Hardware Diagnostic) | `results/judge_human_comparison_v1.csv` (#177) | *"Hey @[USER]! My Lightning to SD Card reader is importing photos on my 7 Plus pixilated... Why is this?"* | LLM latched onto keyword 'photos' and hallucinated an irrelevant camera lens diagnostic (*"front and rear camera modes"*). | Entity-Level Grounding: mandate that every diagnostic question matches explicit hardware in evidence. |
+| **4** | **Retrieval Insufficiency & LLM Improvisation** (Legacy OS X Incompatibility) | `data/golden_set/golden_test.csv` (#117) | *"@[USER] 2007 iMac running 10.11.6. Suddenly keep getting warning about this Mac can’t connect to iCloud error..."* | Index had no examples for legacy OS X 10.11 iCloud TLS deprecation; loose threshold ($0.15$) allowed ungrounded generation. | Increase minimum retrieval similarity threshold from $0.15$ to $0.35$; trigger safe standard fallback. |
+| **5** | **Naive Verbatim Retrieval Failure** (Simple Baseline Privacy & Handle Leakage) | `results/all_runs.parquet` (#28) | *"@[USER] iTunes doesn’t accept my PayPal account as my payment method can you please help"* | Simple baseline directly outputs historical Twitter handles (@[USER]) and private conversation references. | Strictly enforce generative `retrieve -> rewrite -> cite` architecture with bidirectional PII redaction. |
+
+### 3. Cross-Cutting Observations
+1. **Container vs. Symptom Entanglement**: Object nouns ('photos app', 'music app') frequently mislead single-label classifiers into media categories when the true failure is system crash or hardware shutdown.
+2. **Multi-Symptom Blindspot**: Cascading multi-issue customer tweets are frequently under-escalated because single-intent confidence remains high.
+3. **Threshold Sensitivity**: Loose retrieval thresholds ($0.15$) invite generative hallucination on out-of-distribution legacy hardware queries; tightening to $0.35$ enforces safe human handoffs.
+4. **Mandatory Generative Rewriting**: Naive verbatim retrieval is fundamentally unsuitable for production due to historical PII leakage and lack of personalization.
+
+---
+
+## Step 11 Decision Log
+
+1. **Why all 5 failure modes were mined from authentic evaluation artifacts**: Guarantees failure analysis reflects empirical model behavior rather than fabricated hypothetical examples.
+2. **Why `battery_drain_power` $\rightarrow$ `camera_photos_media` was selected for Failure Mode 1**: It constitutes the single largest off-diagonal error cluster (3 instances, 37.5% of total intent errors) on the locked test set.
+3. **Why Example #32 was selected for Failure Mode 2**: Demonstrates the critical real-world blindspot where multiple compounding bugs overwhelm a customer without triggering standard keyword-based threat rules.
+4. **Why Example #177 was selected for Failure Mode 3**: Directly exposes the hallucination risk of LLM drafting, where the model asked about camera front/rear lenses for an SD Card adapter inquiry ($\Delta=2$ large disagreement between human and judge).
+5. **Why Example #117 was selected for Failure Mode 4**: Represents an out-of-distribution legacy hardware query (2007 iMac OS X 10.11) where weak retrieval ($Sim=0.2997$) provoked ungrounded account password reset improvisation.
+6. **Why Simple Baseline verbatim leakage was selected for Failure Mode 5**: Highlights the architectural necessity of the Full Agent's generative rewrite pipeline over naive nearest-neighbor retrieval.
+7. **Why customer text was strictly anonymized via `src/pii.py`**: Ensures all reports and CSV artifacts remain privacy-compliant without exposing real Twitter handles, emails, phones, or URLs.
+8. **Why both CSV and Markdown outputs are generated**: Provides machine-readable structured provenance (`results/failure_analysis.csv`) alongside an in-depth human-readable diagnostic report (`results/failure_analysis.md`).
+9. **Why unit tests verify failure mining without external LLM calls**: Ensures the test suite remains fast, deterministic, and fully executable in offline CI environments.
+10. **Why previous evaluation metrics were strictly left unmodified**: Step 11 is strictly diagnostic; all locked test numbers from Step 9 and agreement metrics from Step 10 remain untouched.
+
