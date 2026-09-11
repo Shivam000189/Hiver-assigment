@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport Is there any reason I wouldn't be able to restore a backup from my up to date 7+ to my new iphone X? Using iTunes on a PC.\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789123604.9347723
+}

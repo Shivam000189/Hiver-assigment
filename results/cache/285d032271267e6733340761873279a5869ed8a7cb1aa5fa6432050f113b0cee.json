@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport @115858 If I can't downgrade do you want to pay for my new hardware? How about my salary the next week because I can't work without all this??!\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789123605.5027611
+}

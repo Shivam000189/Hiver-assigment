@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"Μετά το update στο #ios11, δεν έχω κινητό. Σταθερό έχω! @115858 please fix the battery issue! Thank you!\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789123605.7758255
+}

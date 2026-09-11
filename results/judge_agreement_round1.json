@@ -1,12 +1,12 @@
 {
   "correctness": {
-    "spearman_rho": 0.2705,
-    "p_value": 0.0366,
+    "spearman_rho": 0.4895,
+    "p_value": 0.0001,
     "large_disagreement_pct_ge_2": 0.0
   },
   "groundedness": {
-    "spearman_rho": 0.2832,
-    "p_value": 0.0283,
+    "spearman_rho": 0.6672,
+    "p_value": 0.0,
     "large_disagreement_pct_ge_2": 0.0
   },
   "completeness": {
@@ -15,13 +15,13 @@
     "large_disagreement_pct_ge_2": 0.0
   },
   "brand_voice": {
-    "spearman_rho": 0.302,
-    "p_value": 0.019,
+    "spearman_rho": 0.6914,
+    "p_value": 0.0,
     "large_disagreement_pct_ge_2": 0.0
   },
   "tone": {
-    "spearman_rho": 0.3194,
-    "p_value": 0.0129,
+    "spearman_rho": 0.6589,
+    "p_value": 0.0,
     "large_disagreement_pct_ge_2": 0.0
   },
   "top_5_largest_disagreements": [

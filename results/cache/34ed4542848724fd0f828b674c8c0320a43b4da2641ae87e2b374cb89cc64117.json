@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"Thank you @AppleSupport for making my iPhone 6 useless after the new iOS 11.0.3 update. It's actually worse than 11.0.2 and 11.0.1. Screen unresponsive, terribly slow, apps crashing, phone screen rotating randomly. The only fast thing is the battery draining!\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789123605.431202
+}

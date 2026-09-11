@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"Does anyone else experience issues with the message app crashing when you’re typing, and I️t just erases your entire message? It’s really frustrating when you’re having a discussion and your messages repeatedly get wiped. Is this even on the radar? @AppleSupport\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789123889.0329902
+}

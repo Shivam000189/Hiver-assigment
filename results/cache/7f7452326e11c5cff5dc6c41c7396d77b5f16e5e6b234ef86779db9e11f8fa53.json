@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"Hey @AppleSupport, screen just popped off all of a sudden, clean fracture all around. Never dropped, no issues whatsoever up to now. Is this documented? Other cases? Battery seems inflated some, but cannot say for sure. https://t.co/Zwz0jTRIcZ\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789123889.7932556
+}

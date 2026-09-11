@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"Phone freezes all the time now. I'll be in the middle of typing an iMessage &amp; it just stops typing, then jolts back to life like a frozen computer. All of my apps freeze as well. Snapchat/tinder the most. This is literally the worst update ever for a phone. @AppleSupport #ios1103\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789123604.4561398
+}

@@ -23,7 +23,18 @@ BRAND_HANDLE = "AppleSupport"
 BRAND_HANDLE_LOWER = "applesupport"
 
 # File Paths
-THREADS_PARQUET_PATH = PROCESSED_DATA_DIR / f"{BRAND_HANDLE_LOWER}_threads.parquet"
+REPRO_THREADS_PARQUET_PATH = PROCESSED_DATA_DIR / f"{BRAND_HANDLE_LOWER}_threads_repro.parquet"
+FULL_THREADS_PARQUET_PATH = PROCESSED_DATA_DIR / f"{BRAND_HANDLE_LOWER}_threads.parquet"
+
+# Default to committed reproducibility dataset for fast (<15 min) and deterministic grading.
+# If USE_FULL_DATASET=1 is set and the full dataset exists locally, use the full dataset.
+if os.getenv("USE_FULL_DATASET", "").strip() in ("1", "true", "True") and FULL_THREADS_PARQUET_PATH.exists():
+    THREADS_PARQUET_PATH = FULL_THREADS_PARQUET_PATH
+elif REPRO_THREADS_PARQUET_PATH.exists():
+    THREADS_PARQUET_PATH = REPRO_THREADS_PARQUET_PATH
+else:
+    THREADS_PARQUET_PATH = FULL_THREADS_PARQUET_PATH
+
 REPLY_INDEX_NPZ_PATH = PROCESSED_DATA_DIR / "reply_index.npz"
 REPLY_METADATA_PARQUET_PATH = PROCESSED_DATA_DIR / "reply_index_metadata.parquet"
 SAMPLE_600_CSV_PATH = GOLDEN_SET_DIR / "sample600_labelled.csv"

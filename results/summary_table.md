@@ -5,17 +5,17 @@
 | System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\le 2$) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Trivial Baseline** | 0.0529 | 31.2% | 0.0000 | 0.0000 | 0.0000 | 3.00 | 4.00 | 3.00 | 3.00 | 4.00 | 0/80 |
-| **Simple Baseline** (Caveat: Unredacted PII) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.79 | 5.00 | 4.49 | 4.51 | 5.00 | 0/80 |
-| **Full Support Agent** | **0.8976** | **90.0%** | **0.3846** | **0.8333** | **0.5263** | **5.00** | **5.00** | **5.00** | **5.00** | **5.00** | **0/80** |
+| **Simple Baseline** (Caveat: Unredacted PII) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.70 | 4.72 | 4.51 | 4.70 | 4.70 | 0/80 |
+| **Full Support Agent** | **0.8976** | **90.0%** | **0.3846** | **0.8333** | **0.5263** | **4.72** | **4.79** | **5.00** | **4.72** | **4.72** | **0/80** |
 
 ---
 
 ### Judge-vs-Human Calibration Agreement (Spearman Rank Correlation $\rho$):
-- **Correctness**: Round 1 $\rho = 0.2705$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.3706}$
-- **Groundedness**: Round 1 $\rho = 0.2832$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4047}$
-- **Completeness**: Round 1 $\rho = 0.3020$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4492}$
-- **Brand Voice**: Round 1 $\rho = 0.3020$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4492}$
-- **Tone**: Round 1 $\rho = 0.3194$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4877}$
+- **Correctness**: Round 1 $\rho = 0.4895$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.3448}$
+- **Groundedness**: Round 1 $\rho = 0.6672$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.0366}$
+- **Completeness**: Round 1 $\rho = 0.3020$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.3161}$
+- **Brand Voice**: Round 1 $\rho = 0.6914$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4101}$
+- **Tone**: Round 1 $\rho = 0.6589$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.1216}$
 
 ---
 

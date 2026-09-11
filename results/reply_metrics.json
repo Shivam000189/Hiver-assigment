@@ -19,36 +19,36 @@
   },
   "SimpleBaseline": {
     "criteria_means": {
-      "correctness": 4.79,
-      "groundedness": 5.0,
-      "completeness": 4.49,
-      "brand_voice": 4.51,
-      "tone": 5.0
+      "correctness": 4.7,
+      "groundedness": 4.72,
+      "completeness": 4.51,
+      "brand_voice": 4.7,
+      "tone": 4.7
     },
     "criteria_stds": {
-      "correctness": 0.41,
-      "groundedness": 0.0,
+      "correctness": 0.46,
+      "groundedness": 0.45,
       "completeness": 0.5,
-      "brand_voice": 0.5,
-      "tone": 0.0
+      "brand_voice": 0.46,
+      "tone": 0.46
     },
     "hallucination_count_score_le_2": 0,
     "hallucination_rate_pct": 0.0
   },
   "FullAgent": {
     "criteria_means": {
-      "correctness": 5.0,
-      "groundedness": 5.0,
+      "correctness": 4.72,
+      "groundedness": 4.79,
       "completeness": 5.0,
-      "brand_voice": 5.0,
-      "tone": 5.0
+      "brand_voice": 4.72,
+      "tone": 4.72
     },
     "criteria_stds": {
-      "correctness": 0.0,
-      "groundedness": 0.0,
+      "correctness": 0.45,
+      "groundedness": 0.41,
       "completeness": 0.0,
-      "brand_voice": 0.0,
-      "tone": 0.0
+      "brand_voice": 0.45,
+      "tone": 0.45
     },
     "hallucination_count_score_le_2": 0,
     "hallucination_rate_pct": 0.0

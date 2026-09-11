@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@115858 bought #iphone8 on the day of launch and it never met expectations from #day1 the device is hanging (though I have not downloaded more than 4 apps). My year old MI @160663 is performing better than this.\n\nCAN YOU GUYS #TAKEITBACK WITHOUT #EXCHANGE (at what price)?\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789123606.6274672
+}

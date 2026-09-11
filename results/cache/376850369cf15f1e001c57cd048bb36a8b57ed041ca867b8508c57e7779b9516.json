@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport Hi, is it a known issue that after latest update ssh is no more working with all agents crashing or freezing? I.E. No @43874\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789123888.9534526
+}

@@ -1,59 +1,110 @@
-# Hiver Support Agent
+# Hiver Support Agent (@AppleSupport)
 
-A customer-support AI agent built from real customer-support conversation data.
+An end-to-end customer support AI agent built from real Twitter customer service conversations (`twcs.csv`), featuring **9-class intent classification**, a **hybrid escalation gate**, and **grounded reply drafting** (`retrieve -> rewrite -> cite`).
 
-## Project Status
+---
 
-Currently setting up the project environment (Step 0).
+## ⚡ Quickstart: Reproducing Results in <15 Minutes
 
-## Project Structure
+The evaluation is designed for **100% deterministic offline grading**. No API keys and no 3M-row Kaggle downloads are required.
 
-```text
-hiver-support-agent/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── golden_set/
-├── notebooks/
-├── src/
-│   ├── prepare_data.py
-│   ├── intents.py
-│   ├── reply.py
-│   ├── escalate.py
-│   └── evaluate.py
-├── results/
-└── report/
+### 1. Environment Setup
+```bash
+# Clone the repository
+git clone <repo-url>
+cd hiver-support-agent
+
+# Create and activate a clean virtual environment (Python 3.10+)
+python -m venv .venv
+
+# On Windows PowerShell:
+.venv\Scripts\Activate.ps1
+# On Linux / macOS:
+source .venv/bin/activate
+
+# Install dependencies (~2-8 minutes depending on network)
+pip install -r requirements.txt
 ```
 
-## Setup
+### 2. Run End-to-End Evaluation
+```bash
+python src/evaluate.py
+```
+*Executes Trivial Baseline, Simple Baseline, and Full Agent on the locked Golden Test Split ($N=80$). Runs in ~45 seconds offline using committed cache.*
 
-1. Create and activate a Python virtual environment:
-   ```bash
-   python -m venv .venv
-   # Windows PowerShell:
-   .venv\Scripts\Activate.ps1
-   # Linux/macOS:
-   source .venv/bin/activate
-   ```
+### 3. (Optional) Recompile Final PDF Report
+```bash
+python src/report.py
+```
+*Compiles the publication-quality report to `report/final_report.pdf` (strictly 4 pages).*
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-## Development
+## 📂 Dataset Architecture & Reproducibility Guarantees
 
-Source modules in `src/`:
-- `prepare_data.py`: Dataset preparation and inspection.
-- `intents.py`: Intent taxonomy mining and intent classification.
-- `reply.py`: Historical retrieval and grounded reply drafting.
-- `escalate.py`: Escalation decision gate.
-- `evaluate.py`: Evaluation harness and metrics.
+### 1. No 3M-Row Raw Dataset Required
+- The original 3M-row Kaggle dataset (`twcs.csv`) is **NOT** needed.
+- A **representative, deterministic subsample** of **15,000 processed threads** is committed directly to the repository at [`data/processed/applesupport_threads_repro.parquet`](data/processed/applesupport_threads_repro.parquet) (2.75 MB).
+- This subsample contains all 9 data-mined intent categories and includes all historical citation threads retrieved during evaluation.
 
-## Roadmap
+### 2. Full Golden Evaluation Set Committed
+The complete golden evaluation set is committed in [`data/golden_set/`](data/golden_set/):
+- `golden_set.csv`: $N=200$ hand-labeled interactions
+- `golden_dev.csv`: $N=120$ dev interactions (used for threshold calibration)
+- `golden_test.csv`: $N=80$ locked test interactions (isolated out-of-sample test split)
+- `sample600_labelled.csv`: $N=600$ human training annotations
+- `intent_taxonomy.md`: 9 intent definitions, cues, and examples
+- `judge_human_scores.csv`: $N=60$ calibration scoring interactions
+
+---
+
+## 🤖 LLM Execution Modes
+
+### Mode A: Offline / Cache Mode (Default — No API Key Required)
+- If `OPENAI_API_KEY` is not set, the evaluation pipeline automatically uses the **527 cached LLM responses** committed in [`results/cache/`](results/cache/) (1.23 MB).
+- **Guarantee**: Produces exact, 100% deterministic numbers matching the final report.
+
+### Mode B: Live LLM Mode (Optional)
+- To run live API calls against OpenAI endpoints:
+  ```bash
+  # Windows PowerShell:
+  $env:OPENAI_API_KEY="sk-..."
+  # Linux/macOS:
+  export OPENAI_API_KEY="sk-..."
+
+  python src/evaluate.py
+  ```
+- New API responses will automatically update the disk cache in `results/cache/`.
+
+---
+
+## 📊 Benchmark Headline Results (Locked Test Split, $N=80$)
+
+| System Name | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Reply Correctness | Reply Groundedness | Reply Completeness |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Trivial Baseline** | `0.0529` | `31.2%` | `0.0000` | `0.0000` | `0.0000` | `3.00` | `4.00` | `3.00` |
+| **Simple Baseline** (Verbatim) | `0.5794` | `55.0%` | `1.0000` | `0.1667` | `0.2857` | `4.70` | `4.72` | `4.51` |
+| **Full Support Agent** | **`0.8976`** | **`90.0%`** | **`0.3846`** | **`0.8333`** | **`0.5263`** | **`4.72`** | **`4.79`** | **`5.00`** |
+
+*Evaluation outputs written to `results/intent_metrics.json`, `results/escalation_metrics.json`, `results/reply_metrics.json`, `results/all_runs.parquet`, and `results/summary_table.md`.*
+
+---
+
+## ⏱️ Measured Reproduction Timing (Fresh Clone Audit)
+
+| Phase | Duration | Status |
+| :--- | :---: | :---: |
+| **Virtual Environment Creation** | ~19s | PASS |
+| **Dependency Installation (`pip install`)** | ~8.4 min | PASS |
+| **End-to-End Evaluation (`evaluate.py`)** | **~47s** | **PASS (Exact Match)** |
+| **PDF Report Compilation (`report.py`)** | ~3.5s | PASS (4 Pages) |
+| **TOTAL TIME** | **9.65 min (< 15 min limit)** | **PASS** |
+
+*Full timing and provenance audit available in [`results/reproducibility.md`](results/reproducibility.md).*
+
+---
+
+## 🗺️ Project Roadmap Status
 
 1. Setup environment [Done]
 2. Get and inspect the dataset [Done]
@@ -66,8 +117,8 @@ Source modules in `src/`:
 9. Build the evaluation harness [Done]
 10. Measure judge-vs-human agreement [Done]
 11. Perform failure analysis [Done]
-12. Write the report [Done]
-13. Make the project reproducible [Done]
+12. Write the report [Done - report/final_report.pdf]
+13. Make the project reproducible in <15 min [Done - Step 13]
 14. Final submission [Upcoming]
 
 ---

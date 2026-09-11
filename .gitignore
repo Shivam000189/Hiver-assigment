@@ -29,14 +29,18 @@ archive/
 data/raw/*
 !data/raw/.gitkeep
 *.parquet
+!data/processed/*_repro.parquet
 *.npz
 scratch/
 
-# Generated results
-results/cache/
+# Cached LLM evaluation responses for offline grading
+!results/cache/
+results/cache/*
+!results/cache/*.json
 results/*.parquet
 
 # Python packaging
 *.egg-info/
 dist/
 build/
+

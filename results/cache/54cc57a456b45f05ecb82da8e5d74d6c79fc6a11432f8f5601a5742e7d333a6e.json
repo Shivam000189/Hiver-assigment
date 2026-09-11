@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport I have an iPhone 7 running 11.1.2 with massive battery issue (battery was fine on 10.x). In 1h28m of use (mostly Safari, no video), I have dropped 25%. See attached. Could it have anything to do with brand new Apple watch 3 with cellular? https://t.co/BvXwHL2vqF\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789123889.5482373
+}

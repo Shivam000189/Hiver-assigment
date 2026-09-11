@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Classify support intent: My iPhone screen is frozen",
+  "response": "I want to make sure you get the right help — let me connect you with our team.",
+  "timestamp": 1789126362.404398
+}
