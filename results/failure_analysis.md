@@ -1,6 +1,6 @@
-# Step 11 — Failure Analysis Report
+# Failure Analysis Report
 
-## Overview
+## Executive Summary
 
 This diagnostic report systematically examines the **Top 5 Failure Modes** mined from the locked test evaluation (`results/all_runs.parquet`), human annotation comparison (`results/judge_human_comparison_v1.csv`), and retrieval index audit across the `@AppleSupport` customer service pipeline. Every failure case represents an **authentic evaluation interaction** with complete provenance, sanitized customer text, root-cause hypotheses, and actionable architectural fixes.
 
@@ -153,4 +153,4 @@ The Simple Baseline performs non-generative verbatim retrieval, directly emittin
 1. **Container vs. Symptom Entanglement**: Across intent classification and reply drafting, object nouns ('photos app', 'music library') frequently mislead models into media intents when the true failure is system crash or hardware shutdown.
 2. **Compounding Multi-Issue Blindspot**: Single-label intent classification inevitably drops secondary symptoms when customers report multiple bugs in a single tweet. Multi-label intent extraction and multi-symptom escalation rules are required.
 3. **Threshold Calibration for Safe Fallback**: Setting retrieval thresholds too low ($0.15$) invites generative hallucination on out-of-distribution legacy hardware inquiries. Raising the threshold to $0.35$ enforces safe escalation.
-4. **Superiority of Generative Rewriting over Naive Retrieval**: Step 9 and Step 11 results decisively demonstrate that grounded rewriting (`retrieve -> rewrite -> cite`) is strictly necessary to prevent PII leakage and ensure contextual coherence.
+4. **Superiority of Generative Rewriting over Naive Retrieval**: Evaluation and failure analysis results decisively demonstrate that grounded rewriting (`retrieve -> rewrite -> cite`) is strictly necessary to prevent PII leakage and ensure contextual coherence.

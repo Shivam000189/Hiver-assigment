@@ -544,37 +544,37 @@ def compile_pdf_report(md_content: str, out_pdf_path: Path):
 
 
 def main():
-    print("====================================================================")
-    print("           STEP 12 — WRITE FINAL EVALUATION REPORT                  ")
-    print("====================================================================\n")
+    print("-" * 70)
+    print("           FINAL EVALUATION REPORT GENERATOR")
+    print("-" * 70)
 
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
     # 1. Load canonical metrics
-    print("1. Loading canonical evaluation metrics from results/...")
+    print(" * Loading canonical evaluation metrics from results/...")
     data = load_evaluation_data()
-    print("   Successfully loaded intent, escalation, reply, judge agreement, and failure data.")
+    print("   [OK] Metrics loaded (intent, escalation, reply, judge agreement, failures)")
 
     # 2. Generate Markdown Report
-    print("\n2. Generating Markdown report (report/final_report.md)...")
+    print(" * Generating Markdown report (report/final_report.md)...")
     md_content = generate_markdown_report(data)
     with open(MD_REPORT_PATH, "w", encoding="utf-8") as f:
         f.write(md_content)
-    print(f"   Saved {MD_REPORT_PATH} ({len(md_content):,} chars).")
+    print(f"   [OK] Saved {MD_REPORT_PATH} ({len(md_content):,} chars)")
 
     # 3. Compile PDF Report
-    print("\n3. Compiling PDF report (report/final_report.pdf)...")
+    print(" * Compiling PDF report (report/final_report.pdf)...")
     page_count = compile_pdf_report(md_content, PDF_REPORT_PATH)
-    print(f"   Saved {PDF_REPORT_PATH} ({page_count} pages).")
+    print(f"   [OK] Saved {PDF_REPORT_PATH} ({page_count} pages)")
 
     if page_count > 6:
-        print(f"   WARNING: PDF page count ({page_count}) exceeds hard limit (6 pages).")
+        print(f"   [WARN] PDF page count ({page_count}) exceeds limit (6 pages).")
     else:
-        print(f"   SUCCESS: PDF strictly satisfies page limit requirement ({page_count} <= 6 pages).")
+        print(f"   [OK] PDF satisfies page limit requirement ({page_count} <= 6 pages)")
 
-    print("\n====================================================================")
-    print("           STEP 12 REPORT COMPLETED SUCCESSFULLY                    ")
-    print("====================================================================")
+    print("-" * 70)
+    print("   REPORT COMPILATION COMPLETED SUCCESSFULLY")
+    print("-" * 70)
 
 
 if __name__ == "__main__":

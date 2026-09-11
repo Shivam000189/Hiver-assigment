@@ -102,28 +102,20 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 
 *Full timing and provenance audit available in [`results/reproducibility.md`](results/reproducibility.md).*
 
----
+## System Architecture & Pipeline Overview
 
-## Project Roadmap Status
-
-1. Setup environment [Done]
-2. Get and inspect the dataset [Done]
-3. Reconstruct threads and select one brand [Done - @AppleSupport]
-4. Mine the intent taxonomy [Done - 9 Intents]
-5. Build the golden evaluation set [Done - 200 Examples: 120 Dev / 80 Locked Test]
-6. Build the intent classifier [Done]
-7. Build grounded reply generation [Done - Step 7]
-8. Build the escalation gate [Done]
-9. Build the evaluation harness [Done]
-10. Measure judge-vs-human agreement [Done]
-11. Perform failure analysis [Done]
-12. Write the report [Done - report/final_report.pdf]
-13. Make the project reproducible in <15 min [Done - Step 13]
-14. Final submission [Done - Ready for Submission]
+1. **Dataset Ingestion & Subsampling**: 15,000 processed conversation threads from `@AppleSupport` committed for instant reproducible evaluation.
+2. **9-Class Intent Classification**: Hybrid intent classifier combining sublinear TF-IDF + Logistic Regression with LLM classification fallback.
+3. **Escalation Gate**: Deterministic Rule Layer (safety, legal, security, PII) followed by Model Layer (confidence, high-risk intents, severe sentiment).
+4. **Grounded Reply Generation**: `retrieve -> rewrite -> cite` pipeline anchoring all generated responses in verified historical resolution threads.
+5. **Evaluation Harness**: Automated offline evaluation across 3 systems (Trivial Baseline, Simple Baseline, Full Support Agent).
+6. **Judge Calibration**: Multi-round LLM-as-a-Judge alignment against 60 blinded expert human annotations.
+7. **Failure Analysis**: Diagnostic mining of authentic error modes with concrete architectural fixes.
+8. **Evaluation Report**: Automated programmatic compilation of a publication-quality 4-page PDF report.
 
 ---
 
-## Grounded Reply Generation (Step 7)
+## Grounded Reply Generation
 
 ### Architecture: `retrieve → rewrite → cite`
 The grounded reply drafter guarantees that generated responses are strictly anchored in historical brand handling patterns rather than permitting free-form LLM hallucination:
@@ -186,7 +178,7 @@ All incoming customer text and retrieved historical contexts pass through `src/p
 
 ---
 
-## Step 7 Decision Log
+### Architectural Decisions: Reply Generation
 
 1. **Why historical customer messages are embedded rather than brand replies**: A new inbound tweet expresses a symptom/question; matching customer-to-customer semantics finds identical problem situations, allowing the agent to fetch the attached brand resolution.
 2. **Why sublinear TF-IDF with n-grams was selected**: Provides microsecond CPU search latency over the index while capturing exact technical n-grams (e.g., `iOS 11.0.3`, `Settings > General`, `Apple ID`, `iforgot.apple.com`) with zero out-of-vocabulary drift.
@@ -201,7 +193,7 @@ All incoming customer text and retrieved historical contexts pass through `src/p
 
 ---
 
-## Escalation Gate (Step 8)
+## Escalation Gate
 
 ### Hybrid Architecture: Rule Layer + Model Layer
 The escalation gate decides whether an incoming customer message can be safely auto-handled or must be routed to a human specialist. It combines deterministic safety boundaries with adaptive model heuristics:
@@ -223,7 +215,7 @@ The escalation gate decides whether an incoming customer message can be safely a
                              |    MODEL LAYER    |  (Confidence, sensitive intent, severe sentiment)
                              +-------------------+
                                        |
-                               Model condition?
+                                Model condition?
                                   /          \
                                 YES           NO
                                  |             |
@@ -266,7 +258,7 @@ Customer text passes through `src/pii.py` to mask sensitive entities prior to ex
 
 ---
 
-## Step 8 Decision Log
+### Architectural Decisions: Escalation Gate
 
 1. **Why a hybrid Rule + Model architecture was chosen**: Rule-based regex provides instantaneous, deterministic guarantees for mission-critical legal, safety, and security policies that must never fail, while model-based checks dynamically catch ambiguous inquiries and extreme emotional distress.
 2. **Why the Rule layer executes before the Model layer**: To guarantee that severe compliance violations (e.g. legal threats or battery explosions) escalate immediately regardless of whether intent classification confidence is 0.99 or 0.10.
@@ -280,7 +272,7 @@ Customer text passes through `src/pii.py` to mask sensitive entities prior to ex
 
 ---
 
-## Step 9 — Evaluation Harness
+## Evaluation Harness & Benchmark Results
 
 ### 1. Execution Command
 To reproduce the complete benchmark evaluation across all three systems on the locked golden test split ($N=80$ interactions):
@@ -322,22 +314,22 @@ Evaluated on the locked Golden Test Split ($N=80$ interactions):
 
 ---
 
-## Step 9 Decision Log
+### Architectural Decisions: Evaluation Harness
 
 1. **Why three systems were compared (Trivial, Simple, Full Agent)**: Establishes clear performance baselines to prove the multi-stage LLM agent significantly outperforms naive heuristics (majority guessing) and non-generative retrieval approaches.
 2. **Why Macro-F1 is reported alongside Accuracy**: Accuracy is heavily distorted by class imbalance (e.g. system performance and battery issues dominate), while Macro-F1 equally weights all 9 taxonomy categories, exposing minority class weaknesses.
 3. **Why the Trivial Baseline uses the DEV majority class**: Prevents data leakage from the test split; calculating the mode from the test split would invalidate test isolation.
 4. **Why the Simple Baseline uses TF-IDF and Rule-Only Escalation**: Directly isolates the incremental lift provided by the LLM classifier and the Model Layer escalation gate over traditional ML and keyword regex.
 5. **Why the Simple Baseline returns historical replies verbatim**: Emphasizes the exact real-world tradeoff between naive retrieval (fast, zero generation cost, but high PII exposure and lack of personalization) and grounded LLM rewriting.
-6. **Why the Full Agent adapts the existing Steps 6–8 pipeline**: Reuses tested production modules (`src/agent.py`, `src/intents.py`, `src/reply.py`, `src/escalate.py`) without duplicating logic or introducing test-only divergence.
+6. **Why the Full Agent adapts the existing production pipeline**: Reuses tested production modules (`src/agent.py`, `src/intents.py`, `src/reply.py`, `src/escalate.py`) without duplicating logic or introducing test-only divergence.
 7. **Why the Golden Test Split remains strictly locked**: Ensures final reported metrics reflect unbiased out-of-sample generalization.
 8. **Why the LLM Judge uses structured JSON schema validation and retry**: Guarantees deterministic parsing and prevents unhandled format crashes during automated batch evaluation.
 9. **Why one calibration iteration was conducted on DEV data**: Identifies systematic judge lenient scoring patterns and tightens groundedness/completeness penalties, increasing human-judge correlation without overfitting.
-10. **Why per-example predictions are saved to `all_runs.parquet`**: Preserves full granular interaction logs (inputs, predictions, retrieved contexts, reasons, judge scores) for subsequent failure analysis (Step 11).
+10. **Why per-example predictions are saved to `all_runs.parquet`**: Preserves full granular interaction logs (inputs, predictions, retrieved contexts, reasons, judge scores) for subsequent failure analysis.
 
 ---
 
-## Step 10 — Judge vs Human Agreement & Calibration
+## Judge vs Human Agreement & Calibration
 
 ### 1. Study Setup & Blinding Protocol
 - **Sample Size**: $N=60$ customer support interactions.
@@ -393,7 +385,7 @@ A single targeted prompt calibration was performed to create **Judge v2**:
 
 ---
 
-## Step 10 Decision Log
+### Architectural Decisions: Judge Calibration
 
 1. **Why 60 examples were selected**: Provides a statistically sufficient sample ($N=60$) within the 50–80 required range to expose judge variance while remaining human-auditable.
 2. **Why DEV was used instead of TEST**: Protects the locked final test set (`golden_test.csv`) from data leakage and prompt overfitting.
@@ -408,7 +400,7 @@ A single targeted prompt calibration was performed to create **Judge v2**:
 
 ---
 
-## Step 11 — Failure Analysis
+## Failure Analysis
 
 ### 1. Execution Command
 To regenerate the full structured dataset and Markdown failure report:
@@ -437,7 +429,7 @@ Outputs generated:
 
 ---
 
-## Step 11 Decision Log
+### Architectural Decisions: Failure Analysis
 
 1. **Why all 5 failure modes were mined from authentic evaluation artifacts**: Guarantees failure analysis reflects empirical model behavior rather than fabricated hypothetical examples.
 2. **Why `battery_drain_power` $\rightarrow$ `camera_photos_media` was selected for Failure Mode 1**: It constitutes the single largest off-diagonal error cluster (3 instances, 37.5% of total intent errors) on the locked test set.
@@ -448,11 +440,11 @@ Outputs generated:
 7. **Why customer text was strictly anonymized via `src/pii.py`**: Ensures all reports and CSV artifacts remain privacy-compliant without exposing real Twitter handles, emails, phones, or URLs.
 8. **Why both CSV and Markdown outputs are generated**: Provides machine-readable structured provenance (`results/failure_analysis.csv`) alongside an in-depth human-readable diagnostic report (`results/failure_analysis.md`).
 9. **Why unit tests verify failure mining without external LLM calls**: Ensures the test suite remains fast, deterministic, and fully executable in offline CI environments.
-10. **Why previous evaluation metrics were strictly left unmodified**: Step 11 is strictly diagnostic; all locked test numbers from Step 9 and agreement metrics from Step 10 remain untouched.
+10. **Why previous evaluation metrics were strictly left unmodified**: Failure analysis is strictly diagnostic; all locked test numbers and agreement metrics remain untouched.
 
 ---
 
-## Final Report (Step 12)
+## Final Evaluation Report
 
 The final evaluation report is available in both publication-quality PDF format (strictly 4 pages, adhering to the $\le 6$-page limit) and Markdown format:
 

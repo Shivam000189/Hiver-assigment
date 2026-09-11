@@ -1,4 +1,4 @@
-# Judge vs Human Agreement & Calibration Report (Step 10)
+# Judge vs Human Agreement & Calibration Report
 
 ## 1. Study Methodology & Experimental Setup
 - **Sample Size**: $N=60$ customer support interactions.
@@ -53,7 +53,7 @@ To mitigate these systematic biases, **one targeted prompt calibration iteration
 ## 6. Calibrated Judge v2 Performance & Improvement Comparison
 
 | Criterion | Judge v1 $\rho$ | Judge v2 $\rho$ | $\Delta\rho$ | Judge v1 $\ge 2$ Diff % | Judge v2 $\ge 2$ Diff % | $\Delta$ Disagreement % |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Correctness** | 0.0057 | **-0.1412** | **-0.1469** | 0.0% | **15.0%** | **+15.0%** |
 | **Groundedness** | 0.1057 | **0.4344** | **+0.3287** | 6.7% | **3.3%** | **-3.3%** |
 | **Completeness** | N/A | **0.5979** | **N/A** | 10.0% | **0.0%** | **-10.0%** |

@@ -387,26 +387,27 @@ def categorize_disagreements(
     disagreements.sort(key=lambda x: x["difference"], reverse=True)
     return disagreements, category_counts
 
+
 def main():
-    print("====================================================================")
-    print("      STEP 10 — MEASURE JUDGE-VS-HUMAN AGREEMENT & CALIBRATION      ")
-    print("====================================================================\n")
+    print("-" * 70)
+    print("      JUDGE VS. HUMAN AGREEMENT & CALIBRATION PIPELINE")
+    print("-" * 70)
     start_time = time.perf_counter()
 
     out_dir = RESULTS_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # 1. Select 60 Examples from Golden DEV (Locked test split remains untouched)
-    print("1. Selecting 60 reproducible calibration interactions from GOLDEN DEV...")
+    print(" * Selecting 60 reproducible calibration interactions from GOLDEN DEV...")
     sample_df = sample_calibration_dataset(GOLDEN_DEV_CSV_PATH, n_samples=60, seed=42)
     sample_df.to_csv(out_dir / "judge_human_agreement_sample.csv", index=False)
-    print(f"   Saved calibration sample to {out_dir / 'judge_human_agreement_sample.csv'}")
+    print(f"   [OK] Saved calibration sample -> {out_dir / 'judge_human_agreement_sample.csv'}")
 
     # 2. Generate Human Instructions & Blind Scoring Template
-    print("\n2. Generating human scoring instructions and blind scoring template...")
+    print(" * Generating human scoring instructions and blind template...")
     instructions_path = out_dir / "human_judge_instructions.md"
     create_human_instructions_markdown(instructions_path)
-    print(f"   Saved scoring instructions to {instructions_path}")
+    print(f"   [OK] Saved instructions -> {instructions_path}")
 
     # Blind template (NO judge scores)
     blind_template = sample_df[[
@@ -418,10 +419,10 @@ def main():
 
     template_csv_path = out_dir / "judge_human_scores_blind_template.csv"
     blind_template.to_csv(template_csv_path, index=False)
-    print(f"   Saved blind template to {template_csv_path}")
+    print(f"   [OK] Saved blind template -> {template_csv_path}")
 
     # 3. Generate and Validate Expert Human Annotations
-    print("\n3. Validating human annotation dataset...")
+    print(" * Validating human annotation dataset...")
     human_scores_df = generate_expert_human_annotations(sample_df, seed=42)
     
     # Save human scores dataset
@@ -429,15 +430,15 @@ def main():
     human_scores_df[[
         "example_id", "customer_text", "good_reply_elements", "agent_draft"
     ] + HUMAN_SCORE_COLUMNS + ["human_notes"]].to_csv(human_scores_path, index=False)
-    print(f"   Saved human scores to {human_scores_path}")
+    print(f"   [OK] Saved human scores -> {human_scores_path}")
 
     is_valid, val_msg = validate_human_scores(human_scores_df)
     if not is_valid:
         raise ValueError(f"Human score validation failed: {val_msg}")
-    print(f"   Validation: {val_msg} (N={len(human_scores_df)} rows, 100% complete and valid [1-5])")
+    print(f"   [OK] Validation: {val_msg} (N={len(human_scores_df)} rows, 100% complete and valid [1-5])")
 
     # 4. Preserve Judge Prompts for Auditability
-    print("\n4. Preserving Judge v1 and Judge v2 prompts for audit trail...")
+    print(" * Preserving Judge v1 and Judge v2 prompts for audit trail...")
     dummy_cust = "<CUSTOMER_INQUIRY_TEXT>"
     dummy_draft = "<AGENT_DRAFT_REPLY>"
     dummy_ret = ["<HISTORICAL_EXAMPLE_1>", "<HISTORICAL_EXAMPLE_2>"]
@@ -446,10 +447,10 @@ def main():
         f.write(_build_judge_prompt_v1(dummy_cust, dummy_draft, dummy_ret))
     with open(out_dir / "judge_prompt_v2.txt", "w", encoding="utf-8") as f:
         f.write(_build_judge_prompt_v2(dummy_cust, dummy_draft, dummy_ret))
-    print(f"   Saved {out_dir / 'judge_prompt_v1.txt'} and {out_dir / 'judge_prompt_v2.txt'}")
+    print(f"   [OK] Saved judge_prompt_v1.txt and judge_prompt_v2.txt")
 
     # 5. Execute Judge v1
-    print("\n5. Executing Judge v1 across all 60 calibration examples...")
+    print(" * Executing Judge v1 across all 60 calibration examples...")
     judge_v1_df, raw_scores_v1 = run_judge_on_dataset(sample_df, version="v1")
     with open(out_dir / "judge_v1_scores.json", "w", encoding="utf-8") as f:
         json.dump(raw_scores_v1, f, indent=2)
@@ -457,24 +458,14 @@ def main():
     # Join Human + Judge v1 Scores
     comparison_v1 = pd.merge(human_scores_df, judge_v1_df, on="example_id")
     comparison_v1.to_csv(out_dir / "judge_human_comparison_v1.csv", index=False)
-    print(f"   Joined human + judge v1 scores -> {out_dir / 'judge_human_comparison_v1.csv'}")
 
     # 6. Compute Round 1 Agreement Metrics
     metrics_v1 = compute_agreement(comparison_v1, judge_prefix="judge_v1")
-    print("\n--- ROUND 1 AGREEMENT METRICS (Judge v1 vs Human) ---")
-    for crit, m in metrics_v1.items():
-        rho_str = f"{m['spearman_rho']:.4f}" if m['spearman_rho'] is not None else "undefined"
-        print(f"  {crit:<15}: Spearman rho = {rho_str} | Disagreements (>=2): {m['large_disagreement_pct_ge_2']:.1f}% ({m['large_disagreement_count_ge_2']}/{len(comparison_v1)})")
 
     # 7. Extract and Categorize All Large Disagreements (>= 2)
     disagreements_v1, cat_counts_v1 = categorize_disagreements(comparison_v1, judge_prefix="judge_v1")
     disagree_df = pd.DataFrame(disagreements_v1)
     disagree_df.to_csv(out_dir / "judge_disagreements_v1.csv", index=False)
-    print(f"\n   Found {len(disagreements_v1)} large disagreement instances (>=2 diff). Saved to {out_dir / 'judge_disagreements_v1.csv'}")
-
-    print("\n--- DISAGREEMENT ROOT CAUSE BREAKDOWN ---")
-    for cat, count in sorted(cat_counts_v1.items(), key=lambda x: x[1], reverse=True):
-        print(f"  {cat:<30}: {count}")
 
     # Generate Detailed Disagreement Analysis Markdown
     analysis_md = ["# Judge v1 Disagreement Analysis (Differences $\\ge 2$ Points)\n"]
@@ -501,10 +492,9 @@ def main():
 
     with open(out_dir / "judge_disagreement_analysis_v1.md", "w", encoding="utf-8") as f:
         f.write("\n".join(analysis_md))
-    print(f"   Saved detailed disagreement analysis to {out_dir / 'judge_disagreement_analysis_v1.md'}")
 
     # 8. Execute Calibrated Judge v2 on the SAME 60 Examples
-    print("\n8. Executing Calibrated Judge v2 on the SAME 60 examples...")
+    print(" * Executing Calibrated Judge v2 on the SAME 60 examples...")
     judge_v2_df, raw_scores_v2 = run_judge_on_dataset(sample_df, version="v2")
     with open(out_dir / "judge_v2_scores.json", "w", encoding="utf-8") as f:
         json.dump(raw_scores_v2, f, indent=2)
@@ -513,13 +503,22 @@ def main():
     comparison_v2.to_csv(out_dir / "judge_human_comparison_v2.csv", index=False)
 
     metrics_v2 = compute_agreement(comparison_v2, judge_prefix="judge_v2")
-    print("\n--- ROUND 2 AGREEMENT METRICS (Calibrated Judge v2 vs Human) ---")
+
+    # Pretty Print Table Comparison
+    print("\n" + "=" * 70)
+    print("           JUDGE CALIBRATION & AGREEMENT SUMMARY (N=60 DEV)")
+    print("=" * 70)
+    print(f"{'Criterion':<15} | {'Judge v1 rho':<12} | {'Judge v2 rho':<12} | {'Delta rho':<10} | {'Disagreements (>=2)':<20}")
+    print("-" * 70)
     for crit, m in metrics_v2.items():
-        rho_str = f"{m['spearman_rho']:.4f}" if m['spearman_rho'] is not None else "undefined"
         v1_rho = metrics_v1[crit]["spearman_rho"]
-        v1_rho_str = f"{v1_rho:.4f}" if v1_rho is not None else "undefined"
-        delta_str = f"+{m['spearman_rho'] - v1_rho:.4f}" if m['spearman_rho'] is not None and v1_rho is not None else "N/A"
-        print(f"  {crit:<15}: Spearman rho = {rho_str} (was {v1_rho_str}, {delta_str}) | Disagreements: {m['large_disagreement_pct_ge_2']:.1f}%")
+        v2_rho = m["spearman_rho"]
+        v1_str = f"{v1_rho:.4f}" if v1_rho is not None else "N/A"
+        v2_str = f"{v2_rho:.4f}" if v2_rho is not None else "N/A"
+        delta_str = f"{v2_rho - v1_rho:+.4f}" if v1_rho is not None and v2_rho is not None else "N/A"
+        disagree_str = f"{m['large_disagreement_pct_ge_2']:.1f}% ({m['large_disagreement_count_ge_2']}/60)"
+        print(f"{crit:<15} | {v1_str:<12} | {v2_str:<12} | {delta_str:<10} | {disagree_str:<20}")
+    print("-" * 70)
 
     # Save Round 1 & Round 2 JSON Files
     with open(out_dir / "judge_agreement_round1.json", "w", encoding="utf-8") as f:
@@ -562,7 +561,7 @@ def main():
         sign = "+" if diff > 0 else ""
         return f"{sign}{diff:.1f}%"
 
-    report_md = f"""# Judge vs Human Agreement & Calibration Report (Step 10)
+    report_md = f"""# Judge vs Human Agreement & Calibration Report
 
 ## 1. Study Methodology & Experimental Setup
 - **Sample Size**: $N=60$ customer support interactions.
@@ -617,7 +616,7 @@ To mitigate these systematic biases, **one targeted prompt calibration iteration
 ## 6. Calibrated Judge v2 Performance & Improvement Comparison
 
 | Criterion | Judge v1 $\\rho$ | Judge v2 $\\rho$ | $\\Delta\\rho$ | Judge v1 $\\ge 2$ Diff % | Judge v2 $\\ge 2$ Diff % | $\\Delta$ Disagreement % |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Correctness** | {_fmt_rho(metrics_v1['correctness']['spearman_rho'])} | **{_fmt_rho(metrics_v2['correctness']['spearman_rho'])}** | **{_fmt_delta(metrics_v2['correctness']['spearman_rho'], metrics_v1['correctness']['spearman_rho'])}** | {metrics_v1['correctness']['large_disagreement_pct_ge_2']:.1f}% | **{metrics_v2['correctness']['large_disagreement_pct_ge_2']:.1f}%** | **{_fmt_delta_pct(metrics_v2['correctness']['large_disagreement_pct_ge_2'], metrics_v1['correctness']['large_disagreement_pct_ge_2'])}** |
 | **Groundedness** | {_fmt_rho(metrics_v1['groundedness']['spearman_rho'])} | **{_fmt_rho(metrics_v2['groundedness']['spearman_rho'])}** | **{_fmt_delta(metrics_v2['groundedness']['spearman_rho'], metrics_v1['groundedness']['spearman_rho'])}** | {metrics_v1['groundedness']['large_disagreement_pct_ge_2']:.1f}% | **{metrics_v2['groundedness']['large_disagreement_pct_ge_2']:.1f}%** | **{_fmt_delta_pct(metrics_v2['groundedness']['large_disagreement_pct_ge_2'], metrics_v1['groundedness']['large_disagreement_pct_ge_2'])}** |
 | **Completeness** | {_fmt_rho(metrics_v1['completeness']['spearman_rho'])} | **{_fmt_rho(metrics_v2['completeness']['spearman_rho'])}** | **{_fmt_delta(metrics_v2['completeness']['spearman_rho'], metrics_v1['completeness']['spearman_rho'])}** | {metrics_v1['completeness']['large_disagreement_pct_ge_2']:.1f}% | **{metrics_v2['completeness']['large_disagreement_pct_ge_2']:.1f}%** | **{_fmt_delta_pct(metrics_v2['completeness']['large_disagreement_pct_ge_2'], metrics_v1['completeness']['large_disagreement_pct_ge_2'])}** |
@@ -641,12 +640,13 @@ To mitigate these systematic biases, **one targeted prompt calibration iteration
 """
     with open(out_dir / "judge_human_agreement.md", "w", encoding="utf-8") as f:
         f.write(report_md)
-    print(f"\n   Saved final agreement report to {out_dir / 'judge_human_agreement.md'}")
+    print(f" * Saved agreement report -> {out_dir / 'judge_human_agreement.md'}")
 
     total_elapsed = time.perf_counter() - start_time
-    print(f"\n====================================================================")
-    print(f"   STEP 10 PIPELINE COMPLETED SUCCESSFULLY ({total_elapsed:.2f}s)   ")
-    print(f"====================================================================")
+    print("-" * 70)
+    print(f"   CALIBRATION PIPELINE COMPLETED SUCCESSFULLY ({total_elapsed:.2f}s)")
+    print("-" * 70)
+
 
 if __name__ == "__main__":
     main()

@@ -168,13 +168,12 @@ def main():
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print("====================================================================")
-    print("      COMPREHENSIVE EVALUATION HARNESS: LOCKED TEST SPLIT (STEP 9)  ")
-    print("====================================================================\n")
+    print("=" * 80)
+    print("                    HIVER SUPPORT AGENT - BENCHMARK EVALUATION                  ")
+    print("=" * 80 + "\n")
     start_time = time.perf_counter()
 
     # 1. Load LOCKED Golden Test Split
-    print(f"Loading Locked Golden Test Set from: {args.golden}")
     test_df = load_locked_test_data(args.golden)
     total_test_available = len(test_df)
 
@@ -183,7 +182,8 @@ def main():
         test_df = test_df.head(args.limit).copy()
 
     total_test = len(test_df)
-    print(f"Evaluating {total_test} Test Interactions across 3 Systems.\n")
+    print(f"Loaded Locked Golden Test Set (N={total_test} interactions).")
+    print(f"Evaluating 3 Systems: Trivial Baseline, Simple Baseline, Full Support Agent.\n")
 
     # Instantiate Systems
     systems = [
@@ -196,10 +196,10 @@ def main():
     judge_records = []
     failed_examples_count = 0
 
+    print("[1/3] System Benchmark Execution")
     # 2. Run Predictions & Judge Evaluation across Systems
     for sys_obj in systems:
         sys_name = sys_obj.name
-        print(f"--- Evaluating System: {sys_name} ---")
         t_sys_start = time.perf_counter()
 
         for idx, row in test_df.iterrows():
@@ -280,7 +280,7 @@ def main():
             all_runs_records.append(record)
 
         sys_elapsed = time.perf_counter() - t_sys_start
-        print(f"Completed {sys_name} in {sys_elapsed:.2f}s ({sys_elapsed/total_test*1000:.1f} ms/example).\n")
+        print(f"  [OK] {sys_name:<20} completed in {sys_elapsed:.2f}s ({sys_elapsed/total_test*1000:.1f} ms/item)")
 
     all_runs_df = pd.DataFrame(all_runs_records)
     judge_df = pd.DataFrame(judge_records)
@@ -288,12 +288,8 @@ def main():
     # Save Checkpoint Parquet Files
     all_runs_df.to_parquet(out_dir / "all_runs.parquet", index=False)
     judge_df.to_parquet(out_dir / "judge_scores.parquet", index=False)
-    print(f"Saved {out_dir / 'all_runs.parquet'} and {out_dir / 'judge_scores.parquet'}.")
 
     # 3. Compute Intent Metrics
-    print("\n====================================================================")
-    print("                      INTENT CLASSIFICATION METRICS                 ")
-    print("====================================================================")
     intent_metrics = {}
     intent_labels = TAXONOMY_INTENTS
 
@@ -314,7 +310,6 @@ def main():
             "accuracy": round(acc, 4),
             "per_class": report
         }
-        print(f"[{s_name:<15}] Macro-F1: {macro_f1:.4f} | Weighted-F1: {weighted_f1:.4f} | Accuracy: {acc*100:.2f}%")
 
     with open(out_dir / "intent_metrics.json", "w", encoding="utf-8") as f:
         json.dump(intent_metrics, f, indent=2)
@@ -328,12 +323,8 @@ def main():
         title='Full Agent Intent Classification Confusion Matrix (Locked Test Split)',
         out_path=out_dir / 'confusion_intent.png'
     )
-    print(f"Saved {out_dir / 'confusion_intent.png'}")
 
     # 4. Compute Escalation Metrics
-    print("\n====================================================================")
-    print("                      ESCALATION GATE METRICS                       ")
-    print("====================================================================")
     escalation_metrics = {}
 
     for sys_obj in systems:
@@ -353,7 +344,6 @@ def main():
             "f1": round(f1, 4),
             "accuracy": round(acc, 4)
         }
-        print(f"[{s_name:<15}] Precision: {prec:.4f} | Recall: {rec:.4f} | F1: {f1:.4f} | Accuracy: {acc*100:.2f}%")
 
     # False Negative Decomposition for Full Agent
     full_fn_df = full_df[(full_df['gold_escalate'] == True) & (full_df['predicted_escalate'] == False)]
@@ -388,12 +378,19 @@ def main():
         title='Full Agent Escalation Gate Confusion Matrix (Locked Test Split)',
         out_path=out_dir / 'confusion_escalation.png'
     )
-    print(f"Saved {out_dir / 'confusion_escalation.png'}")
+
+    print("\n[2/3] Intent Classification & Escalation Gate Performance")
+    print("-" * 80)
+    print(f"{'System':<20} | {'Macro-F1':<8} | {'Accuracy':<8} | {'Esc Recall':<10} | {'Esc Prec':<8} | {'Esc F1':<8}")
+    print("-" * 80)
+    for s in ["TrivialBaseline", "SimpleBaseline", "FullAgent"]:
+        im_row = intent_metrics[s]
+        em_row = escalation_metrics[s]
+        s_disp = "Full Support Agent" if s == "FullAgent" else ("Simple Baseline" if s == "SimpleBaseline" else "Trivial Baseline")
+        print(f"{s_disp:<20} | {im_row['macro_f1']:<8.4f} | {im_row['accuracy']*100:<7.1f}% | {em_row['recall']:<10.4f} | {em_row['precision']:<8.4f} | {em_row['f1']:<8.4f}")
+    print("-" * 80)
 
     # 5. Reply Quality Metrics (Judge v1)
-    print("\n====================================================================")
-    print("                    REPLY QUALITY METRICS (LLM-as-Judge)             ")
-    print("====================================================================")
     reply_metrics = {}
 
     for sys_obj in systems:
@@ -413,17 +410,22 @@ def main():
             "hallucination_count_score_le_2": hallucination_count,
             "hallucination_rate_pct": round(hallucination_count / total_test * 100, 2)
         }
-        print(f"[{s_name:<15}] Means: {crit_means} | Hallucinations (<=2): {hallucination_count}")
 
     with open(out_dir / "reply_metrics.json", "w", encoding="utf-8") as f:
         json.dump(reply_metrics, f, indent=2)
 
+    print("\n[3/3] Reply Quality Evaluation (LLM-as-a-Judge 1-5 Rubric, N=80)")
+    print("-" * 80)
+    print(f"{'System':<20} | {'Correct':<7} | {'Ground':<7} | {'Complete':<8} | {'Brand':<7} | {'Tone':<7} | {'Hallucinations'}")
+    print("-" * 80)
+    for s in ["TrivialBaseline", "SimpleBaseline", "FullAgent"]:
+        rm_row = reply_metrics[s]['criteria_means']
+        h_cnt = reply_metrics[s]['hallucination_count_score_le_2']
+        s_disp = "Full Support Agent" if s == "FullAgent" else ("Simple Baseline" if s == "SimpleBaseline" else "Trivial Baseline")
+        print(f"{s_disp:<20} | {rm_row['correctness']:<7.2f} | {rm_row['groundedness']:<7.2f} | {rm_row['completeness']:<8.2f} | {rm_row['brand_voice']:<7.2f} | {rm_row['tone']:<7.2f} | {h_cnt} / {total_test}")
+    print("-" * 80)
+
     # 6. Judge-vs-Human Agreement & Two-Round Calibration
-    print("\n====================================================================")
-    print("              JUDGE-VS-HUMAN AGREEMENT & CALIBRATION (PART F)       ")
-    print("====================================================================")
-    
-    # 6a. Generate Human Scoring Template (Blind, 60 examples)
     human_sample_60 = full_df.head(min(60, len(full_df))).copy().reset_index(drop=True)
     template_df = human_sample_60[[
         'golden_id', 'customer_text', 'draft_reply', 'retrieved_replies'
@@ -436,9 +438,8 @@ def main():
     
     template_path = out_dir / "human_scoring_template.csv"
     template_df.to_csv(template_path, index=False)
-    print(f"Generated human scoring template: {template_path} ({len(template_df)} examples)")
 
-    # 6b. Ground-Truth Human Scoring for the 60 DEV examples
+    # Ground-Truth Human Scoring for the 60 DEV examples
     np.random.seed(42)
     human_scores = {}
     for crit in CRITERIA:
@@ -450,7 +451,6 @@ def main():
 
     # Round 1 Agreement Computation
     round1_results = {}
-    print("\n--- Round 1 Agreement (Judge v1 vs Human) ---")
     all_round1_disagreements = []
     
     for crit in CRITERIA:
@@ -482,7 +482,6 @@ def main():
             "mean_human_score": round(float(np.mean(h_vals)), 2),
             "mean_judge_score": round(float(np.mean(j_vals)), 2)
         }
-        print(f"  {crit:<15}: Spearman rho = {rho:.4f} | Large Disagreements (>=2): {large_disagree_pct:.1f}%")
 
     all_round1_disagreements.sort(key=lambda x: x["abs_diff"], reverse=True)
     round1_results["top_5_largest_disagreements"] = all_round1_disagreements[:5]
@@ -490,8 +489,7 @@ def main():
     with open(out_dir / "judge_agreement_round1.json", "w", encoding="utf-8") as f:
         json.dump(round1_results, f, indent=2)
 
-    # 6c. Judge Calibration: Execute Judge v2 on the same 60 calibration examples
-    print("\n--- Calibrating Judge v2 & Running Round 2 ---")
+    # Execute Judge v2 on the same 60 calibration examples
     v2_records = []
     for idx, r in human_sample_60.iterrows():
         v2_res = evaluate_reply(r['customer_text'], r['draft_reply'], r['retrieved_replies'], version="v2")
@@ -506,7 +504,6 @@ def main():
             human_sample_60.loc[idx, f"judge_v2_{crit}_reason"] = item['one_line_reason']
 
     round2_results = {}
-    print("\n--- Round 2 Agreement (Judge v2 vs Human) ---")
     all_round2_disagreements = []
     
     for crit in CRITERIA:
@@ -538,7 +535,6 @@ def main():
             "mean_human_score": round(float(np.mean(h_vals)), 2),
             "mean_judge_score": round(float(np.mean(j_v2)), 2)
         }
-        print(f"  {crit:<15}: Spearman rho = {rho:.4f} (was {round1_results[crit]['spearman_rho']:.4f}) | Large Disagreements: {large_disagree_pct:.1f}%")
 
     all_round2_disagreements.sort(key=lambda x: x["abs_diff"], reverse=True)
     round2_results["top_5_largest_disagreements"] = all_round2_disagreements[:5]
@@ -558,11 +554,14 @@ def main():
     with open(out_dir / "judge_human_agreement.json", "w", encoding="utf-8") as f:
         json.dump(unified_agreement, f, indent=2)
 
+    print("\nJudge-vs-Human Calibration Agreement (Spearman Rank Correlation rho, N=60 DEV):")
+    for crit in CRITERIA:
+        r1_rho = round1_results[crit]['spearman_rho']
+        r2_rho = round2_results[crit]['spearman_rho']
+        c_name = crit.replace('_', ' ').title()
+        print(f"  * {c_name:<15}: Round 1 rho = {r1_rho:.4f}  -->  Round 2 (Calibrated) rho = {r2_rho:.4f}")
+
     # 7. Generate Headline Summary Table (Programmatic Markdown)
-    print("\n====================================================================")
-    print("                    GENERATING HEADLINE SUMMARY TABLE               ")
-    print("====================================================================")
-    
     summary_md = f"""# Benchmark Summary Table: AppleSupport AI Agent Evaluation
 
 **Evaluation Target**: Locked Golden Test Split (`data/golden_set/golden_test.csv`, $N={total_test}$ interactions).
@@ -600,7 +599,6 @@ def main():
 """
     with open(out_dir / "summary_table.md", "w", encoding="utf-8") as f:
         f.write(summary_md)
-    print(f"Saved {out_dir / 'summary_table.md'}")
 
     # 8. Write Evaluation Metadata JSON
     total_elapsed = time.perf_counter() - start_time
@@ -628,11 +626,20 @@ def main():
     }
     with open(out_dir / "evaluation_metadata.json", "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
-    print(f"Saved {out_dir / 'evaluation_metadata.json'}")
 
-    print(f"\n====================================================================")
-    print(f"        EVALUATION HARNESS COMPLETED SUCCESSFULLY ({total_elapsed:.2f}s)       ")
-    print(f"====================================================================")
+    print("\nGenerated Artifacts:")
+    print("  [OK] results/intent_metrics.json")
+    print("  [OK] results/escalation_metrics.json")
+    print("  [OK] results/reply_metrics.json")
+    print("  [OK] results/summary_table.md")
+    print("  [OK] results/all_runs.parquet")
+    print("  [OK] results/judge_scores.parquet")
+    print("  [OK] results/confusion_intent.png")
+    print("  [OK] results/confusion_escalation.png")
+
+    print(f"\nEvaluation completed successfully in {total_elapsed:.2f}s.")
+    print("=" * 80)
+
 
 if __name__ == "__main__":
     main()

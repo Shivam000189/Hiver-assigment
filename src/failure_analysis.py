@@ -287,9 +287,9 @@ def find_top_verbatim_baseline_privacy_failure(all_runs_df: pd.DataFrame) -> Dic
 
 def run_failure_analysis() -> Tuple[pd.DataFrame, str]:
     """
-    Executes the comprehensive Step 11 Failure Analysis pipeline.
+    Executes the comprehensive Failure Analysis pipeline.
     """
-    logger.info("Executing Step 11 Failure Analysis pipeline...")
+    logger.info("Executing Failure Analysis pipeline...")
 
     # 1. Load evaluation artifacts
     if not ALL_RUNS_PATH.exists():
@@ -336,9 +336,9 @@ def run_failure_analysis() -> Tuple[pd.DataFrame, str]:
 
     # 4. Generate Markdown Report
     md_lines = [
-        "# Step 11 — Failure Analysis Report",
+        "# Failure Analysis Report",
         "",
-        "## Overview",
+        "## Executive Summary",
         "",
         "This diagnostic report systematically examines the **Top 5 Failure Modes** mined from the locked test evaluation "
         "(`results/all_runs.parquet`), human annotation comparison (`results/judge_human_comparison_v1.csv`), and retrieval index "
@@ -487,7 +487,7 @@ def run_failure_analysis() -> Tuple[pd.DataFrame, str]:
         "1. **Container vs. Symptom Entanglement**: Across intent classification and reply drafting, object nouns ('photos app', 'music library') frequently mislead models into media intents when the true failure is system crash or hardware shutdown.",
         "2. **Compounding Multi-Issue Blindspot**: Single-label intent classification inevitably drops secondary symptoms when customers report multiple bugs in a single tweet. Multi-label intent extraction and multi-symptom escalation rules are required.",
         "3. **Threshold Calibration for Safe Fallback**: Setting retrieval thresholds too low ($0.15$) invites generative hallucination on out-of-distribution legacy hardware inquiries. Raising the threshold to $0.35$ enforces safe escalation.",
-        "4. **Superiority of Generative Rewriting over Naive Retrieval**: Step 9 and Step 11 results decisively demonstrate that grounded rewriting (`retrieve -> rewrite -> cite`) is strictly necessary to prevent PII leakage and ensure contextual coherence."
+        "4. **Superiority of Generative Rewriting over Naive Retrieval**: Evaluation and failure analysis results decisively demonstrate that grounded rewriting (`retrieve -> rewrite -> cite`) is strictly necessary to prevent PII leakage and ensure contextual coherence."
     ]
 
     report_md = "\n".join(md_lines)
@@ -500,22 +500,22 @@ def run_failure_analysis() -> Tuple[pd.DataFrame, str]:
 
 
 def main():
-    print("====================================================================")
-    print("                 STEP 11 — FAILURE ANALYSIS                         ")
-    print("====================================================================\n")
+    print("-" * 70)
+    print("                 FAILURE ANALYSIS PIPELINE")
+    print("-" * 70)
 
     df, md = run_failure_analysis()
 
-    print("\n--- EXTRACTED TOP 5 FAILURE MODES ---")
+    print("\n * Mined Top 5 Empirical Failure Modes:")
+    print("-" * 70)
     for idx, row in df.iterrows():
-        print(f"[{row['failure_rank']}] {row['failure_mode']} (Example ID: #{row['example_id']})")
-        print(f"    Reason: {row['reason']}")
-        print(f"    Customer Text (Anonymized): \"{row['customer_text_anonymized'][:80]}...\"\n")
-
-    print("====================================================================")
-    print("   FAILURE ANALYSIS COMPLETED SUCCESSFULLY                          ")
-    print("====================================================================")
+        print(f" [{row['failure_rank']}] {row['failure_mode']} (ID: #{row['example_id']})")
+        print(f"     Root Cause: {row['reason']}")
+    print("-" * 70)
+    print("   FAILURE ANALYSIS COMPLETED (results/failure_analysis.md generated)")
+    print("-" * 70)
 
 
 if __name__ == "__main__":
     main()
+
