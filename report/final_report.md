@@ -58,8 +58,8 @@ All three systems were evaluated on the **locked Golden Test Set (N=80 interacti
 | System Name | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Reply Correctness | Reply Groundedness | Reply Completeness | Reply Brand Voice | Reply Tone | Severe Hallucinations (≤ 2) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Trivial Baseline** | 0.0529 | 31.2% | 0.0000 | 0.0000 | 0.0000 | 3.00 | 4.00 | 3.00 | 3.00 | 4.00 | 0 / 80 |
-| **Simple Baseline** (Verbatim) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.79 | 5.00 | 4.49 | 4.51 | 5.00 | 0 / 80 |
-| **Full Support Agent** | **0.8976** | **90.0%** | **0.3846** | **0.8333** | **0.5263** | **5.00** | **5.00** | **5.00** | **5.00** | **5.00** | **0 / 80** |
+| **Simple Baseline** (Verbatim) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.70 | 4.72 | 4.51 | 4.70 | 4.70 | 0 / 80 |
+| **Full Support Agent** | **0.8976** | **90.0%** | **0.3846** | **0.8333** | **0.5263** | **4.72** | **4.79** | **5.00** | **4.72** | **4.72** | **0 / 80** |
 
 *Note: Simple Baseline exhibits severe privacy vulnerabilities by regurgitating historical customer handles (`@[USER]`) and conversation-specific references verbatim.*
 

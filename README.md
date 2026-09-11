@@ -119,7 +119,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 11. Perform failure analysis [Done]
 12. Write the report [Done - report/final_report.pdf]
 13. Make the project reproducible in <15 min [Done - Step 13]
-14. Final submission [Upcoming]
+14. Final submission [Done - Ready for Submission]
 
 ---
 
