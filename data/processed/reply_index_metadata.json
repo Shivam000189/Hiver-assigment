@@ -1,0 +1,18 @@
+{
+  "brand": "AppleSupport",
+  "source_dataset": "D:\\shivam\\projects\\HiverAssingment\\hiver-support-agent\\data\\processed\\applesupport_threads.parquet",
+  "total_threads": 106646,
+  "usable_threads": 103771,
+  "usable_percentage": 97.3,
+  "excluded_threads": 2875,
+  "exclusion_breakdown": {
+    "no_brand_reply": 0,
+    "frustrated_followup": 2875
+  },
+  "usable_definition": "brand_reply_text is non-empty AND (has_followup is False OR followup does not contain frustration signals)",
+  "embedding_method": "TfidfVectorizer (ngram_range=(1,2), min_df=2, max_features=25000, sublinear_tf=True)",
+  "embedding_dimension": 25000,
+  "similarity_metric": "Cosine similarity",
+  "default_top_k": 3,
+  "min_similarity_threshold": 0.15
+}

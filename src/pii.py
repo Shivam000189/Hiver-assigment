@@ -37,19 +37,19 @@ def redact_pii(text: str) -> Tuple[str, int, List[str]]:
         detected_types.append("email")
         redacted = re.sub(EMAIL_PATTERN, "[EMAIL_REDACTED]", redacted)
 
-    # 2. Credit Cards / Long Digit Sequences (>= 10 digits)
-    cards = re.findall(CARD_LONG_DIGITS_PATTERN, redacted)
-    if cards:
-        count += len(cards)
-        detected_types.append("card_or_account_number")
-        redacted = re.sub(CARD_LONG_DIGITS_PATTERN, "[ACCOUNT_NUM_REDACTED]", redacted)
-
-    # 3. Phone Numbers
+    # 2. Phone Numbers (Checked before general card/account digits)
     phones = re.findall(PHONE_PATTERN, redacted)
     if phones:
         count += len(phones)
         detected_types.append("phone_number")
         redacted = re.sub(PHONE_PATTERN, "[PHONE_REDACTED]", redacted)
+
+    # 3. Credit Cards / Long Digit Sequences (>= 10 digits)
+    cards = re.findall(CARD_LONG_DIGITS_PATTERN, redacted)
+    if cards:
+        count += len(cards)
+        detected_types.append("card_or_account_number")
+        redacted = re.sub(CARD_LONG_DIGITS_PATTERN, "[ACCOUNT_NUM_REDACTED]", redacted)
 
     # 4. Device Serial Numbers / IMEI
     serials = re.findall(IMEI_SERIAL_PATTERN, redacted, flags=re.IGNORECASE)

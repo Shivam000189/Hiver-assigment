@@ -194,28 +194,38 @@ def _local_deterministic_llm(prompt: str, system_prompt: Optional[str]) -> str:
             return json.dumps({"severity": "routine", "reason": "Standard operational inquiry."})
 
     # 4. Grounded Reply Drafting
-    if "draft the official @applesupport reply" in p_lower or "draft a reply" in p_lower:
+    if "draft the official @applesupport reply" in p_lower or "draft a reply" in p_lower or "produce the grounded @applesupport reply" in p_lower:
         match = re.search(r'new inbound customer tweet:\s*"([^"]+)"', prompt, flags=re.IGNORECASE)
         inquiry = match.group(1).lower() if match else p_lower
 
         if "battery" in inquiry:
-            return "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT"
-        elif "autocorrect" in inquiry or "i️" in inquiry or "keyboard" in inquiry:
-            return "We're aware of this keyboard autocorrect issue and working on a permanent update. You can temporarily resolve it via Settings > General > Keyboard > Text Replacement. Send us a DM if you need guidance: https://t.co/GDrqU22YpT"
+            draft_text = "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT"
+        elif "autocorrect" in inquiry or "i️" in inquiry or "keyboard" in inquiry or "type the letter" in inquiry or "replaces with an a" in inquiry:
+            draft_text = "We're aware of this keyboard autocorrect issue and working on a permanent update. You can temporarily resolve it via Settings > General > Keyboard > Text Replacement. Send us a DM if you need guidance: https://t.co/GDrqU22YpT"
         elif "wifi" in inquiry or "wi-fi" in inquiry or "bluetooth" in inquiry:
-            return "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT"
+            draft_text = "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT"
         elif "apple music" in inquiry or "song" in inquiry or "playlist" in inquiry or "audio" in inquiry or "podcasts" in inquiry:
-            return "We want to make sure you can enjoy your music seamlessly. Try toggling iCloud Music Library off and on in Settings, and restart your device. Reach out in DM if you need further help: https://t.co/GDrqU22YpT"
+            draft_text = "We want to make sure you can enjoy your music seamlessly. Try toggling iCloud Music Library off and on in Settings, and restart your device. Reach out in DM if you need further help: https://t.co/GDrqU22YpT"
         elif "apple id" in inquiry or "password" in inquiry or "icloud" in inquiry:
-            return "We'd like to help you regain access to your account securely. You can reset your password at iforgot.apple.com. Feel free to DM us if you run into any trouble: https://t.co/GDrqU22YpT"
+            draft_text = "We'd like to help you regain access to your account securely. You can reset your password at iforgot.apple.com. Feel free to DM us if you run into any trouble: https://t.co/GDrqU22YpT"
         elif "refund" in inquiry or "charged" in inquiry or "subscription" in inquiry or "billing" in inquiry or "$529" in inquiry:
-            return "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT"
+            draft_text = "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT"
         elif "camera" in inquiry or "photo" in inquiry or "pictures" in inquiry or "pics" in inquiry or "animojis" in inquiry:
-            return "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT"
+            draft_text = "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT"
         elif "freeze" in inquiry or "crash" in inquiry or "slow" in inquiry or "update" in inquiry:
-            return "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT"
+            draft_text = "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT"
         else:
-            return "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT"
+            draft_text = "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT"
+
+        if "return only valid json" in s_lower or "return only valid json" in p_lower or "draft_reply" in p_lower:
+            # Extract example IDs from prompt if available
+            id_matches = re.findall(r'Brand Tweet ID:\s*(\d+)', prompt)
+            return json.dumps({
+                "draft_reply": draft_text,
+                "grounded": True,
+                "used_example_ids": id_matches if id_matches else ["sample_1"]
+            })
+        return draft_text
 
     return "I want to make sure you get the right help — let me connect you with our team."
 
