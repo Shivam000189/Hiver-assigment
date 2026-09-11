@@ -1,0 +1,152 @@
+{
+  "summary": {
+    "total_examples": 15,
+    "total_auto_handled": 6,
+    "total_escalated": 9,
+    "rule_escalations": 6,
+    "model_escalations": 3,
+    "rule_breakdown": {
+      "rule:legal_threat": 1,
+      "rule:safety": 1,
+      "rule:security": 1,
+      "rule:media": 1,
+      "rule:abuse": 1,
+      "rule:pii_needed": 1
+    },
+    "model_breakdown": {
+      "model:low_confidence": 1,
+      "model:escalation_prone_intent": 1,
+      "model:severe_sentiment": 1
+    },
+    "llm_metrics": {
+      "cache_hits": 2,
+      "cache_misses": 5,
+      "retries": 0,
+      "parse_fallbacks": 0
+    }
+  },
+  "auto_handle_examples": [
+    {
+      "customer_text": "@AppleSupport turn off my wifi in ios11 control panel. 15 seconds later it’s back on. Why?",
+      "intent": "connectivity_network",
+      "confidence": 0.94,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_connectivity"
+    },
+    {
+      "customer_text": "How do I check battery health in Settings on iPhone 7?",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_battery"
+    },
+    {
+      "customer_text": "Whenever I type the letter i on my keyboard it replaces with an A and question mark symbol.",
+      "intent": "keyboard_autocorrect_bug",
+      "confidence": 0.96,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_keyboard"
+    },
+    {
+      "customer_text": "Where can I find my downloaded offline songs in Apple Music app?",
+      "intent": "audio_music_playback",
+      "confidence": 0.94,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_audio"
+    },
+    {
+      "customer_text": "My Camera app is showing a black screen when switching to rear lens.",
+      "intent": "camera_photos_media",
+      "confidence": 0.95,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_camera"
+    },
+    {
+      "customer_text": "Can you tell me your legal business name for my receipt records?",
+      "intent": "other",
+      "confidence": 0.85,
+      "decision": "AUTO_HANDLE",
+      "reason": "auto_handle",
+      "test_category": "auto_handle_benign_keyword"
+    }
+  ],
+  "escalation_examples": [
+    {
+      "customer_text": "I will sue your company in consumer court if this charge isn't reversed.",
+      "intent": "billing_app_store",
+      "confidence": 0.95,
+      "decision": "ESCALATE",
+      "reason": "rule:legal_threat",
+      "test_category": "rule:legal_threat"
+    },
+    {
+      "customer_text": "My iPhone battery is swollen and smoking after charging on my desk.",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "decision": "ESCALATE",
+      "reason": "rule:safety",
+      "test_category": "rule:safety"
+    },
+    {
+      "customer_text": "Someone hacked my Apple ID and changed my recovery email address!",
+      "intent": "account_icloud_login",
+      "confidence": 0.95,
+      "decision": "ESCALATE",
+      "reason": "rule:security",
+      "test_category": "rule:security"
+    },
+    {
+      "customer_text": "I am a journalist writing an article for the newspaper on iOS 11 bugs.",
+      "intent": "other",
+      "confidence": 0.88,
+      "decision": "ESCALATE",
+      "reason": "rule:media",
+      "test_category": "rule:media"
+    },
+    {
+      "customer_text": "Fuck you and your useless support team, you piece of shit.",
+      "intent": "system_performance_freeze",
+      "confidence": 0.9,
+      "decision": "ESCALATE",
+      "reason": "rule:abuse",
+      "test_category": "rule:abuse"
+    },
+    {
+      "customer_text": "Please send me your full card number and expiration date to process refund.",
+      "intent": "billing_app_store",
+      "confidence": 0.92,
+      "decision": "ESCALATE",
+      "reason": "rule:pii_needed",
+      "test_category": "rule:pii_needed"
+    },
+    {
+      "customer_text": "I need help with some strange device behavior that keeps happening.",
+      "intent": "other",
+      "confidence": 0.25,
+      "decision": "ESCALATE",
+      "reason": "model:low_confidence(intent=other, conf=0.25)",
+      "test_category": "model:low_confidence"
+    },
+    {
+      "customer_text": "How do I manage my iCloud storage subscription and password settings?",
+      "intent": "account_icloud_login",
+      "confidence": 0.92,
+      "decision": "ESCALATE",
+      "reason": "model:escalation_prone_intent(intent=account_icloud_login)",
+      "test_category": "model:escalation_prone_intent"
+    },
+    {
+      "customer_text": "I am absolutely furious, your software update is destroying my work and I am beyond angry.",
+      "intent": "system_performance_freeze",
+      "confidence": 0.85,
+      "decision": "ESCALATE",
+      "reason": "model:severe_sentiment",
+      "test_category": "model:severe_sentiment"
+    }
+  ]
+}

@@ -148,3 +148,82 @@ All incoming customer text and retrieved historical contexts pass through `src/p
 9. **Why tweet IDs are returned**: Enables end-to-end provenance verification, auditability, and offline judge verification.
 10. **Why PII is redacted before external LLM calls**: Enforces customer data privacy and prevents logging sensitive credentials to disk cache.
 
+---
+
+## Escalation Gate (Step 8)
+
+### Hybrid Architecture: Rule Layer + Model Layer
+The escalation gate decides whether an incoming customer message can be safely auto-handled or must be routed to a human specialist. It combines deterministic safety boundaries with adaptive model heuristics:
+
+```text
+                 Inbound Customer Message
+                            |
+                            v
+                  +-------------------+
+                  |    RULE LAYER     |  (Deterministic safety / legal / security regex)
+                  +-------------------+
+                            |
+                    Rule triggered?
+                      /          \
+                    YES           NO
+                     |             |
+                     v             v
+                 ESCALATE    +-------------------+
+                             |    MODEL LAYER    |  (Confidence, sensitive intent, severe sentiment)
+                             +-------------------+
+                                       |
+                               Model condition?
+                                  /          \
+                                YES           NO
+                                 |             |
+                                 v             v
+                             ESCALATE     AUTO-HANDLE
+```
+
+### 1. Rule Layer (Evaluated First)
+Deterministic rules run prior to any model inference to guarantee zero-latency, 100% reliable containment of high-risk inquiries:
+- **`rule:legal_threat`**: Explicit legal action, attorneys, lawsuits, consumer court, regulatory complaints, or chargeback threats.
+- **`rule:safety`**: Critical hardware hazards (battery swelling, smoking, fire, explosion, electrical shock) or self-harm signals.
+- **`rule:security`**: Account compromise, hacked Apple ID, unauthorized access/logins, or stolen passwords.
+- **`rule:media`**: Press inquiries, journalists, reporters, or publication notices.
+- **`rule:abuse`**: Severe profanity, targeted harassment, or direct threats.
+- **`rule:pii_needed`**: Inquiries requiring transmission of sensitive credentials (full card numbers, SSNs, passwords).
+
+### 2. Model Layer (Evaluated Only if No Rule Fires)
+If no deterministic rule matches, the message is evaluated across three sequential model criteria:
+1. **Low Intent Confidence**: If `confidence < CONFIDENCE_ESCALATION_THRESHOLD (0.40)` or if the confidence score is missing/invalid/NaN, returns `model:low_confidence(intent=<intent>, conf=<confidence>)`.
+2. **Escalation-Prone Intent**: If the predicted intent is in `ESCALATION_PRONE_INTENTS` (`account_icloud_login`, `billing_app_store`), returns `model:escalation_prone_intent(intent=<intent>)`.
+3. **Severe Sentiment Detection**: An LLM severity classifier (temperature = 0.0) classifies sentiment into `{routine, frustrated, severe}`. Standard customer frustration is auto-handled; only catastrophic distress or extreme hostility triggers `model:severe_sentiment`.
+4. **Auto-Handle**: If all checks pass, returns `(False, "auto_handle")`.
+
+### 3. Public Interface
+```python
+def gate(
+    customer_text: str,
+    intent: str,
+    confidence: float
+) -> tuple[bool, str]:
+    """
+    Decide whether a customer message should be escalated.
+    Rule-based escalation is evaluated before model-based escalation.
+    Returns (escalate: bool, reason: str).
+    """
+```
+
+### 4. PII Protection & LLM Caching
+Customer text passes through `src/pii.py` to mask sensitive entities prior to external LLM calls for sentiment classification. All LLM calls leverage disk caching in `results/cache/` to ensure offline reproducibility.
+
+---
+
+## Step 8 Decision Log
+
+1. **Why a hybrid Rule + Model architecture was chosen**: Rule-based regex provides instantaneous, deterministic guarantees for mission-critical legal, safety, and security policies that must never fail, while model-based checks dynamically catch ambiguous inquiries and extreme emotional distress.
+2. **Why the Rule layer executes before the Model layer**: To guarantee that severe compliance violations (e.g. legal threats or battery explosions) escalate immediately regardless of whether intent classification confidence is 0.99 or 0.10.
+3. **Why `CONFIDENCE_ESCALATION_THRESHOLD = 0.40` was selected**: Prevents the agent from hallucinating or generating irrelevant troubleshooting steps for ambiguous, unclassifiable inquiries while allowing typical confidence scores (0.70–0.96) to proceed to auto-handling.
+4. **Why `account_icloud_login` and `billing_app_store` are escalation-prone**: Empirical analysis of the `@AppleSupport` taxonomy shows that authentication lockouts and financial disputes carry high regulatory and security risks that often require Tier-2 human intervention.
+5. **Why ordinary frustration is auto-handled while severe sentiment is escalated**: Real-world customer support messages frequently express mild frustration (e.g. "This is frustrating but I need help"). Auto-handling routine frustration is critical to maintaining operational automation volume, whereas severe destructive distress requires immediate human empathy.
+6. **Why stable reason codes are enforced**: Standardized strings (e.g. `rule:legal_threat`, `model:low_confidence(...)`) enable automated telemetry grouping, precise failure analysis, and structured reporting.
+7. **How regex patterns were tuned against benign negative cases**: Regex patterns use boundary markers and contextual phrases to avoid false positives on benign messages (e.g. "I love your media coverage", "Can you tell me your legal business name?").
+8. **Why input validation safely catches invalid/NaN confidence**: Defensively wraps inputs to prevent unhandled runtime crashes, ensuring malformed inputs safely default to low-confidence escalation.
+9. **Why locked test set isolation is strictly preserved**: Evaluation rules and thresholds were calibrated using only `data/golden_set/golden_dev.csv` and synthetic unit cases; `golden_test.csv` remains strictly untouched for subsequent unbiased benchmark grading.
+

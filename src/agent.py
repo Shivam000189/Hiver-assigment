@@ -51,7 +51,7 @@ def agent_reply(customer_text: str) -> Dict[str, Any]:
 
     # Stage 3: Escalation Decision Gate
     t0 = time.perf_counter()
-    is_escalated, escalate_reason, matched_snippet = gate(sanitized_text, intent, confidence)
+    is_escalated, escalate_reason = gate(sanitized_text, intent, confidence)
     latencies["escalate"] = round((time.perf_counter() - t0) * 1000, 2)
 
     # Stage 4: Grounded Historical Retrieval (Always performed for citation/audit)

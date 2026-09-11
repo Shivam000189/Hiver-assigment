@@ -186,10 +186,10 @@ def _local_deterministic_llm(prompt: str, system_prompt: Optional[str]) -> str:
 
     # 3. Escalation Severity Check
     if "classify severity into {routine, frustrated, severe}" in p_lower or "severity" in p_lower:
-        if any(k in p_lower for k in ["lawyer", "attorney", "sue", "lawsuit", "police", "fraud", "chargeback", "swelling", "swollen", "burn", "exploded", "hacked", "stolen", "unauthorized device"]):
-            return json.dumps({"severity": "severe", "reason": "High-risk legal, security, or physical hazard detected."})
-        elif any(k in p_lower for k in ["terrible", "worst", "hate", "useless", "broken", "furious", "unacceptable", "destroying"]):
-            return json.dumps({"severity": "frustrated", "reason": "Elevated customer agitation."})
+        if any(k in p_lower for k in ["lawyer", "attorney", "sue", "lawsuit", "police", "fraud", "chargeback", "swelling", "swollen", "burn", "exploded", "hacked", "stolen", "unauthorized device", "furious", "destroying", "catastrophic", "unacceptable"]):
+            return json.dumps({"severity": "severe", "reason": "High-risk severity, destructive issue, or extreme distress detected."})
+        elif any(k in p_lower for k in ["terrible", "worst", "hate", "useless", "broken", "annoying", "frustrated", "disappointed"]):
+            return json.dumps({"severity": "frustrated", "reason": "Customer agitation without immediate destructive risk."})
         else:
             return json.dumps({"severity": "routine", "reason": "Standard operational inquiry."})
 

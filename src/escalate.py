@@ -1,88 +1,151 @@
 """
 Escalation Decision Gate Module for AppleSupport AI Agent.
 
-Two-layer decision architecture:
-1. Rule Layer: Fast deterministic regex/keyword pattern matching across 5 high-risk categories.
-2. Model Layer: Confidence thresholding, sensitive intent checks, and LLM severity classification.
+Architecture:
+  Inbound Customer Message
+             │
+             ▼
+   ┌───────────────────┐
+   │    RULE LAYER     │  (Priority 1: Fast deterministic safety/legal/security regex)
+   └───────────────────┘
+             │
+     Rule triggered?
+       /          \
+     YES           NO
+      │             │
+      ▼             ▼
+  ESCALATE    ┌───────────────────┐
+              │    MODEL LAYER    │  (Priority 2: Low confidence, sensitive intent, severe sentiment)
+              └───────────────────┘
+                        │
+                Model condition?
+                  /          \
+                YES           NO
+                 │             │
+                 ▼             ▼
+             ESCALATE     AUTO-HANDLE
+
+Public Interface:
+  gate(customer_text: str, intent: str, confidence: float) -> Tuple[bool, str]
 """
 
 import re
+import math
 import logging
-from typing import Tuple, Optional, Dict, Any
+from typing import Tuple, Optional, Dict, Any, List
 
 from src.config import (
     CONFIDENCE_ESCALATION_THRESHOLD,
     ESCALATION_PRONE_INTENTS,
     TEMPERATURE_ESCALATE
 )
+from src.pii import redact_pii
 from src.llm import call_llm_json
 
 logger = logging.getLogger("hiver.escalate")
 
-# Rule Layer Regex Patterns
-RULES = [
-    (
-        "rule:legal_threat",
-        r'\b(?:lawsuit|lawyer|attorney|sue|suing|police|ftc|court|legal action|chargeback|fraud)\b',
-        "Customer initiated legal, regulatory, or law enforcement threat."
-    ),
-    (
-        "rule:safety_hazard",
-        r'\b(?:swelling|swollen|exploded|exploding|explode|burning|burned|burnt|burn|smoke|smoking|spark|sparking|shock|shocked|fire|melted|melting|hazardous|overheating)\b',
-        "Critical hardware safety hazard (battery thermal runaway, swelling, electric shock, fire)."
-    ),
-    (
-        "rule:security_breach",
-        r'\b(?:hacked|hijacked|stolen account|unauthorized device|ransomware|extortion|compromised id|locked out of|locked out)\b',
-        "Security breach, account takeover, or compromised credentials."
-    ),
-    (
-        "rule:repeated_failure",
-        r'\b(?:still not working|done that 5 times|tried everything|useless support|worst service ever|never fixing this)\b',
-        "Repeated troubleshooting failure and extreme customer agitation."
-    ),
-    (
-        "rule:abusive_communication",
-        r'\b(?:fuck you|fuck off|piece of shit|go to hell|bastards|assholes)\b',
-        "Abusive language or profanity requiring human intervention."
-    )
-]
+# Rule Layer Regex Patterns (Maintainable & Configurable Dictionary)
+RULE_PATTERNS: Dict[str, List[str]] = {
+    "rule:legal_threat": [
+        r'\b(?:lawsuit|lawyer|attorney|legal action|legal complaint|legal notice|sue|suing|take you to court|consumer court|complaint to regulator|file a complaint with|chargeback|fraud)\b',
+        r'\b(?:contact(?:ed|ing)? (?:my|a) lawyer|involve (?:my|a) lawyer|legal counsel)\b'
+    ],
+    "rule:safety": [
+        r'\b(?:kill myself|suicide|self harm|hurt myself|end my life|want to die|commit suicide)\b',
+        r'\b(?:swelling|swollen battery|exploded|exploding|explode|burning|burned|burnt|smoke|smoking|spark|sparking|shock|shocked|fire|melted|melting|hazardous|overheating)\b'
+    ],
+    "rule:security": [
+        r'\b(?:(?:account|apple id|iphone|device) (?:has been |was )?hacked|someone hacked|account (?:is )?compromised|compromised (?:account|id))\b',
+        r'\b(?:unauthorized (?:login|device|access|charge)|someone (?:logged into|accessed) my account|password (?:was )?stolen|stolen account|ransomware|extortion)\b'
+    ],
+    "rule:media": [
+        r'\b(?:i(?:\'m| am)? (?:a )?(?:journalist|reporter)|writing an article|for the (?:press|newspaper|magazine|news)|press inquiry|media inquiry|news outlet)\b',
+        r'\b(?:report(?:er)? from|interview for|publishing a story)\b'
+    ],
+    "rule:abuse": [
+        r'\b(?:fuck you|fuck off|piece of shit|go to hell|bastards|assholes|die in a fire|bitch)\b',
+        r'\b(?:kill you|murder you|threaten you)\b'
+    ],
+    "rule:pii_needed": [
+        r'\b(?:send (?:me )?(?:your|my) full card number|give me my account number|here is my phone number|send my personal details)\b',
+        r'\b(?:full credit card number|full debit card number|send your password|verify credit card number|full ssn|social security number|my full ssn)\b'
+    ]
+}
+
+# Rule Descriptions for Human Readability & Audit Logs
+RULE_DESCRIPTIONS = {
+    "rule:legal_threat": "Customer initiated legal, regulatory, or law enforcement threat.",
+    "rule:safety": "Critical hardware safety hazard, battery failure, or physical harm signal.",
+    "rule:security": "Account compromise, unauthorized access, or stolen credentials.",
+    "rule:media": "Press, journalist, or public media inquiry requiring PR/communications routing.",
+    "rule:abuse": "Severe profanity, abusive harassment, or direct threats requiring agent protection.",
+    "rule:pii_needed": "Resolution requires exchanging full card/SSN/passwords prohibited on public channels."
+}
 
 def check_rules(text: str) -> Tuple[bool, Optional[str], Optional[str]]:
     """
     Evaluates rule-based deterministic escalation triggers.
     
+    Parameters:
+        text: Inbound customer message.
+        
     Returns:
-        is_escalated: True if any rule matched.
-        reason_code: Stable identifier string (e.g. 'rule:legal_threat').
-        matched_snippet: The exact substring that triggered the rule.
+        is_escalated (bool): True if any deterministic rule matched.
+        reason_code (Optional[str]): Stable reason identifier (e.g. 'rule:legal_threat').
+        matched_snippet (Optional[str]): Triggering substring.
     """
-    if not isinstance(text, str):
+    if not isinstance(text, str) or not text.strip():
         return False, None, None
 
-    for code, pattern, description in RULES:
-        match = re.search(pattern, text, flags=re.IGNORECASE)
-        if match:
-            matched_snippet = match.group(0)
-            full_reason = f"{code} ('{matched_snippet}'): {description}"
-            return True, full_reason, matched_snippet
+    for code, patterns in RULE_PATTERNS.items():
+        for pattern in patterns:
+            match = re.search(pattern, text, flags=re.IGNORECASE)
+            if match:
+                matched_snippet = match.group(0)
+                logger.info(f"Rule Layer triggered: {code} on snippet '{matched_snippet}'")
+                return True, code, matched_snippet
 
     return False, None, None
 
-def check_model_gate(text: str, intent: str, confidence: float) -> Tuple[bool, str]:
+def check_model_layer(text: str, intent: str, confidence: float) -> Tuple[bool, str]:
     """
     Evaluates model-based heuristics: low confidence, sensitive intent, and LLM severity check.
+    
+    Order of Evaluation:
+      1. Low Confidence Fallback (< CONFIDENCE_ESCALATION_THRESHOLD or invalid)
+      2. Escalation-Prone Intent (e.g. account_icloud_login, billing_app_store)
+      3. Extreme Negative Sentiment / Severity (LLM classification: routine, frustrated, severe)
+      4. Auto-Handle (False, 'auto_handle')
     """
-    # 1. Low Confidence Fallback
-    if confidence < CONFIDENCE_ESCALATION_THRESHOLD:
-        return True, f"model:low_confidence (intent='{intent}', confidence={confidence:.2f} < {CONFIDENCE_ESCALATION_THRESHOLD})"
+    # 1. Validate confidence score
+    is_invalid_conf = (
+        confidence is None or
+        not isinstance(confidence, (int, float)) or
+        math.isnan(confidence) or
+        confidence < 0.0 or
+        confidence > 1.0
+    )
+    conf_val = 0.0 if is_invalid_conf else float(confidence)
 
-    # 2. LLM Extremity & Severity Check
+    # Condition A: Low Intent Confidence
+    if is_invalid_conf or conf_val < CONFIDENCE_ESCALATION_THRESHOLD:
+        reason = f"model:low_confidence(intent={intent or 'unknown'}, conf={conf_val:.2f})"
+        logger.info(f"Model Layer triggered: {reason}")
+        return True, reason
+
+    # Condition B: Escalation-Prone Intent
+    if intent in ESCALATION_PRONE_INTENTS:
+        reason = f"model:escalation_prone_intent(intent={intent})"
+        logger.info(f"Model Layer triggered: {reason}")
+        return True, reason
+
+    # Condition C: Extreme Negative Sentiment / Severity Check
+    sanitized_text, _, _ = redact_pii(text)
     prompt = (
         "Analyze the following customer support inquiry. "
         "Classify severity into {routine, frustrated, severe}.\n"
         "Return JSON with 'severity' and 'reason'.\n\n"
-        f"INQUIRY: \"{text}\"\n"
+        f"INQUIRY: \"{sanitized_text}\"\n"
         "Output JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}"
     )
 
@@ -90,35 +153,48 @@ def check_model_gate(text: str, intent: str, confidence: float) -> Tuple[bool, s
         res = call_llm_json(
             prompt=prompt,
             temperature=TEMPERATURE_ESCALATE,
-            required_fields=["severity", "reason"]
+            required_fields=["severity"]
         )
-        severity = res.get("severity", "routine").lower()
-        reason_explanation = res.get("reason", "Severity assessment complete.")
-        
+        severity = str(res.get("severity", "routine")).strip().lower()
         if severity == "severe":
-            return True, f"model:severe_assessment ({reason_explanation})"
+            reason = "model:severe_sentiment"
+            logger.info(f"Model Layer triggered: {reason}")
+            return True, reason
     except Exception as e:
-        logger.warning(f"Model severity check encountered error: {e}")
+        logger.warning(f"Model severity check encountered error: {e}. Defaulting safely.")
 
-    return False, "None - Inquiry suitable for automated resolution."
+    return False, "auto_handle"
 
-def gate(customer_text: str, intent: str, confidence: float) -> Tuple[bool, str, Optional[str]]:
+def gate(
+    customer_text: str,
+    intent: str,
+    confidence: float
+) -> Tuple[bool, str]:
     """
-    Main Escalation Decision Gate Entry Point.
+    Decides whether a customer message should be escalated to human agents.
+
+    Rule-based escalation is evaluated before model-based escalation.
     
+    Parameters:
+        customer_text: Inbound customer message text.
+        intent: Predicted intent category.
+        confidence: Confidence score of intent classification [0.0, 1.0].
+        
     Returns:
-        escalate (bool): True if the inquiry must be escalated to human agents.
-        reason (str): Human-readable justification.
-        matched_snippet (Optional[str]): Triggering text snippet if rule-based.
+        (escalate: bool, reason: str)
     """
-    # Step 1: Rule Layer (Deterministic & Fast)
-    rule_esc, rule_reason, matched_snippet = check_rules(customer_text)
+    if not isinstance(customer_text, str):
+        customer_text = str(customer_text or "")
+
+    # Priority 1: Rule Layer (Deterministic & Fast)
+    rule_esc, rule_reason, _ = check_rules(customer_text)
     if rule_esc:
-        return True, rule_reason, matched_snippet
+        return True, rule_reason
 
-    # Step 2: Model Layer (Heuristic & Severity Check)
-    model_esc, model_reason = check_model_gate(customer_text, intent, confidence)
+    # Priority 2: Model Layer (Runs ONLY if no rule fires)
+    model_esc, model_reason = check_model_layer(customer_text, intent, confidence)
     if model_esc:
-        return True, model_reason, None
+        return True, model_reason
 
-    return False, "None - Standard automated resolution pathway.", None
+    return False, "auto_handle"
+
