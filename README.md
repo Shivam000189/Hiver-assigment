@@ -11,7 +11,7 @@ The evaluation is designed for **100% deterministic offline grading**. No API ke
 ### 1. Environment Setup
 ```bash
 # Clone the repository
-git clone <repo-url>
+git clone this repo url
 cd hiver-support-agent
 
 # Create and activate a clean virtual environment (Python 3.10+)
