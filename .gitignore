@@ -19,6 +19,9 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+*.tmp
+*.log
 
 # IDE
 .vscode/
