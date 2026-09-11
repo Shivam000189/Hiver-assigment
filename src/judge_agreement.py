@@ -521,6 +521,28 @@ def main():
         delta_str = f"+{m['spearman_rho'] - v1_rho:.4f}" if m['spearman_rho'] is not None and v1_rho is not None else "N/A"
         print(f"  {crit:<15}: Spearman rho = {rho_str} (was {v1_rho_str}, {delta_str}) | Disagreements: {m['large_disagreement_pct_ge_2']:.1f}%")
 
+    # Save Round 1 & Round 2 JSON Files
+    with open(out_dir / "judge_agreement_round1.json", "w", encoding="utf-8") as f:
+        json.dump(metrics_v1, f, indent=2)
+    with open(out_dir / "judge_agreement_round2.json", "w", encoding="utf-8") as f:
+        json.dump(metrics_v2, f, indent=2)
+
+    delta_rho_dict = {}
+    for crit in CRITERIA:
+        v1_r = metrics_v1[crit]["spearman_rho"]
+        v2_r = metrics_v2[crit]["spearman_rho"]
+        if v1_r is not None and v2_r is not None:
+            delta_rho_dict[crit] = round(v2_r - v1_r, 4)
+        else:
+            delta_rho_dict[crit] = None
+
+    with open(out_dir / "judge_human_agreement.json", "w", encoding="utf-8") as f:
+        json.dump({
+            "round1_judge_v1": metrics_v1,
+            "round2_judge_v2_calibrated": metrics_v2,
+            "calibration_delta_spearman_rho": delta_rho_dict
+        }, f, indent=2)
+
     # 9. Generate Final Comprehensive Markdown Agreement Report
     def _fmt_rho(val):
         return f"{val:.4f}" if val is not None else "N/A"

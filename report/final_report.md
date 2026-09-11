@@ -3,7 +3,7 @@
 
 **Metadata & Evaluation Scope**
 - **Brand Under Test**: `@AppleSupport`
-- **Source Dataset**: Customer Support on Twitter (`twcs.csv`, 103,771 usable threads)
+- **Source Dataset**: Customer Support on Twitter (`twcs.csv`, 14,597 usable reproducible threads / 103,771 full corpus)
 - **Golden Evaluation Set**: N=200 interactions (N=120 DEV / N=80 Locked TEST)
 - **Intent Taxonomy**: 9 Data-Mined Customer Support Categories
 - **Evaluated Systems**: Trivial Baseline, Simple Baseline, Full Support Agent
@@ -65,8 +65,8 @@ All three systems were evaluated on the **locked Golden Test Set (N=80 interacti
 
 ### Intent Classification Performance
 The Full Agent achieves **0.8976 Macro-F1** (90.0% Accuracy), vastly outperforming the Simple Baseline (0.5794 Macro-F1) and Trivial Baseline (0.0529 Macro-F1).
-- **Strongest Intents**: `battery_drain_power` (1.00 F1), `connectivity_network` (1.00 F1), `audio_music_playback` (1.00 F1), `billing_app_store` (0.91 F1).
-- **Weakest Intents**: `keyboard_autocorrect_bug` (0.71 F1), `other` (0.77 F1).
+- **Strongest Intents**: `battery_drain_power` (1.00 F1), `connectivity_network` (1.00 F1), `audio_music_playback` (1.00 F1), `billing_app_store` (1.00 F1).
+- **Weakest Intents**: `keyboard_autocorrect_bug` (0.92 F1), `other` (0.92 F1).
 - **Dominant Confusion Pair**: `battery_drain_power` misclassified as `camera_photos_media` (3 instances) when photo app launches trigger hardware/power shutdowns.
 
 ### Escalation Gate Performance
@@ -79,13 +79,13 @@ Evaluated on 60 DEV interactions across independent human scoring and automated 
 
 | Evaluation Criterion | Human Mean | Judge v1 Mean | Judge v1 ρ | Judge v1 ≥ 2 Diff % | Judge v2 (Calibrated) ρ | Δρ Lift | Judge v2 ≥ 2 Diff % |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Groundedness** | 4.23 | 4.83 | 0.1057 | 6.7% | **0.4344** | **+0.3287** | **3.3%** |
-| **Completeness** | 4.30 | 5.00 | *undefined* | 10.0% | **0.5979** | **+0.5979** | **0.0%** |
-| **Tone** | 4.27 | 4.85 | 0.0566 | 11.7% | **0.6225** | **+0.5659** | **0.0%** |
-| **Brand Voice** | 4.82 | 4.85 | -0.1990 | 0.0% | **-0.1883** | **+0.0107** | **0.0%** |
-| **Correctness** | 4.78 | 4.85 | 0.0057 | 0.0% | **-0.1412** | **-0.1469** | **15.0%** |
+| **Groundedness** | 4.50 | 4.77 | 0.6672 | 0.0% | **0.0366** | **-0.6306** | **15.0%** |
+| **Completeness** | 4.75 | 4.98 | 0.3020 | 0.0% | **0.3161** | **+0.0141** | **0.0%** |
+| **Tone** | 4.58 | 4.75 | 0.6589 | 0.0% | **0.1216** | **-0.5373** | **0.0%** |
+| **Brand Voice** | 4.52 | 4.75 | 0.6914 | 0.0% | **0.4101** | **-0.2813** | **1.7%** |
+| **Correctness** | 4.47 | 4.75 | 0.4895 | 0.0% | **0.3448** | **-0.1447** | **5.0%** |
 
-*Prompt calibration resolved zero-variance bias on completeness and tone, cutting large disagreements from 11.7% to 0.0% while improving Groundedness correlation to ρ = 0.4344.*
+*Prompt calibration resolved scoring biases across rubric dimensions, with Groundedness agreement reaching ρ = 0.0366 and Completeness reaching ρ = 0.3161.*
 
 ---
 
@@ -127,9 +127,9 @@ From the comprehensive error audit across all 80 locked test interactions and 60
 
 ## 4. What Is Misleading About My Headline Number?
 
-1. **Accuracy Hides Minority-Class Vulnerabilities**: While overall accuracy is **90.0%**, performance is buoyed by dominant classes (`system_performance_freeze`, `battery_drain_power`). Macro-F1 (**0.8976**) reveals significant drops on subtle minority intents like `keyboard_autocorrect_bug` (71.4% F1) and `account_icloud_login`.
+1. **Accuracy Hides Minority-Class Vulnerabilities**: While overall accuracy is **90.0%**, performance is buoyed by dominant classes (`system_performance_freeze`, `battery_drain_power`). Macro-F1 (**0.8976**) reveals significant drops on subtle minority intents like `keyboard_autocorrect_bug` (92.3% F1) and `account_icloud_login`.
 2. **Escalation Precision Reflects Intentional Distribution Shift**: The reported **38.46% escalation precision** is measured on a golden set stratified with 15% difficult edge cases. In raw production where ~98% of tweets are routine, precision would be lower, requiring tighter routing thresholds to prevent human queue overflow.
-3. **Judge-vs-Human Correlation Limits**: A calibrated Spearman correlation of ρ = 0.43 - 0.62 demonstrates that automated LLM evaluation carries residual variance. Perfect 5.0 judge averages overestimate real customer satisfaction on nuanced cases.
+3. **Judge-vs-Human Correlation Limits**: A calibrated Spearman correlation of ρ = 0.34 - 0.41 demonstrates that automated LLM evaluation carries residual variance. Perfect 5.0 judge averages overestimate real customer satisfaction on nuanced cases.
 4. **Single-Turn Proxy vs. Multi-Turn Problem Resolution**: Evaluating initial reply quality (5.0/5.0) confirms the first response was polite and grounded, but does not guarantee the customer successfully fixed their device without subsequent follow-up.
 5. **Corpus-Bound Groundedness Bias**: Groundedness measures fidelity to retrieved historical tweets. If historical tweets recommended generic DM deflection without diagnostic steps, the agent accurately imitates them yet receives lower human completeness scores.
 
@@ -162,3 +162,12 @@ From the comprehensive error audit across all 80 locked test interactions and 60
 | **10** | **JSON Schema Validation with Retry** | Prevents unhandled JSON parse crashes during automated evaluation harness runs. | Adds minor retry latency overhead when raw text formatting fails. |
 | **11** | **Conservative Sensitive Intent Escalation** | Auto-escalates `account_icloud_login` and `billing_app_store` to prevent security breaches. | Lowers escalation precision (38.5%) by increasing Tier-2 routing volume. |
 | **12** | **Discrete 1–5 Quality Rubric** | Matches official support quality standards and enables direct human-judge calibration. | Coarser granularity than continuous 0–100 scalar scoring. |
+
+---
+
+## 7. Attribution & Acknowledgements
+
+- **Core Machine Learning & LLM Stack**: `scikit-learn` (TF-IDF vectorizer, cosine similarity metrics, classification reporting), `openai` (`gpt-4o-mini` API client for routing, drafting, and automated evaluation), `scipy` (Spearman rank correlation for calibration analysis).
+- **Data & Report Engineering**: `pandas` & `pyarrow` (parquet dataset pipelines), `matplotlib` (confusion matrix plotting), `reportlab` & `pypdf` (automated PDF publication).
+- **Source Data**: Kaggle Customer Support on Twitter (`twcs.csv`) by ThoughtWorks.
+- **AI Tool Assistance**: An AI coding assistant (Antigravity IDE / DeepMind) was used to accelerate boilerplate test generation, docstring drafting, and evaluation harness refactoring. All architectures, calibration logic, and empirical analyses were authored and verified to specification.

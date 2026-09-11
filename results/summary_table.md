@@ -2,7 +2,7 @@
 
 **Evaluation Target**: Locked Golden Test Split (`data/golden_set/golden_test.csv`, $N=80$ interactions).
 
-| System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\le 2$) |
+| System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\\le 2$) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Trivial Baseline** | 0.0529 | 31.2% | 0.0000 | 0.0000 | 0.0000 | 3.00 | 4.00 | 3.00 | 3.00 | 4.00 | 0/80 |
 | **Simple Baseline** (Caveat: Unredacted PII) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.70 | 4.72 | 4.51 | 4.70 | 4.70 | 0/80 |

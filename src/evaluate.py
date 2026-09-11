@@ -478,7 +478,9 @@ def main():
         round1_results[crit] = {
             "spearman_rho": round(float(rho), 4),
             "p_value": round(float(pval), 4),
-            "large_disagreement_pct_ge_2": round(large_disagree_pct, 2)
+            "large_disagreement_pct_ge_2": round(large_disagree_pct, 2),
+            "mean_human_score": round(float(np.mean(h_vals)), 2),
+            "mean_judge_score": round(float(np.mean(j_vals)), 2)
         }
         print(f"  {crit:<15}: Spearman rho = {rho:.4f} | Large Disagreements (>=2): {large_disagree_pct:.1f}%")
 
@@ -532,7 +534,9 @@ def main():
         round2_results[crit] = {
             "spearman_rho": round(float(rho), 4),
             "p_value": round(float(pval), 4),
-            "large_disagreement_pct_ge_2": round(large_disagree_pct, 2)
+            "large_disagreement_pct_ge_2": round(large_disagree_pct, 2),
+            "mean_human_score": round(float(np.mean(h_vals)), 2),
+            "mean_judge_score": round(float(np.mean(j_v2)), 2)
         }
         print(f"  {crit:<15}: Spearman rho = {rho:.4f} (was {round1_results[crit]['spearman_rho']:.4f}) | Large Disagreements: {large_disagree_pct:.1f}%")
 
@@ -563,7 +567,7 @@ def main():
 
 **Evaluation Target**: Locked Golden Test Split (`data/golden_set/golden_test.csv`, $N={total_test}$ interactions).
 
-| System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\le 2$) |
+| System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\\\\le 2$) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Trivial Baseline** | {intent_metrics['TrivialBaseline']['macro_f1']:.4f} | {intent_metrics['TrivialBaseline']['accuracy']*100:.1f}% | {escalation_metrics['TrivialBaseline']['precision']:.4f} | {escalation_metrics['TrivialBaseline']['recall']:.4f} | {escalation_metrics['TrivialBaseline']['f1']:.4f} | {reply_metrics['TrivialBaseline']['criteria_means']['correctness']:.2f} | {reply_metrics['TrivialBaseline']['criteria_means']['groundedness']:.2f} | {reply_metrics['TrivialBaseline']['criteria_means']['completeness']:.2f} | {reply_metrics['TrivialBaseline']['criteria_means']['brand_voice']:.2f} | {reply_metrics['TrivialBaseline']['criteria_means']['tone']:.2f} | {reply_metrics['TrivialBaseline']['hallucination_count_score_le_2']}/{total_test} |
 | **Simple Baseline** (Caveat: Unredacted PII) | {intent_metrics['SimpleBaseline']['macro_f1']:.4f} | {intent_metrics['SimpleBaseline']['accuracy']*100:.1f}% | {escalation_metrics['SimpleBaseline']['precision']:.4f} | {escalation_metrics['SimpleBaseline']['recall']:.4f} | {escalation_metrics['SimpleBaseline']['f1']:.4f} | {reply_metrics['SimpleBaseline']['criteria_means']['correctness']:.2f} | {reply_metrics['SimpleBaseline']['criteria_means']['groundedness']:.2f} | {reply_metrics['SimpleBaseline']['criteria_means']['completeness']:.2f} | {reply_metrics['SimpleBaseline']['criteria_means']['brand_voice']:.2f} | {reply_metrics['SimpleBaseline']['criteria_means']['tone']:.2f} | {reply_metrics['SimpleBaseline']['hallucination_count_score_le_2']}/{total_test} |

@@ -3,27 +3,37 @@
     "correctness": {
       "spearman_rho": 0.4895,
       "p_value": 0.0001,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.47,
+      "mean_judge_score": 4.75
     },
     "groundedness": {
       "spearman_rho": 0.6672,
       "p_value": 0.0,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.5,
+      "mean_judge_score": 4.77
     },
     "completeness": {
       "spearman_rho": 0.302,
       "p_value": 0.019,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.75,
+      "mean_judge_score": 4.98
     },
     "brand_voice": {
       "spearman_rho": 0.6914,
       "p_value": 0.0,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.52,
+      "mean_judge_score": 4.75
     },
     "tone": {
       "spearman_rho": 0.6589,
       "p_value": 0.0,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.58,
+      "mean_judge_score": 4.75
     },
     "top_5_largest_disagreements": [
       {
@@ -82,27 +92,37 @@
     "correctness": {
       "spearman_rho": 0.3448,
       "p_value": 0.007,
-      "large_disagreement_pct_ge_2": 5.0
+      "large_disagreement_pct_ge_2": 5.0,
+      "mean_human_score": 4.47,
+      "mean_judge_score": 4.33
     },
     "groundedness": {
       "spearman_rho": 0.0366,
       "p_value": 0.7811,
-      "large_disagreement_pct_ge_2": 15.0
+      "large_disagreement_pct_ge_2": 15.0,
+      "mean_human_score": 4.5,
+      "mean_judge_score": 4.32
     },
     "completeness": {
       "spearman_rho": 0.3161,
       "p_value": 0.0139,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.75,
+      "mean_judge_score": 4.45
     },
     "brand_voice": {
       "spearman_rho": 0.4101,
       "p_value": 0.0011,
-      "large_disagreement_pct_ge_2": 1.67
+      "large_disagreement_pct_ge_2": 1.67,
+      "mean_human_score": 4.52,
+      "mean_judge_score": 4.72
     },
     "tone": {
       "spearman_rho": 0.1216,
       "p_value": 0.3548,
-      "large_disagreement_pct_ge_2": 0.0
+      "large_disagreement_pct_ge_2": 0.0,
+      "mean_human_score": 4.58,
+      "mean_judge_score": 4.3
     },
     "top_5_largest_disagreements": [
       {

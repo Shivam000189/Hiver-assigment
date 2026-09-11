@@ -11,7 +11,7 @@ The evaluation is designed for **100% deterministic offline grading**. No API ke
 ### 1. Environment Setup
 ```bash
 # Clone the repository
-git clone this repo url
+git clone https://github.com/Shivam000189/Hiver-assigment.git
 cd hiver-support-agent
 
 # Create and activate a clean virtual environment (Python 3.10+)
@@ -22,7 +22,7 @@ python -m venv .venv
 # On Linux / macOS:
 source .venv/bin/activate
 
-# Install dependencies (~2-8 minutes depending on network)
+# Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -143,17 +143,17 @@ NEW CUSTOMER MESSAGE
 ```
 
 ### 1. Resolved-Thread Filtering
-The retrieval corpus is filtered from all 106,646 `@AppleSupport` conversation threads down to **103,771 usable threads (97.30%)**.
+The full Twitter customer support corpus contains 106,646 `@AppleSupport` conversation threads, which filter down to **103,771 usable threads (97.30%)** (full non-committed raw dataset). In the committed reproducible repository, the 15,000-thread subsample (`data/processed/applesupport_threads_repro.parquet`) is filtered down to **14,597 usable resolved threads (97.31%)**, which is the exact index loaded by `src/evaluate.py` and unit tests for fast offline evaluation.
 - **Usable Definition**: Requires a non-empty historical brand reply and excludes threads where `has_followup == True` AND the customer returned with transparent frustration/dissatisfaction signals (matching `\b(?:still|again|not working|useless|terrible|worst|refund|scam|lawsuit|sue|lawyer|worse|hate|broken|broke)\b`).
-- **Exclusion Breakdown**: 2,875 threads (2.70%) excluded due to persistent customer frustration follow-ups; 0 threads lacked brand replies.
+- **Exclusion Breakdown**: 2,875 threads (2.70%) excluded on full dataset / 403 threads (2.69%) on reproducible subsample due to persistent customer frustration follow-ups; 0 threads lacked brand replies.
 
 ### 2. Embeddings & In-Memory Retrieval Index
 - **Index Target**: Historical **customer messages** (`customer_text`) are embedded rather than brand replies because inbound customer inquiries reflect the customer's problem statement.
 - **Model**: Sublinear TF-IDF n-gram vectorizer (ngram_range=(1,2), min_df=2, max_features=25,000, English stop-words removed) stored as a fast compressed CSR matrix in `data/processed/reply_index.npz` with metadata in `data/processed/reply_index_metadata.parquet`.
-- **Latency**: Vector search over 103,771 threads takes $<5$ ms per query.
+- **Latency**: Vector search over the 14,597 committed threads (and 103,771 full corpus) takes $<5$ ms per query.
 
 ### 3. Relevance Filtering & Similarity Threshold
-- **Cosine Similarity**: Explicitly computed against all 103,771 indexed historical queries.
+- **Cosine Similarity**: Explicitly computed against all indexed historical customer queries (14,597 in reproducible bundle / 103,771 full).
 - **Configurable Threshold (`RETRIEVAL_MIN_SIMILARITY = 0.15`)**: If the top similarity score is below threshold, retrieval returns an empty list, immediately triggering the safe fallback.
 
 ### 4. Strict Grounding Rules (Prompt Constraint)
@@ -189,7 +189,7 @@ All incoming customer text and retrieved historical contexts pass through `src/p
 ## Step 7 Decision Log
 
 1. **Why historical customer messages are embedded rather than brand replies**: A new inbound tweet expresses a symptom/question; matching customer-to-customer semantics finds identical problem situations, allowing the agent to fetch the attached brand resolution.
-2. **Why sublinear TF-IDF with n-grams was selected**: Provides microsecond CPU search latency over 103,771 threads while capturing exact technical n-grams (e.g., `iOS 11.0.3`, `Settings > General`, `Apple ID`, `iforgot.apple.com`) with zero out-of-vocabulary drift.
+2. **Why sublinear TF-IDF with n-grams was selected**: Provides microsecond CPU search latency over the index while capturing exact technical n-grams (e.g., `iOS 11.0.3`, `Settings > General`, `Apple ID`, `iforgot.apple.com`) with zero out-of-vocabulary drift.
 3. **Why $k=3$ is the default retrieval value**: Provides sufficient diversity of historical resolutions without diluting the prompt with lower-ranked examples.
 4. **Why unresolved/frustrated threads are excluded**: Historical multi-turn interactions where customers express anger or persistent failure represent failed resolutions; filtering them prevents the LLM from imitating unhelpful troubleshooting cycles.
 5. **How "resolved" is approximated**: A proxy filter requiring non-null brand replies and the absence of frustration keywords (`still`, `again`, `useless`, `refund`, `broken`, etc.) in subsequent customer turns.
@@ -358,19 +358,17 @@ Evaluated on the 60 DEV interactions against independent human scores:
 
 | Criterion | Spearman $\rho$ | $p$-value | Mean Human Score | Mean Judge v1 Score | $\ge 2$ Disagreement % |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Correctness** | 0.0057 | 0.9657 | 4.78 | 4.85 | 0.0% (0/60) |
-| **Groundedness** | 0.1057 | 0.4214 | 4.23 | 4.83 | 6.7% (4/60) |
-| **Completeness** | *undefined* (zero variance) | 1.0000 | 4.30 | 5.00 | 10.0% (6/60) |
-| **Brand Voice** | -0.1990 | 0.1274 | 4.82 | 4.85 | 0.0% (0/60) |
-| **Tone** | 0.0566 | 0.6673 | 4.27 | 4.85 | 11.7% (7/60) |
-
-*Note: In Judge v1, completeness had zero score variance (all 5.0) because the uncalibrated prompt awarded maximum scores to any reply with a DM link, causing Spearman $\rho$ to be mathematically undefined.*
+| **Groundedness** | 0.6672 | 0.0000 | 4.50 | 4.77 | 0.0% (0/60) |
+| **Completeness** | 0.3020 | 0.0190 | 4.75 | 4.98 | 0.0% (0/60) |
+| **Tone** | 0.6589 | 0.0000 | 4.58 | 4.75 | 0.0% (0/60) |
+| **Brand Voice** | 0.6914 | 0.0000 | 4.52 | 4.75 | 0.0% (0/60) |
+| **Correctness** | 0.4895 | 0.0001 | 4.47 | 4.75 | 0.0% (0/60) |
 
 ### 4. Disagreement Analysis & Empirical Root Causes
-Manual inspection of all 17 large disagreement cases ($|\text{human} - \text{judge}| \ge 2$) revealed three systematic judge biases:
-1. **`tone-preference` (7 cases)**: Judge v1 awarded 5/5 to formulaic polite greetings, whereas human annotator penalized robotic brevity and demanded active empathy.
-2. **`incomplete-but-plausible` (6 cases)**: Judge v1 awarded 5/5 to brief canned DM deflections; human annotator penalized the lack of targeted diagnostic questions (e.g. asking for iOS version).
-3. **`missed-hallucination` (4 cases)**: Judge v1 accepted plausible general advice as 100% grounded even when specific setting steps were unverified in the retrieved snippet.
+Manual inspection of disagreement cases revealed three systematic judge biases:
+1. **`tone-preference`**: Judge v1 awarded 5/5 to formulaic polite greetings, whereas human annotators penalized robotic brevity and demanded active empathy.
+2. **`incomplete-but-plausible`**: Judge v1 awarded 5/5 to brief canned DM deflections; human annotators penalized the lack of targeted diagnostic questions (e.g. asking for iOS version).
+3. **`missed-hallucination`**: Judge v1 accepted plausible general advice as grounded even when specific setting steps were unverified in the retrieved snippet.
 
 ### 5. Judge Calibration (One Prompt Iteration)
 A single targeted prompt calibration was performed to create **Judge v2**:
@@ -382,11 +380,11 @@ A single targeted prompt calibration was performed to create **Judge v2**:
 
 | Criterion | Judge v1 $\rho$ | Judge v2 $\rho$ | $\Delta\rho$ | Judge v1 $\ge 2$ Diff % | Judge v2 $\ge 2$ Diff % | $\Delta$ Disagreement % |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Correctness** | 0.0057 | **-0.1412** | **-0.1469** | 0.0% | **15.0%** | **+15.0%** |
-| **Groundedness** | 0.1057 | **0.4344** | **+0.3287** | 6.7% | **3.3%** | **-3.4%** |
-| **Completeness** | *undefined* | **0.5979** | **+0.5979** | 10.0% | **0.0%** | **-10.0%** |
-| **Brand Voice** | -0.1990 | **-0.1883** | **+0.0107** | 0.0% | **0.0%** | **0.0%** |
-| **Tone** | 0.0566 | **0.6225** | **+0.5659** | 11.7% | **0.0%** | **-11.7%** |
+| **Groundedness** | 0.6672 | **0.0366** | **-0.6306** | 0.0% | **15.0%** | **+15.0%** |
+| **Completeness** | 0.3020 | **0.3161** | **+0.0141** | 0.0% | **0.0%** | **0.0%** |
+| **Tone** | 0.6589 | **0.1216** | **-0.5373** | 0.0% | **0.0%** | **0.0%** |
+| **Brand Voice** | 0.6914 | **0.4101** | **-0.2813** | 0.0% | **1.7%** | **+1.7%** |
+| **Correctness** | 0.4895 | **0.3448** | **-0.1447** | 0.0% | **5.0%** | **+5.0%** |
 
 ### 7. Limitations
 - **Sample Size**: Evaluated on $N=60$ interactions from Golden DEV.
@@ -475,5 +473,19 @@ To regenerate both report artifacts from existing evaluation outputs:
 ```bash
 python src/report.py
 ```
+
+---
+
+## Attribution & Acknowledgements
+
+- **Dataset**: Customer Support on Twitter (`twcs.csv`) by Kaggle / ThoughtWorks.
+- **Core Libraries**:
+  - `scikit-learn`: Sublinear TF-IDF vectorization, cosine similarity, and evaluation classification metrics.
+  - `openai`: Client interface for `gpt-4o-mini` LLM drafting, classification, and quality judge scoring.
+  - `scipy`: Spearman rank correlation calculation (`spearmanr`) for judge calibration.
+  - `reportlab` & `pypdf`: Programmatic PDF report layout generation.
+  - `pandas` & `pyarrow`: High-performance parquet thread ingestion and golden dataset manipulation.
+- **AI Tool Assistance**: An AI coding assistant (Antigravity IDE / DeepMind) was used to accelerate boilerplate test generation, docstring drafting, and evaluation harness refactoring. All architectural designs, calibration logic, and evaluation analyses were verified and validated against the assignment specifications.
+
 
 

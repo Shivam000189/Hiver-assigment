@@ -2,27 +2,37 @@
   "correctness": {
     "spearman_rho": 0.4895,
     "p_value": 0.0001,
-    "large_disagreement_pct_ge_2": 0.0
+    "large_disagreement_pct_ge_2": 0.0,
+    "mean_human_score": 4.47,
+    "mean_judge_score": 4.75
   },
   "groundedness": {
     "spearman_rho": 0.6672,
     "p_value": 0.0,
-    "large_disagreement_pct_ge_2": 0.0
+    "large_disagreement_pct_ge_2": 0.0,
+    "mean_human_score": 4.5,
+    "mean_judge_score": 4.77
   },
   "completeness": {
     "spearman_rho": 0.302,
     "p_value": 0.019,
-    "large_disagreement_pct_ge_2": 0.0
+    "large_disagreement_pct_ge_2": 0.0,
+    "mean_human_score": 4.75,
+    "mean_judge_score": 4.98
   },
   "brand_voice": {
     "spearman_rho": 0.6914,
     "p_value": 0.0,
-    "large_disagreement_pct_ge_2": 0.0
+    "large_disagreement_pct_ge_2": 0.0,
+    "mean_human_score": 4.52,
+    "mean_judge_score": 4.75
   },
   "tone": {
     "spearman_rho": 0.6589,
     "p_value": 0.0,
-    "large_disagreement_pct_ge_2": 0.0
+    "large_disagreement_pct_ge_2": 0.0,
+    "mean_human_score": 4.58,
+    "mean_judge_score": 4.75
   },
   "top_5_largest_disagreements": [
     {
