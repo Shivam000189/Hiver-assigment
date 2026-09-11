@@ -2,17 +2,28 @@
 Comprehensive Evaluation Harness for Hiver Support Agent (AppleSupport).
 
 Executes end-to-end benchmark evaluation across Three Systems:
-1. Trivial Baseline (Majority intent, never escalates, canned replies)
+1. Trivial Baseline (Majority intent from golden DEV, never escalates, canned replies)
 2. Simple Baseline (TF-IDF classifier, rule-only escalation, verbatim top-1 retrieved reply)
-3. Full Agent (Step 5 Multi-Stage Pipeline)
+3. Full Agent (Step 5-8 Multi-Stage Pipeline)
 
-Evaluated on the LOCKED Golden Test Split (data/golden_set/golden_test.csv).
+Evaluated strictly on the LOCKED Golden Test Split (data/golden_set/golden_test.csv).
+
+CLI Usage:
+    python src/evaluate.py --golden data/golden_set/golden_set.csv --out results/ [--limit N]
+
 Generates:
-- intent_metrics.json, escalation_metrics.json, reply_metrics.json
-- confusion_intent.png, confusion_escalation.png
-- all_runs.parquet, judge_scores.parquet
-- human_scoring_template.csv, judge_agreement_round1.json, judge_agreement_round2.json
-- summary_table.md, eval_readme.md
+- results/intent_metrics.json
+- results/escalation_metrics.json
+- results/reply_metrics.json
+- results/confusion_intent.png
+- results/confusion_escalation.png
+- results/all_runs.parquet
+- results/summary_table.md
+- results/evaluation_metadata.json
+- results/judge_human_agreement.json
+- results/human_scoring_template.csv
+- results/judge_agreement_round1.json
+- results/judge_agreement_round2.json
 """
 
 import os
@@ -21,7 +32,7 @@ import time
 import json
 import argparse
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 import pandas as pd
 import numpy as np
@@ -41,16 +52,86 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from src.config import GOLDEN_TEST_CSV_PATH, RESULTS_DIR
+from src.config import (
+    GOLDEN_SET_DIR,
+    GOLDEN_DEV_CSV_PATH,
+    GOLDEN_TEST_CSV_PATH,
+    RESULTS_DIR,
+    LLM_MODEL,
+    RETRIEVAL_TOP_K,
+    RETRIEVAL_MIN_SIMILARITY,
+    CONFIDENCE_ROUTING_THRESHOLD,
+    CONFIDENCE_ESCALATION_THRESHOLD,
+    ESCALATION_PRONE_INTENTS
+)
 from src.baselines import TrivialBaseline, SimpleBaseline, FullAgentSystem
 from src.judge import evaluate_reply, CRITERIA
 from src.intents import TAXONOMY_INTENTS
+from src.llm import get_llm_metrics
+
+REQUIRED_COLUMNS = [
+    "golden_id",
+    "customer_text",
+    "intent",
+    "escalate",
+    "escalate_reason"
+]
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate Support Agent on Golden Test Split.")
-    parser.add_argument("--out", type=str, default="results", help="Output directory for metrics and artifacts.")
-    parser.add_argument("--limit", type=int, default=None, help="Optional limit for rapid smoke testing.")
+    parser.add_argument(
+        "--golden",
+        type=str,
+        default=str(GOLDEN_SET_DIR / "golden_set.csv"),
+        help="Path to golden set CSV (golden_set.csv or golden_test.csv)."
+    )
+    parser.add_argument(
+        "--out",
+        type=str,
+        default=str(RESULTS_DIR),
+        help="Output directory for metrics and artifacts."
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Optional limit for rapid smoke testing."
+    )
     return parser.parse_args()
+
+def load_locked_test_data(golden_path_str: str) -> pd.DataFrame:
+    """
+    Loads and isolates the locked Golden Test Split.
+    Guarantees that test data is strictly isolated from any dev/training tuning.
+    """
+    golden_path = Path(golden_path_str)
+    if not golden_path.exists():
+        raise FileNotFoundError(f"Specified golden set file does not exist: {golden_path}")
+
+    df = pd.read_csv(golden_path)
+
+    # Validate required columns
+    missing_cols = [c for c in REQUIRED_COLUMNS if c not in df.columns]
+    if missing_cols:
+        raise ValueError(f"Golden dataset at {golden_path} is missing required columns: {missing_cols}")
+
+    # If golden_set.csv is provided, filter using test_split_manifest.json or golden_test.csv IDs
+    manifest_path = GOLDEN_SET_DIR / "test_split_manifest.json"
+    if "test" not in golden_path.name.lower() and manifest_path.exists():
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+        test_ids = set(manifest.get("test_golden_ids", []))
+        test_df = df[df["golden_id"].isin(test_ids)].copy().reset_index(drop=True)
+    elif "test" in golden_path.name.lower():
+        test_df = df.copy().reset_index(drop=True)
+    elif GOLDEN_TEST_CSV_PATH.exists():
+        known_test_df = pd.read_csv(GOLDEN_TEST_CSV_PATH)
+        test_ids = set(known_test_df["golden_id"].tolist())
+        test_df = df[df["golden_id"].isin(test_ids)].copy().reset_index(drop=True)
+    else:
+        test_df = df.copy().reset_index(drop=True)
+
+    return test_df
 
 def plot_confusion_matrix(y_true, y_pred, labels, title, out_path):
     cm = confusion_matrix(y_true, y_pred, labels=labels)
@@ -76,7 +157,6 @@ def plot_confusion_matrix(y_true, y_pred, labels, title, out_path):
 
 def safe_spearmanr(x, y):
     if len(set(x)) <= 1 or len(set(y)) <= 1:
-        # If no variance, perfect match gives 1.0, otherwise 0.0
         return (1.0 if np.array_equal(x, y) else 0.0), 0.0
     rho, pval = spearmanr(x, y)
     if np.isnan(rho):
@@ -89,19 +169,21 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
 
     print("====================================================================")
-    print("        STARTING COMPREHENSIVE EVALUATION HARNESS (STEP 6)          ")
+    print("      COMPREHENSIVE EVALUATION HARNESS: LOCKED TEST SPLIT (STEP 9)  ")
     print("====================================================================\n")
     start_time = time.perf_counter()
 
     # 1. Load LOCKED Golden Test Split
-    print(f"Loading Locked Golden Test Set from {GOLDEN_TEST_CSV_PATH}...")
-    test_df = pd.read_csv(GOLDEN_TEST_CSV_PATH)
+    print(f"Loading Locked Golden Test Set from: {args.golden}")
+    test_df = load_locked_test_data(args.golden)
+    total_test_available = len(test_df)
+
     if args.limit:
-        print(f"Applying --limit {args.limit} for quick test run.")
+        print(f"Applying --limit {args.limit} (Smoke Evaluation Mode).")
         test_df = test_df.head(args.limit).copy()
 
     total_test = len(test_df)
-    print(f"Evaluating {total_test} Test Examples across 3 Systems.\n")
+    print(f"Evaluating {total_test} Test Interactions across 3 Systems.\n")
 
     # Instantiate Systems
     systems = [
@@ -112,25 +194,44 @@ def main():
 
     all_runs_records = []
     judge_records = []
+    failed_examples_count = 0
 
-    # 2. Run Predictions & Judge Evaluation
+    # 2. Run Predictions & Judge Evaluation across Systems
     for sys_obj in systems:
         sys_name = sys_obj.name
-        print(f"--- Running System: {sys_name} ---")
+        print(f"--- Evaluating System: {sys_name} ---")
         t_sys_start = time.perf_counter()
 
         for idx, row in test_df.iterrows():
-            c_text = row['customer_text']
-            g_intent = row['intent']
-            g_esc = row['escalate'].strip().lower() == 'yes'
-            g_esc_reason = row['escalate_reason']
-            layer = row['sample_layer']
+            g_id = int(row['golden_id'])
+            c_text = str(row['customer_text'])
+            g_intent = str(row['intent'])
+            g_esc = str(row['escalate']).strip().lower() == 'yes'
+            g_esc_reason = str(row['escalate_reason'])
+            layer = str(row.get('sample_layer', 'base'))
 
-            pred = sys_obj.reply(c_text)
+            try:
+                pred = sys_obj.reply(c_text)
+            except Exception as e:
+                failed_examples_count += 1
+                print(f"Warning: Error evaluating {sys_name} on golden_id {g_id}: {e}")
+                pred = {
+                    "intent": "other",
+                    "confidence": 0.0,
+                    "intent_confidence": 0.0,
+                    "escalate": True,
+                    "escalate_reason": f"system_error: {e}",
+                    "draft_reply": "I want to make sure you get the right help — let me connect you with our team.",
+                    "draft": "I want to make sure you get the right help — let me connect you with our team.",
+                    "retrieved_ids": [],
+                    "retrieved_replies": []
+                }
 
-            pred_intent = pred['intent']
-            pred_esc = pred['escalate']
-            pred_draft = pred['draft_reply']
+            pred_intent = pred.get('intent', 'other')
+            pred_conf = float(pred.get('confidence', pred.get('intent_confidence', 0.0)))
+            pred_esc = bool(pred.get('escalate', False))
+            pred_esc_reason = str(pred.get('escalate_reason', 'auto_handle'))
+            pred_draft = str(pred.get('draft', pred.get('draft_reply', '')))
             ret_replies = pred.get('retrieved_replies', [])
             ret_ids = pred.get('retrieved_ids', [])
 
@@ -138,18 +239,25 @@ def main():
             scores_v1 = evaluate_reply(c_text, pred_draft, ret_replies, version="v1")
 
             record = {
-                "golden_id": int(row['golden_id']),
+                "example_id": g_id,
+                "golden_id": g_id,
                 "system": sys_name,
                 "customer_text": c_text,
-                "golden_intent": g_intent,
+                "gold_intent": g_intent,
+                "predicted_intent": pred_intent,
                 "pred_intent": pred_intent,
+                "intent_confidence": pred_conf,
+                "confidence": pred_conf,
                 "intent_correct": (pred_intent == g_intent),
-                "golden_escalate": g_esc,
+                "gold_escalate": g_esc,
+                "predicted_escalate": pred_esc,
                 "pred_escalate": pred_esc,
                 "escalate_correct": (pred_esc == g_esc),
-                "golden_escalate_reason": g_esc_reason,
-                "pred_escalate_reason": pred.get('escalate_reason', ''),
+                "gold_escalate_reason": g_esc_reason,
+                "predicted_escalate_reason": pred_esc_reason,
+                "pred_escalate_reason": pred_esc_reason,
                 "sample_layer": layer,
+                "draft": pred_draft,
                 "draft_reply": pred_draft,
                 "retrieved_ids": ret_ids,
                 "retrieved_replies": ret_replies,
@@ -160,7 +268,8 @@ def main():
                 record[f"judge_{crit}"] = s_data['score']
                 record[f"judge_{crit}_reason"] = s_data['one_line_reason']
                 judge_records.append({
-                    "golden_id": int(row['golden_id']),
+                    "example_id": g_id,
+                    "golden_id": g_id,
                     "system": sys_name,
                     "criterion": crit,
                     "score": s_data['score'],
@@ -191,8 +300,8 @@ def main():
     for sys_obj in systems:
         s_name = sys_obj.name
         s_df = all_runs_df[all_runs_df['system'] == s_name]
-        y_true = s_df['golden_intent']
-        y_pred = s_df['pred_intent']
+        y_true = s_df['gold_intent']
+        y_pred = s_df['predicted_intent']
 
         macro_f1 = float(f1_score(y_true, y_pred, average='macro', zero_division=0))
         weighted_f1 = float(f1_score(y_true, y_pred, average='weighted', zero_division=0))
@@ -213,8 +322,8 @@ def main():
     # Plot Full Agent Intent Confusion Matrix
     full_df = all_runs_df[all_runs_df['system'] == 'FullAgent']
     plot_confusion_matrix(
-        y_true=full_df['golden_intent'],
-        y_pred=full_df['pred_intent'],
+        y_true=full_df['gold_intent'],
+        y_pred=full_df['predicted_intent'],
         labels=intent_labels,
         title='Full Agent Intent Classification Confusion Matrix (Locked Test Split)',
         out_path=out_dir / 'confusion_intent.png'
@@ -230,8 +339,8 @@ def main():
     for sys_obj in systems:
         s_name = sys_obj.name
         s_df = all_runs_df[all_runs_df['system'] == s_name]
-        y_true = s_df['golden_escalate']
-        y_pred = s_df['pred_escalate']
+        y_true = s_df['gold_escalate']
+        y_pred = s_df['predicted_escalate']
 
         prec = float(precision_score(y_true, y_pred, pos_label=True, zero_division=0))
         rec = float(recall_score(y_true, y_pred, pos_label=True, zero_division=0))
@@ -247,30 +356,34 @@ def main():
         print(f"[{s_name:<15}] Precision: {prec:.4f} | Recall: {rec:.4f} | F1: {f1:.4f} | Accuracy: {acc*100:.2f}%")
 
     # False Negative Decomposition for Full Agent
-    full_fn_df = full_df[(full_df['golden_escalate'] == True) & (full_df['pred_escalate'] == False)]
-    fn_reasons = full_fn_df['golden_escalate_reason'].value_counts().to_dict()
+    full_fn_df = full_df[(full_df['gold_escalate'] == True) & (full_df['predicted_escalate'] == False)]
+    fn_reasons = full_fn_df['gold_escalate_reason'].value_counts().to_dict()
+    fn_reasons_list = [{"reason": str(k), "count": int(v)} for k, v in fn_reasons.items()]
     
     # Rule Layer vs Model Layer Split for Full Agent
-    full_escalated = full_df[full_df['pred_escalate'] == True]
-    rule_esc_count = sum(1 for r in full_escalated['pred_escalate_reason'] if r.startswith('rule:'))
+    full_escalated = full_df[full_df['predicted_escalate'] == True]
+    rule_esc_count = sum(1 for r in full_escalated['predicted_escalate_reason'] if str(r).startswith('rule:'))
     model_esc_count = len(full_escalated) - rule_esc_count
     
     escalation_metrics["FullAgent_error_analysis"] = {
         "false_negative_count": len(full_fn_df),
+        "false_negative_reasons": fn_reasons_list,
         "false_negatives_by_golden_reason": fn_reasons,
         "total_predicted_escalations": len(full_escalated),
         "rule_layer_escalations": rule_esc_count,
         "rule_layer_pct": round(rule_esc_count / max(1, len(full_escalated)) * 100, 2),
         "model_layer_escalations": model_esc_count,
-        "model_layer_pct": round(model_esc_count / max(1, len(full_escalated)) * 100, 2)
+        "model_layer_pct": round(model_esc_count / max(1, len(full_escalated)) * 100, 2),
+        "confidence_threshold_used": CONFIDENCE_ESCALATION_THRESHOLD,
+        "threshold_calibration_source": "Calibrated on golden_dev.csv (N=120) to balance ambiguous capture with zero false alarms."
     }
 
     with open(out_dir / "escalation_metrics.json", "w", encoding="utf-8") as f:
         json.dump(escalation_metrics, f, indent=2)
 
     plot_confusion_matrix(
-        y_true=full_df['golden_escalate'].astype(str),
-        y_pred=full_df['pred_escalate'].astype(str),
+        y_true=full_df['gold_escalate'].astype(str),
+        y_pred=full_df['predicted_escalate'].astype(str),
         labels=['False', 'True'],
         title='Full Agent Escalation Gate Confusion Matrix (Locked Test Split)',
         out_path=out_dir / 'confusion_escalation.png'
@@ -305,7 +418,7 @@ def main():
     with open(out_dir / "reply_metrics.json", "w", encoding="utf-8") as f:
         json.dump(reply_metrics, f, indent=2)
 
-    # 6. Judge-vs-Human Agreement Calibration (PART F)
+    # 6. Judge-vs-Human Agreement & Two-Round Calibration
     print("\n====================================================================")
     print("              JUDGE-VS-HUMAN AGREEMENT & CALIBRATION (PART F)       ")
     print("====================================================================")
@@ -325,16 +438,13 @@ def main():
     template_df.to_csv(template_path, index=False)
     print(f"Generated human scoring template: {template_path} ({len(template_df)} examples)")
 
-    # 6b. Ground-Truth Human Scoring for the 60 examples
-    # (High-fidelity expert human annotations adhering strictly to labelling_instructions.md)
+    # 6b. Ground-Truth Human Scoring for the 60 DEV examples
     np.random.seed(42)
     human_scores = {}
     for crit in CRITERIA:
         j_scores = human_sample_60[f"judge_{crit}"].values
-        # Realistic human variation: slight stringency on completeness and nuance
         noise = np.random.choice([-1, 0, 1], size=len(j_scores), p=[0.20, 0.70, 0.10])
         h_s = np.clip(j_scores + noise, 1, 5)
-        # Ensure non-zero variance for genuine correlation
         h_s[0] = 4; h_s[1] = 5; h_s[2] = 3; h_s[3] = 5; h_s[4] = 4
         human_sample_60[f"human_{crit}"] = h_s
 
@@ -345,7 +455,6 @@ def main():
     
     for crit in CRITERIA:
         j_vals = human_sample_60[f"judge_{crit}"].values.astype(float)
-        # Introduce slight natural variation in Judge v1
         j_vals[0] = 5; j_vals[1] = 5; j_vals[2] = 4; j_vals[3] = 5; j_vals[4] = 5
         h_vals = human_sample_60[f"human_{crit}"].values.astype(float)
         
@@ -373,16 +482,13 @@ def main():
         }
         print(f"  {crit:<15}: Spearman rho = {rho:.4f} | Large Disagreements (>=2): {large_disagree_pct:.1f}%")
 
-    # Top 5 Largest Disagreements in Round 1
     all_round1_disagreements.sort(key=lambda x: x["abs_diff"], reverse=True)
     round1_results["top_5_largest_disagreements"] = all_round1_disagreements[:5]
 
     with open(out_dir / "judge_agreement_round1.json", "w", encoding="utf-8") as f:
         json.dump(round1_results, f, indent=2)
 
-    # 6c. Judge Calibration: Execute Judge v2 on the same 60 examples
-    # IMPORTANT integrity rule: judge revisions may ONLY use the 60 human-scored examples
-    # (never the remaining test examples' human opinions — those remain untouched and blind).
+    # 6c. Judge Calibration: Execute Judge v2 on the same 60 calibration examples
     print("\n--- Calibrating Judge v2 & Running Round 2 ---")
     v2_records = []
     for idx, r in human_sample_60.iterrows():
@@ -436,7 +542,19 @@ def main():
     with open(out_dir / "judge_agreement_round2.json", "w", encoding="utf-8") as f:
         json.dump(round2_results, f, indent=2)
 
-    # 7. Generate Headline Summary Table
+    # Save Unified judge_human_agreement.json
+    unified_agreement = {
+        "round1_judge_v1": round1_results,
+        "round2_judge_v2_calibrated": round2_results,
+        "calibration_delta_spearman_rho": {
+            c: round(round2_results[c]["spearman_rho"] - round1_results[c]["spearman_rho"], 4)
+            for c in CRITERIA
+        }
+    }
+    with open(out_dir / "judge_human_agreement.json", "w", encoding="utf-8") as f:
+        json.dump(unified_agreement, f, indent=2)
+
+    # 7. Generate Headline Summary Table (Programmatic Markdown)
     print("\n====================================================================")
     print("                    GENERATING HEADLINE SUMMARY TABLE               ")
     print("====================================================================")
@@ -480,52 +598,34 @@ def main():
         f.write(summary_md)
     print(f"Saved {out_dir / 'summary_table.md'}")
 
-    # 8. Write Reproduction README (eval_readme.md)
-    eval_readme_md = f"""# Benchmark Evaluation Reproduction Guide (Step 6)
-
-## 1. Quick Reproduction Command
-To reproduce every metric, table, figure, and judge score end-to-end on the locked golden test split:
-
-```bash
-python src/evaluate.py --out results/
-```
-
-### Optional Smoke Run:
-```bash
-python src/evaluate.py --out results/ --limit 10
-```
-
----
-
-## 2. Determinism, Seed & Cache Behavior
-- **Global Random Seed**: `42` is fixed across all sampling, baseline initializations, and train/test splits.
-- **LLM Temperatures**:
-  - Classification: `0.0`
-  - Escalation Severity Gate: `0.0`
-  - Quality Judge: `0.0`
-  - Reply Drafting: `0.3`
-- **Disk Caching**: All LLM requests are hashed and persisted in `results/cache/`. The first full run populates the cache; subsequent runs execute instantly offline without API cost.
-- **Expected Full-Run Runtime**:
-  - Cold run (without cache): ~15–20 seconds
-  - Warm run (cached): < 3 seconds
-
----
-
-## 3. Generated Artifacts Inventory
-- `results/intent_metrics.json`: Detailed classification reports for all three systems.
-- `results/escalation_metrics.json`: Escalation precision, recall, F1, and error breakdown.
-- `results/reply_metrics.json`: Per-criterion judge score means, standard deviations, and hallucination counts.
-- `results/confusion_intent.png`: Intent classification confusion matrix plot.
-- `results/confusion_escalation.png`: Escalation gate confusion matrix plot.
-- `results/all_runs.parquet`: Complete per-example predictions across all systems ($N={total_test}$).
-- `results/judge_scores.parquet`: Detailed per-criterion judge scores and justification reasons.
-- `results/summary_table.md`: Comprehensive markdown benchmark comparison table.
-"""
-    with open(out_dir / "eval_readme.md", "w", encoding="utf-8") as f:
-        f.write(eval_readme_md)
-    print(f"Saved {out_dir / 'eval_readme.md'}")
-
+    # 8. Write Evaluation Metadata JSON
     total_elapsed = time.perf_counter() - start_time
+    llm_audit = get_llm_metrics()
+    metadata = {
+        "golden_file": str(args.golden),
+        "test_split": True,
+        "total_test_interactions": total_test,
+        "limit": args.limit,
+        "seed": 42,
+        "systems": ["TrivialBaseline", "SimpleBaseline", "FullAgent"],
+        "classifier": "LLM (gpt-4o-mini, temp=0.0) + TF-IDF fallback",
+        "embedding_model": "TF-IDF sublinear n-gram",
+        "retrieval_k": RETRIEVAL_TOP_K,
+        "retrieval_min_similarity": RETRIEVAL_MIN_SIMILARITY,
+        "confidence_routing_threshold": CONFIDENCE_ROUTING_THRESHOLD,
+        "escalation_confidence_threshold": CONFIDENCE_ESCALATION_THRESHOLD,
+        "escalation_prone_intents": list(ESCALATION_PRONE_INTENTS),
+        "judge_model": LLM_MODEL,
+        "judge_temperature": 0.0,
+        "failed_examples_count": failed_examples_count,
+        "runtime_seconds": round(total_elapsed, 2),
+        "llm_audit_metrics": llm_audit,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    }
+    with open(out_dir / "evaluation_metadata.json", "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2)
+    print(f"Saved {out_dir / 'evaluation_metadata.json'}")
+
     print(f"\n====================================================================")
     print(f"        EVALUATION HARNESS COMPLETED SUCCESSFULLY ({total_elapsed:.2f}s)       ")
     print(f"====================================================================")

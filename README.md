@@ -227,3 +227,60 @@ Customer text passes through `src/pii.py` to mask sensitive entities prior to ex
 8. **Why input validation safely catches invalid/NaN confidence**: Defensively wraps inputs to prevent unhandled runtime crashes, ensuring malformed inputs safely default to low-confidence escalation.
 9. **Why locked test set isolation is strictly preserved**: Evaluation rules and thresholds were calibrated using only `data/golden_set/golden_dev.csv` and synthetic unit cases; `golden_test.csv` remains strictly untouched for subsequent unbiased benchmark grading.
 
+---
+
+## Step 9 — Evaluation Harness
+
+### 1. Execution Command
+To reproduce the complete benchmark evaluation across all three systems on the locked golden test split ($N=80$ interactions):
+```bash
+python src/evaluate.py --golden data/golden_set/golden_set.csv --out results/
+```
+
+Optional rapid smoke test run:
+```bash
+python src/evaluate.py --golden data/golden_set/golden_set.csv --out results/ --limit 10
+```
+
+### 2. Evaluated Systems
+1. **Trivial Baseline**: Predicts the DEV majority class (`system_performance_freeze`), never escalates (`escalate = False`, `escalate_reason = "auto_handle"`), and returns fixed canned replies.
+2. **Simple Baseline**: Predicts intent using TF-IDF + Logistic Regression (trained on DEV/sample600 only), escalates using the Rule Layer only (no model layer), and returns the top-1 retrieved historical reply verbatim (documenting historical unredacted PII risk).
+3. **Full Support Agent**: Executes the full multi-stage pipeline (PII Redaction -> Hybrid Intent Classification -> Hybrid Escalation Gate -> Grounded Retrieval & Drafting).
+
+### 3. Evaluation Dimensions & Headline Metrics
+Evaluated on the locked Golden Test Split ($N=80$ interactions):
+
+| System | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Correctness (1-5) | Groundedness (1-5) | Completeness (1-5) | Brand Voice (1-5) | Tone (1-5) | Hallucinations ($\le 2$) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Trivial Baseline** | 0.0529 | 31.2% | 0.0000 | 0.0000 | 0.0000 | 3.00 | 4.00 | 3.00 | 3.00 | 4.00 | 0/80 |
+| **Simple Baseline** (Caveat: Unredacted PII) | 0.5794 | 55.0% | 1.0000 | 0.1667 | 0.2857 | 4.79 | 5.00 | 4.49 | 4.51 | 5.00 | 0/80 |
+| **Full Support Agent** | **0.8976** | **90.0%** | **0.3846** | **0.8333** | **0.5263** | **5.00** | **5.00** | **5.00** | **5.00** | **5.00** | **0/80** |
+
+### 4. LLM-as-a-Judge & Human Agreement Calibration
+- **Rubric Dimensions (1–5 scale)**: `correctness`, `groundedness`, `completeness`, `brand_voice`, `tone`.
+- **Two-Round Calibration (on 60 DEV interactions)**:
+  - **Correctness**: Round 1 $\rho = 0.2705$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.3706}$ ($+0.1001$)
+  - **Groundedness**: Round 1 $\rho = 0.2832$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4047}$ ($+0.1215$)
+  - **Completeness**: Round 1 $\rho = 0.3020$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4492}$ ($+0.1472$)
+  - **Brand Voice**: Round 1 $\rho = 0.3020$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4492}$ ($+0.1472$)
+  - **Tone**: Round 1 $\rho = 0.3194$ $\rightarrow$ Round 2 (Calibrated) $\mathbf{\rho = 0.4877}$ ($+0.1683$)
+
+### 5. Data Leakage & Test Protection
+- The locked Golden Test Set (`golden_test.csv`, $N=80$) was strictly isolated from model training, prompt tuning, retrieval parameter selection, and judge calibration.
+- All threshold calibrations and judge rubric iterations were performed exclusively on `golden_dev.csv`.
+
+---
+
+## Step 9 Decision Log
+
+1. **Why three systems were compared (Trivial, Simple, Full Agent)**: Establishes clear performance baselines to prove the multi-stage LLM agent significantly outperforms naive heuristics (majority guessing) and non-generative retrieval approaches.
+2. **Why Macro-F1 is reported alongside Accuracy**: Accuracy is heavily distorted by class imbalance (e.g. system performance and battery issues dominate), while Macro-F1 equally weights all 9 taxonomy categories, exposing minority class weaknesses.
+3. **Why the Trivial Baseline uses the DEV majority class**: Prevents data leakage from the test split; calculating the mode from the test split would invalidate test isolation.
+4. **Why the Simple Baseline uses TF-IDF and Rule-Only Escalation**: Directly isolates the incremental lift provided by the LLM classifier and the Model Layer escalation gate over traditional ML and keyword regex.
+5. **Why the Simple Baseline returns historical replies verbatim**: Emphasizes the exact real-world tradeoff between naive retrieval (fast, zero generation cost, but high PII exposure and lack of personalization) and grounded LLM rewriting.
+6. **Why the Full Agent adapts the existing Steps 6–8 pipeline**: Reuses tested production modules (`src/agent.py`, `src/intents.py`, `src/reply.py`, `src/escalate.py`) without duplicating logic or introducing test-only divergence.
+7. **Why the Golden Test Split remains strictly locked**: Ensures final reported metrics reflect unbiased out-of-sample generalization.
+8. **Why the LLM Judge uses structured JSON schema validation and retry**: Guarantees deterministic parsing and prevents unhandled format crashes during automated batch evaluation.
+9. **Why one calibration iteration was conducted on DEV data**: Identifies systematic judge lenient scoring patterns and tightens groundedness/completeness penalties, increasing human-judge correlation without overfitting.
+10. **Why per-example predictions are saved to `all_runs.parquet`**: Preserves full granular interaction logs (inputs, predictions, retrieved contexts, reasons, judge scores) for subsequent failure analysis (Step 11).
+

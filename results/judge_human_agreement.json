@@ -1,0 +1,167 @@
+{
+  "round1_judge_v1": {
+    "correctness": {
+      "spearman_rho": 0.2705,
+      "p_value": 0.0366,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "groundedness": {
+      "spearman_rho": 0.2832,
+      "p_value": 0.0283,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "completeness": {
+      "spearman_rho": 0.302,
+      "p_value": 0.019,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "brand_voice": {
+      "spearman_rho": 0.302,
+      "p_value": 0.019,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "tone": {
+      "spearman_rho": 0.3194,
+      "p_value": 0.0129,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "top_5_largest_disagreements": [
+      {
+        "golden_id": 2,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport The phone after the update operates and opens itself and is slow",
+        "draft_reply": "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT",
+        "judge_score": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 6,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport To date, it's just been Chrome. Maybe a few times with Microsoft office suite (but usually those crash just the app, not the whole computer). Using OSSierra 10.12.6. The @9242 people had me clear cookies etc but that didn't work.",
+        "draft_reply": "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT",
+        "judge_score": 4,
+        "human_score": 3,
+        "abs_diff": 1.0,
+        "judge_reason": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 14,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport I bought an iPhone and an iPad for my mum on apple store. 12 hours after the order you decided to charge my credit card for the iPad again. I wonder how your billing system even works or when I can get my $529 back.",
+        "draft_reply": "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT",
+        "judge_score": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 15,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport I know how to do that, my problem is that my WiFi will turn on by itself and connect to a network that\u2019s locked so I\u2019m always having to turn it back off, it\u2019s just frustrating",
+        "draft_reply": "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT",
+        "judge_score": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 19,
+        "criterion": "correctness",
+        "customer_text": "My mac book smells burnt. How to deal with\uff1f@115858 https://t.co/qWP7qtXVnP",
+        "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:safety] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+        "judge_score": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason": "Correctly identified high-risk/complex issue for human escalation."
+      }
+    ]
+  },
+  "round2_judge_v2_calibrated": {
+    "correctness": {
+      "spearman_rho": 0.3706,
+      "p_value": 0.0036,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "groundedness": {
+      "spearman_rho": 0.4047,
+      "p_value": 0.0013,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "completeness": {
+      "spearman_rho": 0.4492,
+      "p_value": 0.0003,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "brand_voice": {
+      "spearman_rho": 0.4492,
+      "p_value": 0.0003,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "tone": {
+      "spearman_rho": 0.4877,
+      "p_value": 0.0001,
+      "large_disagreement_pct_ge_2": 0.0
+    },
+    "top_5_largest_disagreements": [
+      {
+        "golden_id": 15,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport I know how to do that, my problem is that my WiFi will turn on by itself and connect to a network that\u2019s locked so I\u2019m always having to turn it back off, it\u2019s just frustrating",
+        "draft_reply": "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT",
+        "judge_score_v2": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason_v2": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 19,
+        "criterion": "correctness",
+        "customer_text": "My mac book smells burnt. How to deal with\uff1f@115858 https://t.co/qWP7qtXVnP",
+        "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:safety] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+        "judge_score_v2": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason_v2": "Correctly identified high-risk/complex issue for human escalation."
+      },
+      {
+        "golden_id": 32,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport I have an iPhone 6. My apps keep force closing. My podcast library keeps having to be restored. My text thread is out of order.",
+        "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+        "judge_score_v2": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason_v2": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 39,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport Quick question how do I reboot my iPhone when the power button isn't working. I've already enable the touch option.",
+        "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+        "judge_score_v2": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason_v2": "Grounded advice addressing customer technical issue."
+      },
+      {
+        "golden_id": 49,
+        "criterion": "correctness",
+        "customer_text": "@AppleSupport Done that 3 times already",
+        "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+        "judge_score_v2": 5,
+        "human_score": 4,
+        "abs_diff": 1.0,
+        "judge_reason_v2": "Grounded advice addressing customer technical issue."
+      }
+    ]
+  },
+  "calibration_delta_spearman_rho": {
+    "correctness": 0.1001,
+    "groundedness": 0.1215,
+    "completeness": 0.1472,
+    "brand_voice": 0.1472,
+    "tone": 0.1683
+  }
+}

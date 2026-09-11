@@ -33,13 +33,13 @@
       "judge_score_v2": 5,
       "human_score": 4,
       "abs_diff": 1.0,
-      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+      "judge_reason_v2": "Grounded advice addressing customer technical issue."
     },
     {
       "golden_id": 19,
       "criterion": "correctness",
       "customer_text": "My mac book smells burnt. How to deal with\uff1f@115858 https://t.co/qWP7qtXVnP",
-      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:safety_hazard ('burnt'): Critical hardware safety hazard (battery thermal runaway, swelling, electric shock, fire).] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:safety] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
       "judge_score_v2": 5,
       "human_score": 4,
       "abs_diff": 1.0,
@@ -53,7 +53,7 @@
       "judge_score_v2": 5,
       "human_score": 4,
       "abs_diff": 1.0,
-      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+      "judge_reason_v2": "Grounded advice addressing customer technical issue."
     },
     {
       "golden_id": 39,
@@ -63,7 +63,7 @@
       "judge_score_v2": 5,
       "human_score": 4,
       "abs_diff": 1.0,
-      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+      "judge_reason_v2": "Grounded advice addressing customer technical issue."
     },
     {
       "golden_id": 49,
@@ -73,7 +73,7 @@
       "judge_score_v2": 5,
       "human_score": 4,
       "abs_diff": 1.0,
-      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+      "judge_reason_v2": "Grounded advice addressing customer technical issue."
     }
   ]
 }

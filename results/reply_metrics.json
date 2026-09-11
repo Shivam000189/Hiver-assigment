@@ -19,17 +19,17 @@
   },
   "SimpleBaseline": {
     "criteria_means": {
-      "correctness": 5.0,
+      "correctness": 4.79,
       "groundedness": 5.0,
-      "completeness": 5.0,
-      "brand_voice": 5.0,
+      "completeness": 4.49,
+      "brand_voice": 4.51,
       "tone": 5.0
     },
     "criteria_stds": {
-      "correctness": 0.0,
+      "correctness": 0.41,
       "groundedness": 0.0,
-      "completeness": 0.0,
-      "brand_voice": 0.0,
+      "completeness": 0.5,
+      "brand_voice": 0.5,
       "tone": 0.0
     },
     "hallucination_count_score_le_2": 0,

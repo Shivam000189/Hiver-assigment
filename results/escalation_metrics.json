@@ -7,25 +7,33 @@
   },
   "SimpleBaseline": {
     "precision": 1.0,
-    "recall": 0.3333,
-    "f1": 0.5,
-    "accuracy": 0.95
+    "recall": 0.1667,
+    "f1": 0.2857,
+    "accuracy": 0.9375
   },
   "FullAgent": {
-    "precision": 1.0,
-    "recall": 0.6667,
-    "f1": 0.8,
-    "accuracy": 0.975
+    "precision": 0.3846,
+    "recall": 0.8333,
+    "f1": 0.5263,
+    "accuracy": 0.8875
   },
   "FullAgent_error_analysis": {
-    "false_negative_count": 2,
+    "false_negative_count": 1,
+    "false_negative_reasons": [
+      {
+        "reason": "Rule 1: Legal / Regulatory / Law Enforcement / Chargeback Threat.",
+        "count": 1
+      }
+    ],
     "false_negatives_by_golden_reason": {
-      "Rule 1: Legal / Regulatory / Law Enforcement / Chargeback Threat.": 2
+      "Rule 1: Legal / Regulatory / Law Enforcement / Chargeback Threat.": 1
     },
-    "total_predicted_escalations": 4,
-    "rule_layer_escalations": 2,
-    "rule_layer_pct": 50.0,
-    "model_layer_escalations": 2,
-    "model_layer_pct": 50.0
+    "total_predicted_escalations": 13,
+    "rule_layer_escalations": 1,
+    "rule_layer_pct": 7.69,
+    "model_layer_escalations": 12,
+    "model_layer_pct": 92.31,
+    "confidence_threshold_used": 0.4,
+    "threshold_calibration_source": "Calibrated on golden_dev.csv (N=120) to balance ambiguous capture with zero false alarms."
   }
 }

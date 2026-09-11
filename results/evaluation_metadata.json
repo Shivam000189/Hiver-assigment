@@ -1,0 +1,33 @@
+{
+  "golden_file": "data/golden_set/golden_set.csv",
+  "test_split": true,
+  "total_test_interactions": 80,
+  "limit": null,
+  "seed": 42,
+  "systems": [
+    "TrivialBaseline",
+    "SimpleBaseline",
+    "FullAgent"
+  ],
+  "classifier": "LLM (gpt-4o-mini, temp=0.0) + TF-IDF fallback",
+  "embedding_model": "TF-IDF sublinear n-gram",
+  "retrieval_k": 3,
+  "retrieval_min_similarity": 0.15,
+  "confidence_routing_threshold": 0.5,
+  "escalation_confidence_threshold": 0.4,
+  "escalation_prone_intents": [
+    "account_icloud_login",
+    "billing_app_store"
+  ],
+  "judge_model": "gpt-4o-mini",
+  "judge_temperature": 0.0,
+  "failed_examples_count": 0,
+  "runtime_seconds": 15.03,
+  "llm_audit_metrics": {
+    "cache_hits": 66,
+    "cache_misses": 450,
+    "retries": 0,
+    "parse_fallbacks": 0
+  },
+  "timestamp": "2026-09-11T10:46:53Z"
+}
