@@ -4,7 +4,7 @@ An end-to-end customer support AI agent built from real Twitter customer service
 
 ---
 
-## ⚡ Quickstart: Reproducing Results in <15 Minutes
+## Quickstart: Reproducing Results in <15 Minutes
 
 The evaluation is designed for **100% deterministic offline grading**. No API keys and no 3M-row Kaggle downloads are required.
 
@@ -40,7 +40,7 @@ python src/report.py
 
 ---
 
-## 📂 Dataset Architecture & Reproducibility Guarantees
+## Dataset Architecture & Reproducibility Guarantees
 
 ### 1. No 3M-Row Raw Dataset Required
 - The original 3M-row Kaggle dataset (`twcs.csv`) is **NOT** needed.
@@ -58,7 +58,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 
 ---
 
-## 🤖 LLM Execution Modes
+## LLM Execution Modes
 
 ### Mode A: Offline / Cache Mode (Default — No API Key Required)
 - If `OPENAI_API_KEY` is not set, the evaluation pipeline automatically uses the **828 cached LLM responses** committed in [`results/cache/`](results/cache/) (2.22 MB).
@@ -78,7 +78,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 
 ---
 
-## 📊 Benchmark Headline Results (Locked Test Split, $N=80$)
+## Benchmark Headline Results (Locked Test Split, $N=80$)
 
 | System Name | Intent Macro-F1 | Intent Accuracy | Escalate Precision | Escalate Recall | Escalate F1 | Reply Correctness | Reply Groundedness | Reply Completeness |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -90,7 +90,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 
 ---
 
-## ⏱️ Measured Reproduction Timing (Fresh Clone Audit)
+## Measured Reproduction Timing (Fresh Clone Audit)
 
 | Phase | Duration | Status |
 | :--- | :---: | :---: |
@@ -104,7 +104,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 
 ---
 
-## 🗺️ Project Roadmap Status
+## Project Roadmap Status
 
 1. Setup environment [Done]
 2. Get and inspect the dataset [Done]
