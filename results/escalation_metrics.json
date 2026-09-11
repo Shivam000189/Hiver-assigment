@@ -1,0 +1,31 @@
+{
+  "TrivialBaseline": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "accuracy": 0.925
+  },
+  "SimpleBaseline": {
+    "precision": 1.0,
+    "recall": 0.3333,
+    "f1": 0.5,
+    "accuracy": 0.95
+  },
+  "FullAgent": {
+    "precision": 1.0,
+    "recall": 0.6667,
+    "f1": 0.8,
+    "accuracy": 0.975
+  },
+  "FullAgent_error_analysis": {
+    "false_negative_count": 2,
+    "false_negatives_by_golden_reason": {
+      "Rule 1: Legal / Regulatory / Law Enforcement / Chargeback Threat.": 2
+    },
+    "total_predicted_escalations": 4,
+    "rule_layer_escalations": 2,
+    "rule_layer_pct": 50.0,
+    "model_layer_escalations": 2,
+    "model_layer_pct": 50.0
+  }
+}

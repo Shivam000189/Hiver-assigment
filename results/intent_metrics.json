@@ -1,0 +1,224 @@
+{
+  "TrivialBaseline": {
+    "macro_f1": 0.0529,
+    "weighted_f1": 0.1488,
+    "accuracy": 0.3125,
+    "per_class": {
+      "keyboard_autocorrect_bug": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 7.0
+      },
+      "system_performance_freeze": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 14.0
+      },
+      "battery_drain_power": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 15.0
+      },
+      "audio_music_playback": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "connectivity_network": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 5.0
+      },
+      "camera_photos_media": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 2.0
+      },
+      "account_icloud_login": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "billing_app_store": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 3.0
+      },
+      "other": {
+        "precision": 0.3125,
+        "recall": 1.0,
+        "f1-score": 0.47619047619047616,
+        "support": 25.0
+      },
+      "accuracy": 0.3125,
+      "macro avg": {
+        "precision": 0.034722222222222224,
+        "recall": 0.1111111111111111,
+        "f1-score": 0.05291005291005291,
+        "support": 80.0
+      },
+      "weighted avg": {
+        "precision": 0.09765625,
+        "recall": 0.3125,
+        "f1-score": 0.14880952380952378,
+        "support": 80.0
+      }
+    }
+  },
+  "SimpleBaseline": {
+    "macro_f1": 0.5794,
+    "weighted_f1": 0.5307,
+    "accuracy": 0.55,
+    "per_class": {
+      "keyboard_autocorrect_bug": {
+        "precision": 0.3,
+        "recall": 0.42857142857142855,
+        "f1-score": 0.35294117647058826,
+        "support": 7.0
+      },
+      "system_performance_freeze": {
+        "precision": 0.4230769230769231,
+        "recall": 0.7857142857142857,
+        "f1-score": 0.55,
+        "support": 14.0
+      },
+      "battery_drain_power": {
+        "precision": 0.8333333333333334,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.7407407407407407,
+        "support": 15.0
+      },
+      "audio_music_playback": {
+        "precision": 0.42857142857142855,
+        "recall": 1.0,
+        "f1-score": 0.6,
+        "support": 3.0
+      },
+      "connectivity_network": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1-score": 0.8888888888888888,
+        "support": 5.0
+      },
+      "camera_photos_media": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1-score": 0.5,
+        "support": 2.0
+      },
+      "account_icloud_login": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.7692307692307693,
+        "support": 6.0
+      },
+      "billing_app_store": {
+        "precision": 0.4,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.5,
+        "support": 3.0
+      },
+      "other": {
+        "precision": 0.7142857142857143,
+        "recall": 0.2,
+        "f1-score": 0.3125,
+        "support": 25.0
+      },
+      "accuracy": 0.55,
+      "macro avg": {
+        "precision": 0.5903947903947904,
+        "recall": 0.6534391534391534,
+        "f1-score": 0.579366841703443,
+        "support": 80.0
+      },
+      "weighted avg": {
+        "precision": 0.6393956043956044,
+        "recall": 0.55,
+        "f1-score": 0.5306753550779286,
+        "support": 80.0
+      }
+    }
+  },
+  "FullAgent": {
+    "macro_f1": 0.8976,
+    "weighted_f1": 0.9046,
+    "accuracy": 0.9,
+    "per_class": {
+      "keyboard_autocorrect_bug": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9230769230769231,
+        "support": 7.0
+      },
+      "system_performance_freeze": {
+        "precision": 1.0,
+        "recall": 0.8571428571428571,
+        "f1-score": 0.9230769230769231,
+        "support": 14.0
+      },
+      "battery_drain_power": {
+        "precision": 0.9166666666666666,
+        "recall": 0.7333333333333333,
+        "f1-score": 0.8148148148148148,
+        "support": 15.0
+      },
+      "audio_music_playback": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      },
+      "connectivity_network": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 5.0
+      },
+      "camera_photos_media": {
+        "precision": 0.4,
+        "recall": 1.0,
+        "f1-score": 0.5714285714285714,
+        "support": 2.0
+      },
+      "account_icloud_login": {
+        "precision": 0.8571428571428571,
+        "recall": 1.0,
+        "f1-score": 0.9230769230769231,
+        "support": 6.0
+      },
+      "billing_app_store": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 3.0
+      },
+      "other": {
+        "precision": 0.8888888888888888,
+        "recall": 0.96,
+        "f1-score": 0.9230769230769231,
+        "support": 25.0
+      },
+      "accuracy": 0.9,
+      "macro avg": {
+        "precision": 0.8958553791887126,
+        "recall": 0.9341798941798941,
+        "f1-score": 0.8976167865056754,
+        "support": 80.0
+      },
+      "weighted avg": {
+        "precision": 0.9239384920634921,
+        "recall": 0.9,
+        "f1-score": 0.9045634920634921,
+        "support": 80.0
+      }
+    }
+  }
+}

@@ -25,6 +25,8 @@ from src.config import (
 )
 from src.llm import call_llm
 
+import scipy.sparse as sp
+
 logger = logging.getLogger("hiver.reply")
 
 FRUSTRATION_PATTERN = r'\b(?:still|again|not working|useless|terrible|worst|refund|scam|lawsuit|sue|lawyer|worse|hate|broken|broke)\b'
@@ -47,8 +49,14 @@ class RetrievalIndex:
                 self.metadata_df = pd.read_parquet(REPLY_METADATA_PARQUET_PATH)
                 self.vectorizer.vocabulary_ = npz['vocab'].item()
                 self.vectorizer.idf_ = npz['idf']
-                # Reconstruct transform
-                self.index_matrix = self.vectorizer.transform(self.metadata_df['customer_text'])
+                if 'matrix_data' in npz:
+                    self.index_matrix = sp.csr_matrix(
+                        (npz['matrix_data'], npz['matrix_indices'], npz['matrix_indptr']),
+                        shape=npz['matrix_shape']
+                    )
+                else:
+                    # Reconstruct transform
+                    self.index_matrix = self.vectorizer.transform(self.metadata_df['customer_text'])
                 logger.info(f"Loaded existing retrieval index ({len(self.metadata_df):,} usable threads).")
                 return
             except Exception as e:
@@ -91,7 +99,11 @@ class RetrievalIndex:
         np.savez_compressed(
             REPLY_INDEX_NPZ_PATH,
             vocab=self.vectorizer.vocabulary_,
-            idf=self.vectorizer.idf_
+            idf=self.vectorizer.idf_,
+            matrix_data=self.index_matrix.data,
+            matrix_indices=self.index_matrix.indices,
+            matrix_indptr=self.index_matrix.indptr,
+            matrix_shape=self.index_matrix.shape
         )
         self.metadata_df.to_parquet(REPLY_METADATA_PARQUET_PATH, index=False)
         logger.info("Saved retrieval index and metadata successfully.")

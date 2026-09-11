@@ -29,11 +29,12 @@ archive/
 data/raw/*
 !data/raw/.gitkeep
 *.parquet
+*.npz
 scratch/
 
 # Generated results
-results/*
-!results/.gitkeep
+results/cache/
+results/*.parquet
 
 # Python packaging
 *.egg-info/

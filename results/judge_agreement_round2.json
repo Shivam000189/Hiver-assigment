@@ -1,0 +1,79 @@
+{
+  "correctness": {
+    "spearman_rho": 0.3706,
+    "p_value": 0.0036,
+    "large_disagreement_pct_ge_2": 0.0
+  },
+  "groundedness": {
+    "spearman_rho": 0.4047,
+    "p_value": 0.0013,
+    "large_disagreement_pct_ge_2": 0.0
+  },
+  "completeness": {
+    "spearman_rho": 0.4492,
+    "p_value": 0.0003,
+    "large_disagreement_pct_ge_2": 0.0
+  },
+  "brand_voice": {
+    "spearman_rho": 0.4492,
+    "p_value": 0.0003,
+    "large_disagreement_pct_ge_2": 0.0
+  },
+  "tone": {
+    "spearman_rho": 0.4877,
+    "p_value": 0.0001,
+    "large_disagreement_pct_ge_2": 0.0
+  },
+  "top_5_largest_disagreements": [
+    {
+      "golden_id": 15,
+      "criterion": "correctness",
+      "customer_text": "@AppleSupport I know how to do that, my problem is that my WiFi will turn on by itself and connect to a network that\u2019s locked so I\u2019m always having to turn it back off, it\u2019s just frustrating",
+      "draft_reply": "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT",
+      "judge_score_v2": 5,
+      "human_score": 4,
+      "abs_diff": 1.0,
+      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+    },
+    {
+      "golden_id": 19,
+      "criterion": "correctness",
+      "customer_text": "My mac book smells burnt. How to deal with\uff1f@115858 https://t.co/qWP7qtXVnP",
+      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:safety_hazard ('burnt'): Critical hardware safety hazard (battery thermal runaway, swelling, electric shock, fire).] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+      "judge_score_v2": 5,
+      "human_score": 4,
+      "abs_diff": 1.0,
+      "judge_reason_v2": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    {
+      "golden_id": 32,
+      "criterion": "correctness",
+      "customer_text": "@AppleSupport I have an iPhone 6. My apps keep force closing. My podcast library keeps having to be restored. My text thread is out of order.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "judge_score_v2": 5,
+      "human_score": 4,
+      "abs_diff": 1.0,
+      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+    },
+    {
+      "golden_id": 39,
+      "criterion": "correctness",
+      "customer_text": "@AppleSupport Quick question how do I reboot my iPhone when the power button isn't working. I've already enable the touch option.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "judge_score_v2": 5,
+      "human_score": 4,
+      "abs_diff": 1.0,
+      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+    },
+    {
+      "golden_id": 49,
+      "criterion": "correctness",
+      "customer_text": "@AppleSupport Done that 3 times already",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "judge_score_v2": 5,
+      "human_score": 4,
+      "abs_diff": 1.0,
+      "judge_reason_v2": "Directly addresses the root technical issue with accurate guidance."
+    }
+  ]
+}

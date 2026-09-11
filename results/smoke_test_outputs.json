@@ -1,0 +1,1032 @@
+{
+  "timestamp": "2026-09-11T12:44:13.803234",
+  "dev_30_accuracy": {
+    "intent_accuracy": 0.9333,
+    "escalate_accuracy": 1.0
+  },
+  "dev_results": [
+    {
+      "golden_id": 69,
+      "customer_text": "@AppleSupport does the #iPhoneX come with iOS 11.1 installed? Should I upgrade my current phone to 11.1?",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1524147,
+        1343642,
+        2004318
+      ],
+      "latency_ms": {
+        "pii": 0.61,
+        "classify": 0.77,
+        "escalate": 1.63,
+        "retrieve": 62.05,
+        "draft": 1.07,
+        "total": 66.15
+      }
+    },
+    {
+      "golden_id": 73,
+      "customer_text": "Why can’t I see the emojis after the update? @AppleSupport",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1589333,
+        2036554,
+        1980422
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.88,
+        "escalate": 0.77,
+        "retrieve": 79.81,
+        "draft": 1.32,
+        "total": 82.85
+      }
+    },
+    {
+      "golden_id": 9,
+      "customer_text": "Hey @115858 why do I have 16 pics on my camera roll when before updating I had more than 1k??? 😭",
+      "golden_intent": "camera_photos_media",
+      "pred_intent": "camera_photos_media",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1460600,
+        2073344,
+        1982861
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 1.45,
+        "escalate": 1.21,
+        "retrieve": 94.58,
+        "draft": 1.09,
+        "total": 98.42
+      }
+    },
+    {
+      "golden_id": 86,
+      "customer_text": "So, @115858 and the @118936 is warning me that I can’t get a refund when I press buy and something about 14 days... Does this mean I can get a refund Before buying the app?\nIdiotic system. Lack of refund is a major problem in the App Store.",
+      "golden_intent": "billing_app_store",
+      "pred_intent": "billing_app_store",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2500897,
+        2241254,
+        2296255
+      ],
+      "latency_ms": {
+        "pii": 0.12,
+        "classify": 1.68,
+        "escalate": 1.39,
+        "retrieve": 79.87,
+        "draft": 0.86,
+        "total": 83.95
+      }
+    },
+    {
+      "golden_id": 42,
+      "customer_text": "@115858 I hate iOS 11... its horrible and has made my iphone unusable! Last time i couldn’t use my phone i switched from @11999 to iphon",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        339480,
+        325496,
+        2309889
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 0.88,
+        "escalate": 3.78,
+        "retrieve": 58.86,
+        "draft": 1.07,
+        "total": 64.67
+      }
+    },
+    {
+      "golden_id": 102,
+      "customer_text": "@AppleSupport @418918 Norway, same problem. Please fix this 😒",
+      "golden_intent": "other",
+      "pred_intent": "other",
+      "intent_match": true,
+      "intent_confidence": 0.72,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1277190,
+        864057,
+        524517
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.85,
+        "escalate": 1.03,
+        "retrieve": 57.6,
+        "draft": 0.86,
+        "total": 60.4
+      }
+    },
+    {
+      "golden_id": 120,
+      "customer_text": "@AppleSupport - Control Center Wi-fi and Bluetooth option r not actually turning off the things already on . Fix please #iOS11 v3",
+      "golden_intent": "connectivity_network",
+      "pred_intent": "connectivity_network",
+      "intent_match": true,
+      "intent_confidence": 0.94,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "Let's work together to get this sorted out. We recommend resetting your Network Settings via Settings > General > Reset > Reset Network Settings. Send us a DM if the issue persists: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1990464,
+        301866,
+        2434243
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.7,
+        "escalate": 0.67,
+        "retrieve": 57.5,
+        "draft": 0.83,
+        "total": 59.76
+      }
+    },
+    {
+      "golden_id": 17,
+      "customer_text": "Is there a way of updating an iMac from 9 years ago to the latest software? @115858",
+      "golden_intent": "other",
+      "pred_intent": "other",
+      "intent_match": true,
+      "intent_confidence": 0.72,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        720644,
+        52329,
+        2193313
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.89,
+        "escalate": 0.78,
+        "retrieve": 56.27,
+        "draft": 0.87,
+        "total": 58.88
+      }
+    },
+    {
+      "golden_id": 63,
+      "customer_text": "@AppleSupport iPhone 8 - Music bar doesn’t move along with song. https://t.co/n1UxX7a44U",
+      "golden_intent": "other",
+      "pred_intent": "audio_music_playback",
+      "intent_match": false,
+      "intent_confidence": 0.94,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We want to make sure you can enjoy your music seamlessly. Try toggling iCloud Music Library off and on in Settings, and restart your device. Reach out in DM if you need further help: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2122598,
+        1924633,
+        1750385
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.78,
+        "escalate": 1.12,
+        "retrieve": 69.88,
+        "draft": 1.43,
+        "total": 73.28
+      }
+    },
+    {
+      "golden_id": 182,
+      "customer_text": "Meu iPhone tá muito bugado. Pq vcs fazem isso @115858 ? @AppleSupport",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        872072,
+        2137216,
+        236841
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 1.22,
+        "escalate": 1.44,
+        "retrieve": 87.24,
+        "draft": 1.13,
+        "total": 91.12
+      }
+    },
+    {
+      "golden_id": 29,
+      "customer_text": "@AppleSupport I accidentally broke my camera lens of my iPhone 8. Is there any way to repair that and what are the costs?",
+      "golden_intent": "camera_photos_media",
+      "pred_intent": "camera_photos_media",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2035842,
+        1368816,
+        2298284
+      ],
+      "latency_ms": {
+        "pii": 0.06,
+        "classify": 1.11,
+        "escalate": 1.06,
+        "retrieve": 70.01,
+        "draft": 0.9,
+        "total": 73.17
+      }
+    },
+    {
+      "golden_id": 97,
+      "customer_text": "Just fully charged my iphone &amp; it reads 51% @115858 are terrible at declaring their true percentages #ParadisePapers",
+      "golden_intent": "battery_drain_power",
+      "pred_intent": "battery_drain_power",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1709238,
+        739431,
+        2555346
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 1.03,
+        "escalate": 0.93,
+        "retrieve": 59.31,
+        "draft": 0.83,
+        "total": 62.16
+      }
+    },
+    {
+      "golden_id": 18,
+      "customer_text": "@AppleSupport Stuck on Activation screen with no indication of when I can proceed...",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1522735,
+        1616736,
+        2122503
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 1.18,
+        "escalate": 1.43,
+        "retrieve": 61.75,
+        "draft": 0.89,
+        "total": 65.31
+      }
+    },
+    {
+      "golden_id": 55,
+      "customer_text": "IOS 11.0.3 is the worst ever. I can't receive any call, my application are bugging. Well done @115858, @applesupport!!",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2676013,
+        1701921,
+        2286412
+      ],
+      "latency_ms": {
+        "pii": 0.06,
+        "classify": 3.95,
+        "escalate": 1.59,
+        "retrieve": 58.57,
+        "draft": 0.85,
+        "total": 65.05
+      }
+    },
+    {
+      "golden_id": 151,
+      "customer_text": "@AppleSupport Netflix works fine, when I plug my phone in to my tv via my Apple HDMI adapter it mirrors everything else but Netflix will freeze up for some reason",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2125055,
+        2488684,
+        247612
+      ],
+      "latency_ms": {
+        "pii": 0.06,
+        "classify": 0.82,
+        "escalate": 1.15,
+        "retrieve": 59.63,
+        "draft": 1.08,
+        "total": 62.77
+      }
+    },
+    {
+      "golden_id": 154,
+      "customer_text": "@AppleSupport Thanks for getting back to me guys but it appears it’s working fine again now",
+      "golden_intent": "other",
+      "pred_intent": "other",
+      "intent_match": true,
+      "intent_confidence": 0.72,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        258944,
+        489700,
+        1476448
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.81,
+        "escalate": 0.81,
+        "retrieve": 61.07,
+        "draft": 1.19,
+        "total": 63.94
+      }
+    },
+    {
+      "golden_id": 184,
+      "customer_text": "Is there anyway I can disable group chats on my moms phone?@AppleSupport",
+      "golden_intent": "other",
+      "pred_intent": "other",
+      "intent_match": true,
+      "intent_confidence": 0.72,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1227321,
+        303107,
+        1291175
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.89,
+        "escalate": 1.0,
+        "retrieve": 60.32,
+        "draft": 0.99,
+        "total": 63.25
+      }
+    },
+    {
+      "golden_id": 1,
+      "customer_text": "@AppleSupport when are we getting a new update that doesn’t suck and doesn’t mess with our phones? My #6s doesn’t work properly! #tired",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We'd like to help get your device running smoothly again. What version of iOS are you currently using? Please send us a DM with more details so we can assist: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        993293,
+        1628896,
+        1535015
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.85,
+        "escalate": 0.79,
+        "retrieve": 58.94,
+        "draft": 0.84,
+        "total": 61.48
+      }
+    },
+    {
+      "golden_id": 149,
+      "customer_text": "@AppleSupport This has came up, it's saying that I made an in app purchase for coins. I had a subscription for this app before but I cancelled it as I no longer use this app and I never made an in app purchase with this app.. how can I sort this without paying for something I didn't do?? https://t.co/WUg3npRQqc",
+      "golden_intent": "billing_app_store",
+      "pred_intent": "billing_app_store",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We can help point you in the right direction for billing inquiries. You can review your purchase history and request refunds at reportaproblem.apple.com. Let us know in DM if you have questions: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1418598,
+        2567073,
+        1763076
+      ],
+      "latency_ms": {
+        "pii": 0.07,
+        "classify": 1.82,
+        "escalate": 1.19,
+        "retrieve": 60.1,
+        "draft": 0.84,
+        "total": 64.05
+      }
+    },
+    {
+      "golden_id": 177,
+      "customer_text": "Hey @AppleSupport! My Lightning to SD Card reader is importing photos on my 7 Plus pixilated &amp; not full resolution. Why is this?",
+      "golden_intent": "battery_drain_power",
+      "pred_intent": "camera_photos_media",
+      "intent_match": false,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2128174,
+        740098,
+        511173
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 1.24,
+        "escalate": 0.7,
+        "retrieve": 58.55,
+        "draft": 0.77,
+        "total": 61.32
+      }
+    },
+    {
+      "golden_id": 105,
+      "customer_text": "@AppleSupport I’ve read all that before and it doesn’t apply. Only way for me to make it work is to turn on Dictation",
+      "golden_intent": "other",
+      "pred_intent": "other",
+      "intent_match": true,
+      "intent_confidence": 0.72,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1232303,
+        2731246,
+        1981760
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 0.76,
+        "escalate": 0.92,
+        "retrieve": 58.79,
+        "draft": 1.06,
+        "total": 61.61
+      }
+    },
+    {
+      "golden_id": 71,
+      "customer_text": "I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️  fix this @115858",
+      "golden_intent": "keyboard_autocorrect_bug",
+      "pred_intent": "keyboard_autocorrect_bug",
+      "intent_match": true,
+      "intent_confidence": 0.96,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're aware of this keyboard autocorrect issue and working on a permanent update. You can temporarily resolve it via Settings > General > Keyboard > Text Replacement. Send us a DM if you need guidance: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2001874,
+        2309269,
+        1901688
+      ],
+      "latency_ms": {
+        "pii": 0.09,
+        "classify": 1.06,
+        "escalate": 0.9,
+        "retrieve": 57.49,
+        "draft": 0.9,
+        "total": 60.47
+      }
+    },
+    {
+      "golden_id": 47,
+      "customer_text": "@115858 thanks for this most recent useless update.. my phone now has now battery life and charges slow",
+      "golden_intent": "battery_drain_power",
+      "pred_intent": "battery_drain_power",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        407094,
+        2831745,
+        2142412
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.81,
+        "escalate": 0.92,
+        "retrieve": 58.3,
+        "draft": 0.81,
+        "total": 60.91
+      }
+    },
+    {
+      "golden_id": 116,
+      "customer_text": "Bekam jemand von Euch dieses von @AppleSupport mit #ios11 verursachte Problem der #Foto-App gelöst? Ein workaround vielleicht? In der #iCloud sind die Fotos vorhanden, aber kommen nicht zurück aufs #iPhone - bei mir fehlen 10.000 davon seit ios11 #Iphonesucks #iphone6 @216880 https://t.co/ZsmcTMPQtM",
+      "golden_intent": "account_icloud_login",
+      "pred_intent": "account_icloud_login",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We'd like to help you regain access to your account securely. You can reset your password at iforgot.apple.com. Feel free to DM us if you run into any trouble: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        483163,
+        1339817,
+        2291675
+      ],
+      "latency_ms": {
+        "pii": 0.07,
+        "classify": 0.86,
+        "escalate": 1.07,
+        "retrieve": 57.74,
+        "draft": 3.78,
+        "total": 63.54
+      }
+    },
+    {
+      "golden_id": 67,
+      "customer_text": "@AppleSupport  iOS update drains my iPhone 6s battery. Please fix!",
+      "golden_intent": "battery_drain_power",
+      "pred_intent": "battery_drain_power",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2677918,
+        2054652,
+        426733
+      ],
+      "latency_ms": {
+        "pii": 0.09,
+        "classify": 0.77,
+        "escalate": 0.64,
+        "retrieve": 58.01,
+        "draft": 1.16,
+        "total": 60.69
+      }
+    },
+    {
+      "golden_id": 20,
+      "customer_text": "@AppleSupport I can't sign in to App Store. very frustrating!",
+      "golden_intent": "account_icloud_login",
+      "pred_intent": "account_icloud_login",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        222967,
+        1909212,
+        396098
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 1.45,
+        "escalate": 0.92,
+        "retrieve": 57.06,
+        "draft": 1.1,
+        "total": 60.61
+      }
+    },
+    {
+      "golden_id": 24,
+      "customer_text": "@AppleSupport Hello, cant sign into https://t.co/gszzmLgzPl any ideas? it keeps sending the auth code to the device im using?",
+      "golden_intent": "account_icloud_login",
+      "pred_intent": "account_icloud_login",
+      "intent_match": true,
+      "intent_confidence": 0.95,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2179528,
+        1997675,
+        2093732
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.74,
+        "escalate": 0.7,
+        "retrieve": 59.84,
+        "draft": 0.83,
+        "total": 62.17
+      }
+    },
+    {
+      "golden_id": 192,
+      "customer_text": "@AppleSupport scree recording when forwarding,no audio,why?",
+      "golden_intent": "audio_music_playback",
+      "pred_intent": "audio_music_playback",
+      "intent_match": true,
+      "intent_confidence": 0.94,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We want to make sure you can enjoy your music seamlessly. Try toggling iCloud Music Library off and on in Settings, and restart your device. Reach out in DM if you need further help: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1918129,
+        488006,
+        1817984
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.74,
+        "escalate": 0.75,
+        "retrieve": 56.98,
+        "draft": 1.06,
+        "total": 59.58
+      }
+    },
+    {
+      "golden_id": 124,
+      "customer_text": "@AppleSupport Hi, is it a known issue that after latest update ssh is no more working with all agents crashing or freezing? I.E. No @43874",
+      "golden_intent": "system_performance_freeze",
+      "pred_intent": "system_performance_freeze",
+      "intent_match": true,
+      "intent_confidence": 0.91,
+      "golden_escalate": "yes",
+      "pred_escalate": "yes",
+      "escalate_match": true,
+      "escalate_reason": "model:severe_assessment (High-risk legal, security, or physical hazard detected.)",
+      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: model:severe_assessment (High-risk legal, security, or physical hazard detected.)] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+      "retrieved_ids": [
+        1171419,
+        2013958,
+        1754161
+      ],
+      "latency_ms": {
+        "pii": 0.06,
+        "classify": 1.47,
+        "escalate": 1.04,
+        "retrieve": 60.63,
+        "draft": 0.0,
+        "total": 63.24
+      }
+    },
+    {
+      "golden_id": 164,
+      "customer_text": "@115858 why did I️ update if it makes my phone buggy and didn’t even give me Live Photo? 😒",
+      "golden_intent": "keyboard_autocorrect_bug",
+      "pred_intent": "keyboard_autocorrect_bug",
+      "intent_match": true,
+      "intent_confidence": 0.96,
+      "golden_escalate": "no",
+      "pred_escalate": "no",
+      "escalate_match": true,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "draft_reply": "We're aware of this keyboard autocorrect issue and working on a permanent update. You can temporarily resolve it via Settings > General > Keyboard > Text Replacement. Send us a DM if you need guidance: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1999915,
+        600442,
+        1928808
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.94,
+        "escalate": 0.83,
+        "retrieve": 57.98,
+        "draft": 0.83,
+        "total": 60.63
+      }
+    }
+  ],
+  "adversarial_results": [
+    {
+      "case": "1. Legal Threat",
+      "input_text": "I have hired an attorney and will be filing a formal lawsuit against Apple for fraudulent charges today.",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "escalate": true,
+      "escalate_reason": "rule:legal_threat ('attorney'): Customer initiated legal, regulatory, or law enforcement threat.",
+      "pii_redacted": false,
+      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:legal_threat ('attorney'): Customer initiated legal, regulatory, or law enforcement threat.] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+      "retrieved_ids": [
+        2185355,
+        2887403,
+        1768816
+      ],
+      "latency_ms": {
+        "pii": 0.04,
+        "classify": 0.86,
+        "escalate": 0.02,
+        "retrieve": 87.22,
+        "draft": 0.0,
+        "total": 88.16
+      }
+    },
+    {
+      "case": "2. Hacked Account",
+      "input_text": "Someone hacked my Apple ID, changed my two-factor authentication phone number, and locked all my devices!",
+      "intent": "account_icloud_login",
+      "confidence": 0.95,
+      "escalate": true,
+      "escalate_reason": "rule:security_breach ('hacked'): Security breach, account takeover, or compromised credentials.",
+      "pii_redacted": false,
+      "draft_reply": "[ESCALATED TO HUMAN SPECIALIST: rule:security_breach ('hacked'): Security breach, account takeover, or compromised credentials.] We want to ensure you get dedicated support on this urgent matter. Our senior team has been notified and will assist you directly.",
+      "retrieved_ids": [
+        2343855,
+        188596,
+        1790951
+      ],
+      "latency_ms": {
+        "pii": 0.05,
+        "classify": 1.42,
+        "escalate": 0.05,
+        "retrieve": 79.8,
+        "draft": 0.0,
+        "total": 81.33
+      }
+    },
+    {
+      "case": "3. Positive Praise",
+      "input_text": "Just wanted to say I love the new iPhone 8 camera! Works wonderfully and looks great.",
+      "intent": "camera_photos_media",
+      "confidence": 0.95,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We want to help ensure your photos and camera are working properly. Does this happen in both front and rear camera modes? Please send us a DM so we can troubleshoot: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        916467,
+        1676984,
+        912030
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.9,
+        "escalate": 0.78,
+        "retrieve": 60.48,
+        "draft": 0.89,
+        "total": 63.09
+      }
+    },
+    {
+      "case": "4. Gibberish / Noise",
+      "input_text": "asdfghjkl qwertyuiop zxcvbnm ????? #$$$ %%% @@@",
+      "intent": "other",
+      "confidence": 0.72,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1698529,
+        2015190,
+        2558655
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.8,
+        "escalate": 0.68,
+        "retrieve": 53.54,
+        "draft": 0.88,
+        "total": 55.94
+      }
+    },
+    {
+      "case": "5. Multi-Issue Query",
+      "input_text": "My battery dies in 30 minutes and my Wi-Fi disconnects every time I try to open Safari on iOS 11.",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1691795,
+        412363,
+        56962
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.71,
+        "escalate": 0.93,
+        "retrieve": 61.41,
+        "draft": 0.88,
+        "total": 63.98
+      }
+    },
+    {
+      "case": "6. Non-English Query",
+      "input_text": "Bonjour, mon écran d'iPhone 6 est complètement cassé et ne répond plus du tout.",
+      "intent": "other",
+      "confidence": 0.72,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1107363,
+        2549914,
+        704583
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.73,
+        "escalate": 0.72,
+        "retrieve": 60.98,
+        "draft": 1.2,
+        "total": 63.67
+      }
+    },
+    {
+      "case": "7. Extremely Long Rant",
+      "input_text": "I have been an Apple customer since 2007 and this is the most atrocious update ever released. My iPhone 7 lags, my Apple Watch workout failed to sync, my battery drains in 45 minutes, and your support agents in store told me to buy a new phone. Completely unacceptable!",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We understand how important battery life is. Take a look at Settings > Battery to check which apps are using the most power. If you still need help, send us a DM and we'll run diagnostics: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        2926513,
+        484550,
+        1164672
+      ],
+      "latency_ms": {
+        "pii": 0.09,
+        "classify": 3.77,
+        "escalate": 0.85,
+        "retrieve": 58.84,
+        "draft": 0.95,
+        "total": 64.52
+      }
+    },
+    {
+      "case": "8. Empty / Minimal",
+      "input_text": "???",
+      "intent": "other",
+      "confidence": 0.72,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1698529,
+        2015190,
+        2558655
+      ],
+      "latency_ms": {
+        "pii": 0.02,
+        "classify": 1.01,
+        "escalate": 0.75,
+        "retrieve": 54.81,
+        "draft": 0.83,
+        "total": 57.44
+      }
+    },
+    {
+      "case": "9. Competitor Mention",
+      "input_text": "Google Pixel is so much better than this broken iPhone that won't even charge properly.",
+      "intent": "battery_drain_power",
+      "confidence": 0.95,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": false,
+      "draft_reply": "We're here to help! Please send us a Direct Message with your device model and iOS version so we can look into this further: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        1013075,
+        2112730,
+        2319688
+      ],
+      "latency_ms": {
+        "pii": 0.03,
+        "classify": 0.71,
+        "escalate": 0.99,
+        "retrieve": 69.35,
+        "draft": 1.04,
+        "total": 72.16
+      }
+    },
+    {
+      "case": "10. Sensitive Info & PII",
+      "input_text": "Please call me at 415-555-0199 and email john.doe@company.com with my account password immediately.",
+      "intent": "account_icloud_login",
+      "confidence": 0.95,
+      "escalate": false,
+      "escalate_reason": "None - Standard automated resolution pathway.",
+      "pii_redacted": true,
+      "draft_reply": "We'd like to help you regain access to your account securely. You can reset your password at iforgot.apple.com. Feel free to DM us if you run into any trouble: https://t.co/GDrqU22YpT",
+      "retrieved_ids": [
+        820665,
+        2241219,
+        1228028
+      ],
+      "latency_ms": {
+        "pii": 0.06,
+        "classify": 0.91,
+        "escalate": 1.34,
+        "retrieve": 68.27,
+        "draft": 0.93,
+        "total": 71.53
+      }
+    }
+  ],
+  "llm_metrics": {
+    "cache_hits": 0,
+    "cache_misses": 120,
+    "retries": 0,
+    "parse_fallbacks": 0
+  },
+  "routing_stats": {
+    "llm_only": 45,
+    "routed_to_tfidf": 0,
+    "disagreements": 0
+  }
+}

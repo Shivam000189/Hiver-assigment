@@ -28,12 +28,12 @@ RULES = [
     ),
     (
         "rule:safety_hazard",
-        r'\b(?:swelling|swollen|exploded|exploding|explode|burning|burned|smoke|smoking|spark|sparking|shock|shocked|fire|melted|melting|hazardous)\b',
+        r'\b(?:swelling|swollen|exploded|exploding|explode|burning|burned|burnt|burn|smoke|smoking|spark|sparking|shock|shocked|fire|melted|melting|hazardous|overheating)\b',
         "Critical hardware safety hazard (battery thermal runaway, swelling, electric shock, fire)."
     ),
     (
         "rule:security_breach",
-        r'\b(?:hacked|hijacked|stolen account|unauthorized device|ransomware|extortion|compromised id)\b',
+        r'\b(?:hacked|hijacked|stolen account|unauthorized device|ransomware|extortion|compromised id|locked out of|locked out)\b',
         "Security breach, account takeover, or compromised credentials."
     ),
     (

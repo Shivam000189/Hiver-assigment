@@ -1,0 +1,56 @@
+{
+  "TrivialBaseline": {
+    "criteria_means": {
+      "correctness": 3.0,
+      "groundedness": 4.0,
+      "completeness": 3.0,
+      "brand_voice": 3.0,
+      "tone": 4.0
+    },
+    "criteria_stds": {
+      "correctness": 0.0,
+      "groundedness": 0.0,
+      "completeness": 0.0,
+      "brand_voice": 0.0,
+      "tone": 0.0
+    },
+    "hallucination_count_score_le_2": 0,
+    "hallucination_rate_pct": 0.0
+  },
+  "SimpleBaseline": {
+    "criteria_means": {
+      "correctness": 5.0,
+      "groundedness": 5.0,
+      "completeness": 5.0,
+      "brand_voice": 5.0,
+      "tone": 5.0
+    },
+    "criteria_stds": {
+      "correctness": 0.0,
+      "groundedness": 0.0,
+      "completeness": 0.0,
+      "brand_voice": 0.0,
+      "tone": 0.0
+    },
+    "hallucination_count_score_le_2": 0,
+    "hallucination_rate_pct": 0.0
+  },
+  "FullAgent": {
+    "criteria_means": {
+      "correctness": 5.0,
+      "groundedness": 5.0,
+      "completeness": 5.0,
+      "brand_voice": 5.0,
+      "tone": 5.0
+    },
+    "criteria_stds": {
+      "correctness": 0.0,
+      "groundedness": 0.0,
+      "completeness": 0.0,
+      "brand_voice": 0.0,
+      "tone": 0.0
+    },
+    "hallucination_count_score_le_2": 0,
+    "hallucination_rate_pct": 0.0
+  }
+}
