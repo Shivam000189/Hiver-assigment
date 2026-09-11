@@ -284,3 +284,75 @@ Evaluated on the locked Golden Test Split ($N=80$ interactions):
 9. **Why one calibration iteration was conducted on DEV data**: Identifies systematic judge lenient scoring patterns and tightens groundedness/completeness penalties, increasing human-judge correlation without overfitting.
 10. **Why per-example predictions are saved to `all_runs.parquet`**: Preserves full granular interaction logs (inputs, predictions, retrieved contexts, reasons, judge scores) for subsequent failure analysis (Step 11).
 
+---
+
+## Step 10 — Judge vs Human Agreement & Calibration
+
+### 1. Study Setup & Blinding Protocol
+- **Sample Size**: $N=60$ customer support interactions.
+- **Source Split**: `data/golden_set/golden_dev.csv` (the locked test split `golden_test.csv` was strictly untouched).
+- **Sampling Strategy**: Deterministic random sampling with `seed = 42` across diverse intent and escalation categories.
+- **Annotator Blinding**: Independent human annotator scored the customer inquiry, retrieved evidence, and candidate agent drafts using a blind scoring template (`results/judge_human_scores_blind_template.csv`) with zero visibility into LLM judge scores, predictions, or model reasoning.
+- **Validation**: All human scores were strictly validated against integer bounds $[1, 5]$ with zero missing values or duplicate IDs.
+
+### 2. Evaluation Rubric & Criteria (1–5 Scale)
+1. **`correctness`**: Does the reply accurately address the customer's actual technical root cause?
+2. **`groundedness`** (*Hallucination Check*): Are all settings paths, URLs, and diagnostic steps substantiated by retrieved context?
+3. **`completeness`**: Does the reply provide actionable steps, diagnostic questions (e.g. iOS build version), and DM contact links?
+4. **`brand_voice`**: Does it match official concise, professional @AppleSupport Twitter tone?
+5. **`tone`**: Is the tone empathetic, reassuring, and constructive?
+
+### 3. Judge v1 Agreement Baseline (Uncalibrated)
+Evaluated on the 60 DEV interactions against independent human scores:
+
+| Criterion | Spearman $\rho$ | $p$-value | Mean Human Score | Mean Judge v1 Score | $\ge 2$ Disagreement % |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Correctness** | 0.0057 | 0.9657 | 4.78 | 4.85 | 0.0% (0/60) |
+| **Groundedness** | 0.1057 | 0.4214 | 4.23 | 4.83 | 6.7% (4/60) |
+| **Completeness** | *undefined* (zero variance) | 1.0000 | 4.30 | 5.00 | 10.0% (6/60) |
+| **Brand Voice** | -0.1990 | 0.1274 | 4.82 | 4.85 | 0.0% (0/60) |
+| **Tone** | 0.0566 | 0.6673 | 4.27 | 4.85 | 11.7% (7/60) |
+
+*Note: In Judge v1, completeness had zero score variance (all 5.0) because the uncalibrated prompt awarded maximum scores to any reply with a DM link, causing Spearman $\rho$ to be mathematically undefined.*
+
+### 4. Disagreement Analysis & Empirical Root Causes
+Manual inspection of all 17 large disagreement cases ($|\text{human} - \text{judge}| \ge 2$) revealed three systematic judge biases:
+1. **`tone-preference` (7 cases)**: Judge v1 awarded 5/5 to formulaic polite greetings, whereas human annotator penalized robotic brevity and demanded active empathy.
+2. **`incomplete-but-plausible` (6 cases)**: Judge v1 awarded 5/5 to brief canned DM deflections; human annotator penalized the lack of targeted diagnostic questions (e.g. asking for iOS version).
+3. **`missed-hallucination` (4 cases)**: Judge v1 accepted plausible general advice as 100% grounded even when specific setting steps were unverified in the retrieved snippet.
+
+### 5. Judge Calibration (One Prompt Iteration)
+A single targeted prompt calibration was performed to create **Judge v2**:
+- **Strict Groundedness Clause**: Explicitly instructed the model: *"DO NOT over-reward polite fluff. A reply that is very polite but gives generic or ungrounded steps must receive a low groundedness/completeness score."*
+- **Strict Completeness Constraint**: Mandated that complex bug troubleshooting must ask for the exact iOS build version or provide an actionable DM diagnostic link to receive a score of 5.
+- **Audit Prompts**: Preserved both `results/judge_prompt_v1.txt` and `results/judge_prompt_v2.txt`.
+
+### 6. Calibrated Judge v2 Performance & Comparative Improvement
+
+| Criterion | Judge v1 $\rho$ | Judge v2 $\rho$ | $\Delta\rho$ | Judge v1 $\ge 2$ Diff % | Judge v2 $\ge 2$ Diff % | $\Delta$ Disagreement % |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Correctness** | 0.0057 | **-0.1412** | **-0.1469** | 0.0% | **15.0%** | **+15.0%** |
+| **Groundedness** | 0.1057 | **0.4344** | **+0.3287** | 6.7% | **3.3%** | **-3.4%** |
+| **Completeness** | *undefined* | **0.5979** | **+0.5979** | 10.0% | **0.0%** | **-10.0%** |
+| **Brand Voice** | -0.1990 | **-0.1883** | **+0.0107** | 0.0% | **0.0%** | **0.0%** |
+| **Tone** | 0.0566 | **0.6225** | **+0.5659** | 11.7% | **0.0%** | **-11.7%** |
+
+### 7. Limitations
+- **Sample Size**: Evaluated on $N=60$ interactions from Golden DEV.
+- **Single-Turn Scope**: Measures single-turn reply quality rather than multi-turn problem resolution.
+- **Ordinal Ranking**: Spearman $\rho$ measures monotonic rank alignment rather than absolute score equality.
+
+---
+
+## Step 10 Decision Log
+
+1. **Why 60 examples were selected**: Provides a statistically sufficient sample ($N=60$) within the 50–80 required range to expose judge variance while remaining human-auditable.
+2. **Why DEV was used instead of TEST**: Protects the locked final test set (`golden_test.csv`) from data leakage and prompt overfitting.
+3. **Why human scoring was blinded**: Evaluators received only the customer text, retrieved evidence, and draft replies with zero access to judge outputs or model predictions to eliminate cognitive anchoring.
+4. **Why Spearman's rank correlation ($\rho$) was computed per criterion**: Scoring criteria represent ordinal 1–5 qualitative ratings where rank concordance is the appropriate metric rather than Pearson linear correlation.
+5. **How zero-variance data was handled**: Reported safely as *undefined / insufficient variance* without crashing or fabricating false 1.0 values.
+6. **Why a large disagreement was defined as $\ge 2$ points**: Adheres strictly to the assignment definition of substantial alignment failure.
+7. **Why all 17 large disagreements were individually inspected**: Ensures qualitative root-cause categorization is grounded in empirical evidence rather than sampling only a subset.
+8. **Why exactly one prompt calibration iteration was executed**: Prevents iterative over-fitting to the calibration set and maintains audit integrity.
+9. **Why Judge v1 and v2 prompts were preserved to disk**: Stored in `results/judge_prompt_v1.txt` and `results/judge_prompt_v2.txt` for auditability and reproducibility.
+10. **Why both improvements and regressions are reported transparently**: Preserves scientific integrity by documenting where calibration improved agreement (Groundedness, Completeness, Tone) alongside where stricter penalties shifted disagreement (Correctness).

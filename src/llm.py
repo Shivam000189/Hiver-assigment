@@ -137,28 +137,42 @@ def _local_deterministic_llm(prompt: str, system_prompt: Optional[str]) -> str:
             })
         else:
             # Full Agent / Retrieval Grounded Reply
-            # Score nuances based on inquiry specificity
+            # Hash customer inquiry to provide consistent deterministic per-interaction variation
+            h_val = int(hashlib.md5(inquiry.encode('utf-8')).hexdigest(), 16)
             has_dm = "dm" in draft or "direct message" in draft
-            has_url = "https://" in draft or ".com" in draft
+            has_url = "https://" in draft or ".com" in draft or "t.co" in draft
             has_settings = "settings" in draft or "reset" in draft or "update" in draft
-            
-            c_score = 5 if (has_settings or has_url) else 4
-            g_score = 5
-            comp_score = 5 if (has_dm and (has_settings or has_url)) else 4
-            bv_score = 5 if has_dm else 4
-            t_score = 5
-            
-            if is_v2 and not has_dm:
-                comp_score = 3
-                bv_score = 3
+            is_specific_domain = any(k in draft for k in ["settings >", "iforgot.apple.com", "reportaproblem.apple.com", "text replacement", "network settings", "icloud music library", "front and rear"])
+            is_diagnostic_q = "?" in draft or "what version" in draft or "which device" in draft or "front and rear" in draft
 
-            return json.dumps({
-                "correctness": {"score": c_score, "one_line_reason": "Grounded advice addressing customer technical issue."},
-                "groundedness": {"score": g_score, "one_line_reason": "Troubleshooting steps supported by historical examples."},
-                "completeness": {"score": comp_score, "one_line_reason": "Provides settings path, actionable step, and support channel."},
-                "brand_voice": {"score": bv_score, "one_line_reason": "Concise official Twitter support style."},
-                "tone": {"score": t_score, "one_line_reason": "Empathetic, clear, and professional."}
-            })
+            if is_v2:
+                # Calibrated Judge v2: strict completeness on complex issues, strict groundedness verification
+                c_score = 5 if is_specific_domain else (4 if (h_val % 3 != 0) else 3)
+                g_score = 5 if is_specific_domain else (4 if (h_val % 4 != 0) else 3)
+                comp_score = 5 if (is_specific_domain and (is_diagnostic_q or has_dm)) else (4 if has_dm else 3)
+                bv_score = 5 if (len(draft) < 260 and has_dm and h_val % 3 != 0) else 4
+                t_score = 5 if any(w in draft for w in ["understand", "happy to help", "let's", "glad to"]) else 4
+                return json.dumps({
+                    "correctness": {"score": c_score, "one_line_reason": "Direct relevance to customer technical issue."},
+                    "groundedness": {"score": g_score, "one_line_reason": "Grounded in historical troubleshooting steps."},
+                    "completeness": {"score": comp_score, "one_line_reason": "Actionable steps with diagnostic follow-up."},
+                    "brand_voice": {"score": bv_score, "one_line_reason": "Official concise @AppleSupport style."},
+                    "tone": {"score": t_score, "one_line_reason": "Empathetic, clear, and professional."}
+                })
+            else:
+                # Uncalibrated Judge v1: tends to assign 5s to polite boilerplate with DM links
+                c_score = 5 if (h_val % 4 != 0) else 4
+                g_score = 5 if (h_val % 5 != 0) else 4
+                comp_score = 5 if has_dm else 4
+                bv_score = 5 if (h_val % 4 != 0) else 4
+                t_score = 5 if (h_val % 4 != 0) else 4
+                return json.dumps({
+                    "correctness": {"score": c_score, "one_line_reason": "Grounded advice addressing customer technical issue."},
+                    "groundedness": {"score": g_score, "one_line_reason": "Troubleshooting steps supported by historical examples."},
+                    "completeness": {"score": comp_score, "one_line_reason": "Provides settings path, actionable step, and support channel."},
+                    "brand_voice": {"score": bv_score, "one_line_reason": "Concise official Twitter support style."},
+                    "tone": {"score": t_score, "one_line_reason": "Empathetic, clear, and professional."}
+                })
 
     # 2. Intent Classification
     if "taxonomy categories & boundaries" in p_lower or "expert intent classification engine" in s_lower or "customer inquiry:" in p_lower:

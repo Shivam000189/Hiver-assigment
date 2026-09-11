@@ -1,0 +1,1322 @@
+{
+  "69": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "73": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "9": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "86": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "42": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "102": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "120": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "17": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "63": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "182": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "29": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "97": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "18": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "55": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "151": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "154": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "184": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "1": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "149": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "177": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "105": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "71": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "47": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "116": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "67": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "20": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "24": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "192": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "124": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "164": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "40": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "126": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "36": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "163": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "89": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "185": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "46": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "84": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "197": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "16": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "50": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "41": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "115": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "44": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "166": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "146": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "10": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "152": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "114": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "62": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "79": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "53": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "25": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "109": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Correctly identified high-risk/complex issue for human escalation."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Accurate policy hand-off notice."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Clear confirmation of senior escalation queue."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Official escalation protocol format."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Urgent, reassuring, and empathetic."
+    }
+  },
+  "52": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "191": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 4,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "12": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "68": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "119": {
+    "correctness": {
+      "score": 4,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 4,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 4,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  },
+  "113": {
+    "correctness": {
+      "score": 5,
+      "one_line_reason": "Grounded advice addressing customer technical issue."
+    },
+    "groundedness": {
+      "score": 5,
+      "one_line_reason": "Troubleshooting steps supported by historical examples."
+    },
+    "completeness": {
+      "score": 5,
+      "one_line_reason": "Provides settings path, actionable step, and support channel."
+    },
+    "brand_voice": {
+      "score": 5,
+      "one_line_reason": "Concise official Twitter support style."
+    },
+    "tone": {
+      "score": 5,
+      "one_line_reason": "Empathetic, clear, and professional."
+    }
+  }
+}
