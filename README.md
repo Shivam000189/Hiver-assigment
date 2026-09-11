@@ -66,7 +66,7 @@ Source modules in `src/`:
 9. Build the evaluation harness [Done]
 10. Measure judge-vs-human agreement [Done]
 11. Perform failure analysis [Done]
-12. Write the report [Upcoming]
+12. Write the report [Done]
 13. Make the project reproducible [Done]
 14. Final submission [Upcoming]
 
@@ -400,4 +400,29 @@ Outputs generated:
 8. **Why both CSV and Markdown outputs are generated**: Provides machine-readable structured provenance (`results/failure_analysis.csv`) alongside an in-depth human-readable diagnostic report (`results/failure_analysis.md`).
 9. **Why unit tests verify failure mining without external LLM calls**: Ensures the test suite remains fast, deterministic, and fully executable in offline CI environments.
 10. **Why previous evaluation metrics were strictly left unmodified**: Step 11 is strictly diagnostic; all locked test numbers from Step 9 and agreement metrics from Step 10 remain untouched.
+
+---
+
+## Final Report (Step 12)
+
+The final evaluation report is available in both publication-quality PDF format (strictly 4 pages, adhering to the $\le 6$-page limit) and Markdown format:
+
+- **PDF Report**: [`report/final_report.pdf`](report/final_report.pdf)
+- **Markdown Source**: [`report/final_report.md`](report/final_report.md)
+
+### Report Structure
+The report covers all 6 required sections:
+1. **Problem Framing**: Technical pipeline, definition of success targets, and explicit out-of-scope boundaries.
+2. **Results vs. Baselines**: Dense comparison matrix across Trivial, Simple, and Full Agent on locked test set ($N=80$), plus Intent, Escalation, Reply Quality, and Judge Calibration summaries.
+3. **Failure Analysis**: Five authentic, anonymized failure modes with root causes, hypotheses, and architectural fixes.
+4. **"What Is Misleading About My Headline Number?"**: Five candid caveats addressing class imbalance, distribution shift, judge correlation limits, single-turn proxy limits, and corpus-bound grounding bias.
+5. **Next Week**: Four prioritized engineering initiatives with concrete Problem $\rightarrow$ Action $\rightarrow$ Benefit mappings.
+6. **Decision Log**: Twelve non-obvious engineering decisions with clear rationales and operational trade-offs.
+
+### Regeneration Command
+To regenerate both report artifacts from existing evaluation outputs:
+```bash
+python src/report.py
+```
+
 
