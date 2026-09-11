@@ -1,0 +1,609 @@
+{
+  "total_pairs": 1261888,
+  "both_count": 1261888,
+  "fwd_only_count": 0,
+  "rev_only_count": 0,
+  "verification_samples": [
+    {
+      "index": 1,
+      "customer_id": 2837344,
+      "customer_author": "789693",
+      "customer_text": "@British_Airways Hi, how long does it take to get the promised 4500 avios from the DE2017 sign up campaign? It's been more than 30 days already. Thanks",
+      "brand_id": 2837343,
+      "brand_author": "British_Airways",
+      "brand_reply_text": "@789693 We're sorry for the delay with your Avios, Alexander.  They'll be in your account soon. Thanks for your patience. ^Liz",
+      "join_source": "both"
+    },
+    {
+      "index": 2,
+      "customer_id": 183009,
+      "customer_author": "159043",
+      "customer_text": "@115830 what's happening with deliveries at the minute? This is not the 1st time either. I was in, and the safe place wasn't used. #prime https://t.co/k972caieGW",
+      "brand_id": 183007,
+      "brand_author": "AmazonHelp",
+      "brand_reply_text": "@159043 I'm sorry your parcel wasn't delivered! Please phone us here: https://t.co/JzP7hlA23B to report this and discuss re-delivery. ^LB",
+      "join_source": "both"
+    },
+    {
+      "index": 3,
+      "customer_id": 2698595,
+      "customer_author": "758214",
+      "customer_text": ".@115890 @116230  @MicrosoftHelps Despite 7th Restart here I am!!\nVery vexing, due to this my laptop's performance is bad, Can you help already? https://t.co/sKbROZKhpM",
+      "brand_id": 2698594,
+      "brand_author": "MicrosoftHelps",
+      "brand_reply_text": "@758214 Hello. Let's sort this out. To solve your concern, we suggest that you run the Windows Update Troubleshooter. Here's how: https://t.co/pRAHBzDsvB. Let us know how it goes.",
+      "join_source": "both"
+    },
+    {
+      "index": 4,
+      "customer_id": 2672760,
+      "customer_author": "752493",
+      "customer_text": "@British_Airways @118740  team from ba business lounge all dressed for Halloween #flyingstart https://t.co/C7MCTxPTav",
+      "brand_id": 2672758,
+      "brand_author": "British_Airways",
+      "brand_reply_text": "@752493 Happy Halloween! ^Linda",
+      "join_source": "both"
+    },
+    {
+      "index": 5,
+      "customer_id": 255847,
+      "customer_author": "176854",
+      "customer_text": "Shoutout to @SouthwestAir for roundtrip tickets to LA for less than $80🙌🏾",
+      "brand_id": 255846,
+      "brand_author": "SouthwestAir",
+      "brand_reply_text": "@176854 We’re happy you were able to snag a few great deals, Rach! We can't wait to welcome you onboard. ^MK",
+      "join_source": "both"
+    },
+    {
+      "index": 6,
+      "customer_id": 2292510,
+      "customer_author": "230382",
+      "customer_text": "Picked up my favourite crisps from #morrisons today only to be super disappointed that the main ingredient “salt vinegar” seems to have been forgotten 😫😩 They taste like plain non salty crisps 😩 @Morrisons need to check back code K7316 03:11 #nothappy https://t.co/pPpvbPD70t",
+      "brand_id": 2292509,
+      "brand_author": "Morrisons",
+      "brand_reply_text": "@230382 Hi Jodie. So sorry about this. Please DM me the barcode, Store &amp; your More card so we can sort this? Thanks - Chloe",
+      "join_source": "both"
+    },
+    {
+      "index": 7,
+      "customer_id": 365874,
+      "customer_author": "202677",
+      "customer_text": "@AskAmex I have a lovely offer for adding Delta Reserve CCs, but the Card Apply site has been down for 9 days. Any ETA on a fix?",
+      "brand_id": 365878,
+      "brand_author": "AskAmex",
+      "brand_reply_text": "@202677 They will be more than happy to help.",
+      "join_source": "both"
+    },
+    {
+      "index": 8,
+      "customer_id": 2177513,
+      "customer_author": "638249",
+      "customer_text": "@ATVIAssist Nothing is working I’ve done everything",
+      "brand_id": 2177515,
+      "brand_author": "ATVIAssist",
+      "brand_reply_text": "@638249 If this persists you will need to contact PlayStation Support as this error is an error on their end. ^EG",
+      "join_source": "both"
+    },
+    {
+      "index": 9,
+      "customer_id": 238278,
+      "customer_author": "172688",
+      "customer_text": "So upset that I’ve been with @117157 Bank for so long and they couldn’t help me with my mistake. 😪",
+      "brand_id": 238276,
+      "brand_author": "AskCiti",
+      "brand_reply_text": "@172688 We have not heard back from you. Please let us know if u still require assistance. (No acct# or PIN's). ^WJ",
+      "join_source": "both"
+    },
+    {
+      "index": 10,
+      "customer_id": 639255,
+      "customer_author": "271642",
+      "customer_text": "@nationalrailenq Any taxis or coaches? Totally stuck!",
+      "brand_id": 639254,
+      "brand_author": "nationalrailenq",
+      "brand_reply_text": "@271642 - Hi there, this is currently being looked into.",
+      "join_source": "both"
+    },
+    {
+      "index": 11,
+      "customer_id": 2733662,
+      "customer_author": "766227",
+      "customer_text": "Stopped at McDonald's for lunch between the appts. Had a McRib for first time in probably 15 years. Yummy.",
+      "brand_id": 2733661,
+      "brand_author": "McDonalds",
+      "brand_reply_text": "@766227 Yaaassss! 🙌 We're looking forward to seeing you again soon, Ana!",
+      "join_source": "both"
+    },
+    {
+      "index": 12,
+      "customer_id": 1604678,
+      "customer_author": "492293",
+      "customer_text": "@airtel_care Please i just loaded 2k on d same no using mobile app, can u help check if it is reflecting. I cant check balance or subscribe for data",
+      "brand_id": 1604679,
+      "brand_author": "airtel_care",
+      "brand_reply_text": "@492293 successfully on the 13th of November. Kindly dial *140# to check your data balance. Thank you. ^AT. (2/2)",
+      "join_source": "both"
+    },
+    {
+      "index": 13,
+      "customer_id": 1032204,
+      "customer_author": "364243",
+      "customer_text": "@DoorDash_Help Thank you for cancelling our dinner order after we waited an hour and told us so by sending a discrete email. Trash service.",
+      "brand_id": 1032203,
+      "brand_author": "DoorDash_Help",
+      "brand_reply_text": "@364243 Hi Sean, So sorry to hear about your order. Please DM us your information and we will reach out right away. Thanks DoorDash",
+      "join_source": "both"
+    },
+    {
+      "index": 14,
+      "customer_id": 1630358,
+      "customer_author": "499010",
+      "customer_text": "@delta can you help me figure out baggage allowance for a codeshare flight originating on #AirEuropa? Thanks.",
+      "brand_id": 1630356,
+      "brand_author": "Delta",
+      "brand_reply_text": "@499010 ...baggage. *HTP 2/2",
+      "join_source": "both"
+    },
+    {
+      "index": 15,
+      "customer_id": 413759,
+      "customer_author": "213729",
+      "customer_text": "@115783 @AirbnbHelp @115783 is there a contact number I can have to ring someone regarding the progress of my deposit??",
+      "brand_id": 413758,
+      "brand_author": "AirbnbHelp",
+      "brand_reply_text": "@213729 Hi, we're here to help. If you could DM us with the reservation code &amp; your email address, we would be able to address the issue. Thank you.",
+      "join_source": "both"
+    }
+  ],
+  "overall_followup_rate": 36.07467540700918,
+  "comparison_table": [
+    {
+      "brand": "AmazonHelp",
+      "volume_pairs": 168814,
+      "unique_inbound_tweets": 154976,
+      "followup_rate_pct": 49.90581349888043,
+      "escalation_count": 1282,
+      "escalation_pct": 0.7594156882722997,
+      "median_customer_len": 118,
+      "median_brand_len": 123,
+      "avg_thread_depth": 1.4990581349888044
+    },
+    {
+      "brand": "AppleSupport",
+      "volume_pairs": 106646,
+      "unique_inbound_tweets": 106623,
+      "followup_rate_pct": 29.396320537104064,
+      "escalation_count": 175,
+      "escalation_pct": 0.16409429326932093,
+      "median_customer_len": 108,
+      "median_brand_len": 129,
+      "avg_thread_depth": 1.2939632053710406
+    },
+    {
+      "brand": "Uber_Support",
+      "volume_pairs": 56160,
+      "unique_inbound_tweets": 55182,
+      "followup_rate_pct": 31.921296296296298,
+      "escalation_count": 862,
+      "escalation_pct": 1.5349002849002849,
+      "median_customer_len": 121,
+      "median_brand_len": 104,
+      "avg_thread_depth": 1.319212962962963
+    },
+    {
+      "brand": "SpotifyCares",
+      "volume_pairs": 43092,
+      "unique_inbound_tweets": 41585,
+      "followup_rate_pct": 31.70658126798478,
+      "escalation_count": 380,
+      "escalation_pct": 0.8818342151675485,
+      "median_customer_len": 101,
+      "median_brand_len": 131,
+      "avg_thread_depth": 1.3170658126798478
+    },
+    {
+      "brand": "Delta",
+      "volume_pairs": 42114,
+      "unique_inbound_tweets": 36134,
+      "followup_rate_pct": 28.213895616659546,
+      "escalation_count": 116,
+      "escalation_pct": 0.275442845609536,
+      "median_customer_len": 114,
+      "median_brand_len": 102,
+      "avg_thread_depth": 1.2821389561665955
+    },
+    {
+      "brand": "Tesco",
+      "volume_pairs": 38468,
+      "unique_inbound_tweets": 25282,
+      "followup_rate_pct": 28.709576791099096,
+      "escalation_count": 101,
+      "escalation_pct": 0.26255589061037743,
+      "median_customer_len": 119,
+      "median_brand_len": 134,
+      "avg_thread_depth": 1.287095767910991
+    },
+    {
+      "brand": "AmericanAir",
+      "volume_pairs": 36531,
+      "unique_inbound_tweets": 36457,
+      "followup_rate_pct": 39.20779611836522,
+      "escalation_count": 171,
+      "escalation_pct": 0.46809559004680956,
+      "median_customer_len": 125,
+      "median_brand_len": 107,
+      "avg_thread_depth": 1.3920779611836522
+    },
+    {
+      "brand": "TMobileHelp",
+      "volume_pairs": 34215,
+      "unique_inbound_tweets": 33837,
+      "followup_rate_pct": 28.25368990208973,
+      "escalation_count": 174,
+      "escalation_pct": 0.5085488820692678,
+      "median_customer_len": 110,
+      "median_brand_len": 126,
+      "avg_thread_depth": 1.2825368990208972
+    },
+    {
+      "brand": "comcastcares",
+      "volume_pairs": 32921,
+      "unique_inbound_tweets": 30369,
+      "followup_rate_pct": 22.87293824610431,
+      "escalation_count": 79,
+      "escalation_pct": 0.2399684092220771,
+      "median_customer_len": 108,
+      "median_brand_len": 127,
+      "avg_thread_depth": 1.228729382461043
+    },
+    {
+      "brand": "British_Airways",
+      "volume_pairs": 29290,
+      "unique_inbound_tweets": 24084,
+      "followup_rate_pct": 34.23694093547286,
+      "escalation_count": 339,
+      "escalation_pct": 1.1573916012290884,
+      "median_customer_len": 133,
+      "median_brand_len": 124,
+      "avg_thread_depth": 1.3423694093547285
+    },
+    {
+      "brand": "SouthwestAir",
+      "volume_pairs": 28828,
+      "unique_inbound_tweets": 28285,
+      "followup_rate_pct": 29.270154016927986,
+      "escalation_count": 75,
+      "escalation_pct": 0.26016372970722906,
+      "median_customer_len": 116,
+      "median_brand_len": 118,
+      "avg_thread_depth": 1.2927015401692799
+    },
+    {
+      "brand": "VirginTrains",
+      "volume_pairs": 27416,
+      "unique_inbound_tweets": 26272,
+      "followup_rate_pct": 54.13627079077911,
+      "escalation_count": 74,
+      "escalation_pct": 0.26991537788152903,
+      "median_customer_len": 116,
+      "median_brand_len": 78,
+      "avg_thread_depth": 1.541362707907791
+    },
+    {
+      "brand": "Ask_Spectrum",
+      "volume_pairs": 25617,
+      "unique_inbound_tweets": 24976,
+      "followup_rate_pct": 29.214974431041885,
+      "escalation_count": 56,
+      "escalation_pct": 0.2186048327282664,
+      "median_customer_len": 102,
+      "median_brand_len": 147,
+      "avg_thread_depth": 1.2921497443104188
+    },
+    {
+      "brand": "XboxSupport",
+      "volume_pairs": 23235,
+      "unique_inbound_tweets": 20213,
+      "followup_rate_pct": 37.6027544652464,
+      "escalation_count": 57,
+      "escalation_pct": 0.24531956100710137,
+      "median_customer_len": 107,
+      "median_brand_len": 115,
+      "avg_thread_depth": 1.376027544652464
+    },
+    {
+      "brand": "sprintcare",
+      "volume_pairs": 22209,
+      "unique_inbound_tweets": 20026,
+      "followup_rate_pct": 32.30221982079337,
+      "escalation_count": 108,
+      "escalation_pct": 0.4862893421585844,
+      "median_customer_len": 99,
+      "median_brand_len": 117,
+      "avg_thread_depth": 1.3230221982079338
+    }
+  ],
+  "skimmed_tweets": {
+    "AmazonHelp": [
+      {
+        "customer_id": 616917,
+        "customer_text": "@AmazonHelp Ok, 1 of the items is out for delivery. The other 3, as I suspected, have two diff delivery dates...a date range (22-24) &amp; arriving by tonight. On chat, the person guaranteed that all items will be delivered today. No updates on the other 3 items since yesterday.",
+        "brand_reply_text": "@266377 I understand your concern! Could you please confirm the estimated delivery date originally provided in your order confirmation e-mail for these 4 items? Were they all schedule to arrive on the same day? Please keep us posted! We want to help! ^SD"
+      },
+      {
+        "customer_id": 814372,
+        "customer_text": "@AmazonHelp Danke, die haben schon geprüft. Schlechte Textbausteine, die behaupten, dass DHL ein Paket ausliefert, das sie noch nicht mal haben.",
+        "brand_reply_text": "@313952 In manchen Fällen ist auch das Etikett beschädigt und DHL hat deswegen keinen Scan. Das Paket kommt aber trotzdem an. ^AN"
+      },
+      {
+        "customer_id": 2976583,
+        "customer_text": "@115850 \nWhy do u guys differentiate between customers as prime and non prime when you guys are capable of delivering goods faster to all customers?",
+        "brand_reply_text": "@207108 Seems like you had an unpleasant experience, could you let us know what went wrong? We'd like to get things right. (2/2) ^KA"
+      },
+      {
+        "customer_id": 2301063,
+        "customer_text": "@AmazonHelp No, didn’t get an email but this is what my app says https://t.co/lLBbPnsHwu",
+        "brand_reply_text": "@667839 Truly sorry for any inconvenience! It's not uncommon for items to ship right before their expected arrival. Please, still do keep us posted and let us know when your order arrives. We're here for you! ^JE"
+      },
+      {
+        "customer_id": 1565878,
+        "customer_text": "@AmazonHelp Hallo, was kann ich tun, wenn schon wieder eine Bestellung am nächsten Tag nicht ankommt, obwohl ich Prime-Mitglied bin?",
+        "brand_reply_text": "@242310 Hi, wurde das in der Bestellbestätigung genannte Lieferdatum überschritten? Gruß ^SI"
+      },
+      {
+        "customer_id": 2338196,
+        "customer_text": "@AmazonHelp I have already sent the document to Aramex. Please tell me if you need anything else from me. Why is it taking so long to act?",
+        "brand_reply_text": "@333870 If you have sent the kyc documents to the courier, kindly wait and your order shall be delivered soon. ^SH"
+      },
+      {
+        "customer_id": 129211,
+        "customer_text": "Amazonから届いた🐟 https://t.co/vXubHrZ0iC",
+        "brand_reply_text": "@145091 Amazonをご利用いただき、ありがとうございました！ EK"
+      },
+      {
+        "customer_id": 2376151,
+        "customer_text": "@AmazonHelp No my problem is I placed a pre-order on 10/29 for a book that releases on 11/14 but your expected shipping date isn't until 11/20 ...that seems really unfair for a pre-order.",
+        "brand_reply_text": "@685375 When you went through checkout, were you offered release date delivery? ^BE"
+      },
+      {
+        "customer_id": 2618093,
+        "customer_text": "Tenia que llegar el lunes... Pero @116928 me ha dado una alegria para este finde. Pone #tencent games en la caja, WHAT??Voy a jugar @31008 como un autentico #Pro! Este #Viernes no hace nada más que mejorar! https://t.co/yxQ3ckGPpq",
+        "brand_reply_text": "@283006 ¡Hola! ¡Nos encanta sorprenderte! No hay duda de que vas a pasar un fin de semana muy entretenido. Cuéntanos, ¿con cuál juego piensas estrenarlo? 🎮👾📺😍 ^AA"
+      },
+      {
+        "customer_id": 385385,
+        "customer_text": "@116316 Kein geld sonst hätte sie nicht nur ein eigenen Stuhl sondern auch eine kleine Schwester! 🙁",
+        "brand_reply_text": "@207246 Hoffentlich macht es nicht nachts plötzlich 'plumps'...  ;-)"
+      }
+    ],
+    "AppleSupport": [
+      {
+        "customer_id": 283600,
+        "customer_text": "@AppleSupport I've restarted the phone three times. The wifi was also restarted.",
+        "brand_reply_text": "@183558 Which version of iOS is installed? When did the issue begin? Is this only happening on your home network?"
+      },
+      {
+        "customer_id": 2793208,
+        "customer_text": "@AppleSupport the fuck. Your latest iOS update has turned my phone into a stuttering, glitchy, stupid bitch. How about instead of releasing new phones all the fucking time, you focus on not killing previous models with your ugly ass iOS updates.",
+        "brand_reply_text": "@779504 If you're running into glitches on your iPhone, we'd like to help you out. Please tell us the exact issue(s) you're experiencing. Also, please let us know what version of the iOS software you currently have installed."
+      },
+      {
+        "customer_id": 1470788,
+        "customer_text": "@AppleSupport why does I️ keep autocorrecting on my phone to some random shit",
+        "brand_reply_text": "@461391 We'd like to work with you on this. Please DM us. https://t.co/GDrqU22YpT"
+      },
+      {
+        "customer_id": 1896353,
+        "customer_text": "Did 10k earlier with Apple Watch workout. Got home and nothing synced. Workout totally disappeared. Are there issues @AppleSupport",
+        "brand_reply_text": "@565219 We want to make sure your Workout data is syncing correctly. DM us with what type of Apple Watch you're using. https://t.co/GDrqU22YpT"
+      },
+      {
+        "customer_id": 1849594,
+        "customer_text": "The latest iOS update has shrunk my screen, made my WiFi connection go slower, reduced my battery life and memory space. Cheers @115858",
+        "brand_reply_text": "@122601 We're here for you. Send us a DM with more details of what's happening, and your iOS version, and we'll go from there: https://t.co/GDrqU22YpT"
+      },
+      {
+        "customer_id": 2126051,
+        "customer_text": "@AppleSupport I️ don’t even know",
+        "brand_reply_text": "@626091 We want to help. We just need more details. What is not working on your phone?"
+      },
+      {
+        "customer_id": 1714670,
+        "customer_text": "@AppleSupport why does my apple music not work since i have updated?? what’s the point of paying for something that doesn’t work?!?",
+        "brand_reply_text": "@519306 We want you to be able to enjoy your Apple Music. Can you play songs? Does this happen when using Wi-Fi and cellular data?"
+      },
+      {
+        "customer_id": 2343801,
+        "customer_text": "@AppleSupport The iTunes issues are that I can’t download two albums I own. The other issue would be transferring AppleCare to my new device.",
+        "brand_reply_text": "@478034 OK, got it! For help transferring your AppleCare plan, you can reference the steps outlined here: https://t.co/8CjEPFkTCs\nWhat happens specifically when you attempt to download your albums? Are you attempting to download them via iTunes on your iPhone or computer?"
+      },
+      {
+        "customer_id": 2408575,
+        "customer_text": "Se podrían haber esperado un poco a sacar el iOS 11 porque no para de dar problema inluso en el último modelo iPhone X @115858",
+        "brand_reply_text": "@692586 We offer support via Twitter in English. Get help in Spanish here: https://t.co/IBIY3vMgPj or join https://t.co/OczyRx7IOs"
+      },
+      {
+        "customer_id": 557775,
+        "customer_text": "@AppleSupport This doesn’t solve the problem.",
+        "brand_reply_text": "@250274 What exactly happens when you try to move an app into a folder on your iPhone?"
+      }
+    ],
+    "Uber_Support": [
+      {
+        "customer_id": 967351,
+        "customer_text": "@115873 I want to tip an awesome driver who brought me back my phone, but app + site don’t let me. How can I? https://t.co/GrZY4d7IN2",
+        "brand_reply_text": "@349602 Hi, Arnab. Your driver would need to have that feature activated, feel free to leave feedback for them in-app!"
+      },
+      {
+        "customer_id": 2445456,
+        "customer_text": "@TfL @Uber_Support does anyone tell your PHV drivers that stopping at a zebra crossing to let people cross is actually a rule. Sick and tired of nearly getting run over by your drivers everyday 😡",
+        "brand_reply_text": "@701114 We're here to help! Send us a DM with your email address so we can follow up."
+      },
+      {
+        "customer_id": 478956,
+        "customer_text": "@Uber_Support I had raised a concern today regarding the driver asking for extra cash upon completion of the ride whereas the payment method selected was online(which was deducted too). \nIn the reply u said that u cant do anything about it.",
+        "brand_reply_text": "@228812 Send us a note here;https://t.co/buHSiHh6zA, and our team will be able to help!"
+      },
+      {
+        "customer_id": 1106604,
+        "customer_text": "@Uber_Support \"I cant find you but im not going to even try\" is not a valid reason, even worse after we wait 10+ mins for arrival and have to start over",
+        "brand_reply_text": "@381162 If you notice your driver is having a hard time finding you, we suggest calling or texting the driver to coordinate pickup."
+      },
+      {
+        "customer_id": 2516125,
+        "customer_text": "@Uber_Support I was told this about 24 hours ago. I don’t want to wait another 24. Thank you.",
+        "brand_reply_text": "@716767 We understand the frustration here, William. Please continue to check on the status of this sensitive issue via email as our team of specialists work hard on your issue. We appreciate your patience and understanding thus far."
+      },
+      {
+        "customer_id": 1068985,
+        "customer_text": "@Uber_Support : Pathetic Customer Support, Been trying to resolve my issue form last 3 weeks, Still Team is unable to understand the concern",
+        "brand_reply_text": "@372260 We've followed up via DM, Mohsin. Please check your inbox for updates! Thanks."
+      },
+      {
+        "customer_id": 558523,
+        "customer_text": "Hey @115873 , your driver wouldn’t let us in “not Uber” yet wouldn’t cancel the ride. Some help would be nice, he’s currently charging us $33. https://t.co/uFpwCuXZfu",
+        "brand_reply_text": "@250489 Here to help! Send us a note via https://t.co/yhwqQKvrTv and we'll be in touch."
+      },
+      {
+        "customer_id": 474398,
+        "customer_text": "@Uber_Support Yeah, I already did that. Didn't even get a confirmation email that it went through or anything. I need this resolved immediately. If my bank/CC will do it faster than Uber support, I'm happy to let the two of you deal with it!",
+        "brand_reply_text": "@227906 Here to help! Please DM us your email address so we can follow up."
+      },
+      {
+        "customer_id": 2135816,
+        "customer_text": "@Uber_Support Any of My UBERS Today doesn’t have the Tag ready to use! SO ANNOYING! I Demand a recalculation if my fare. Not paying for others mistakes!",
+        "brand_reply_text": "@628338 Hi there! Please reach out to https://t.co/zUe0dj6yoX and fill out the 4 boxes at the bottom so we can get in touch."
+      },
+      {
+        "customer_id": 444506,
+        "customer_text": "@Uber_Support If you can see the picture attached, that is the response I am getting from Uber support on app",
+        "brand_reply_text": "@139951 Hi, Alok. We can confirm that our team has followed up appropriately with this inquiry, as stated feel free to respond to the support inquiry with any additional concerns."
+      }
+    ],
+    "SpotifyCares": [
+      {
+        "customer_id": 1179883,
+        "customer_text": "@SpotifyCares. Why can't I sign up for an account. Have tried 1000 times today and the site is loading... and loading ... and loading...",
+        "brand_reply_text": "@397481 Hey there, we'd love to help! Can you let us know where you're currently located? /JP"
+      },
+      {
+        "customer_id": 1125893,
+        "customer_text": "@SpotifyCares Tried restarting the router but still problem persists. Haven't been able to use spotify for 2 weeks now.",
+        "brand_reply_text": "@385469 We understand your frustration. Could you send us a DM with your account's email address or username? We'll take a look under the hood /CO https://t.co/ldFdZRiNAt"
+      },
+      {
+        "customer_id": 1420637,
+        "customer_text": ".@115888 is being stupid and glitchy after the last @115858 update 👎",
+        "brand_reply_text": "@450267 Hey Tim! Can you give us more info about what's happening? We'll see what we can suggest /KL"
+      },
+      {
+        "customer_id": 1801751,
+        "customer_text": "@115888 help me cancel my premium subscription. When I log into my account it turns the language Russian and I don't speak Russia.....",
+        "brand_reply_text": "@541359 Hi there, help's here! Can you DM us your account's email address? We'll take a look backstage and see what we can suggest /NY https://t.co/ldFdZRiNAt"
+      },
+      {
+        "customer_id": 1983084,
+        "customer_text": "I need the @3537 cover of The Chain to be available on @115888, someone make this happen pls",
+        "brand_reply_text": "@586983 Hey Hannah! Fingers crossed we'll be able to have it soon, but there's info about Spotify content here: https://t.co/0i8GpimuDa /MS"
+      },
+      {
+        "customer_id": 726433,
+        "customer_text": "Why is @32623 not on @115888?",
+        "brand_reply_text": "@294013 Hi there! Is this the artist you're looking for: https://t.co/pfhiOGx49R? /NQ"
+      },
+      {
+        "customer_id": 381784,
+        "customer_text": "@8199 Vet 2st funktioner jag saknar hos er. En gällande spellista och en gällande upplevelsen. Vem kontaktar jag med mina💡 idéer?😎",
+        "brand_reply_text": "@206532 1: Hey there! We can help out in English via Twitter, but we also have Swedish support via email at https://t.co/ZgU70TbP8M."
+      },
+      {
+        "customer_id": 2291114,
+        "customer_text": "@SpotifyCares Yes",
+        "brand_reply_text": "@507853 We're sorry to hear that. We can assure you the right team are looking into a fix. Thanks for bearing with us /C"
+      },
+      {
+        "customer_id": 1510054,
+        "customer_text": "@SpotifyCares Thank you! And well in that case also please add support up to 5 offline device for Premium users :)",
+        "brand_reply_text": "@470495 We hear you loud and clear! We can’t make any promises but we’ll pass your feedback onto the right folks /MX"
+      },
+      {
+        "customer_id": 2037060,
+        "customer_text": "@SpotifyCares I actually had my student account expire two months ago, but I got it fixed now I subscribed to the bundle. Thanks!",
+        "brand_reply_text": "@602280 Awesome! Let us know if you ever need us again. We'd be... https://t.co/LgAM6ky9Vv /RB"
+      }
+    ]
+  },
+  "chosen_brand": "AppleSupport",
+  "final_row_count": 106646,
+  "neg_response_times_count": 0,
+  "response_time_stats": {
+    "min": 1.2,
+    "median": 70.96666666666667,
+    "mean": 147.27787430689696,
+    "max": 47295.1
+  },
+  "final_samples_5": [
+    {
+      "customer_tweet_id": 283600,
+      "customer_text": "@AppleSupport I've restarted the phone three times. The wifi was also restarted.",
+      "customer_created_at": "Fri Oct 06 16:06:31 +0000 2017",
+      "brand_tweet_id": 283601,
+      "brand_reply_text": "@183558 Which version of iOS is installed? When did the issue begin? Is this only happening on your home network?",
+      "brand_reply_created_at": "Fri Oct 06 18:45:28 +0000 2017",
+      "has_followup": true,
+      "followup_text": "@AppleSupport 10.3.3. It started happening at midnight (eastern US). And yes, only my home network.",
+      "thread_length": 2,
+      "response_time_minutes": 158.95
+    },
+    {
+      "customer_tweet_id": 2793208,
+      "customer_text": "@AppleSupport the fuck. Your latest iOS update has turned my phone into a stuttering, glitchy, stupid bitch. How about instead of releasing new phones all the fucking time, you focus on not killing previous models with your ugly ass iOS updates.",
+      "customer_created_at": "Tue Nov 21 20:41:13 +0000 2017",
+      "brand_tweet_id": 2793206,
+      "brand_reply_text": "@779504 If you're running into glitches on your iPhone, we'd like to help you out. Please tell us the exact issue(s) you're experiencing. Also, please let us know what version of the iOS software you currently have installed.",
+      "brand_reply_created_at": "Tue Nov 21 21:07:00 +0000 2017",
+      "has_followup": true,
+      "followup_text": "@AppleSupport iOS 11.0.3 (please keep in mind the phone ran flawlessly prior to updating). There’s a sudden, 1 to 2 second delay in response time. Apps take a frustratingly long time to open, most of which end up crashing. The phone also freezes while typing, then does a double touch.",
+      "thread_length": 2,
+      "response_time_minutes": 25.783333333333335
+    },
+    {
+      "customer_tweet_id": 1470788,
+      "customer_text": "@AppleSupport why does I️ keep autocorrecting on my phone to some random shit",
+      "customer_created_at": "Thu Nov 02 23:49:07 +0000 2017",
+      "brand_tweet_id": 1470787,
+      "brand_reply_text": "@461391 We'd like to work with you on this. Please DM us. https://t.co/GDrqU22YpT",
+      "brand_reply_created_at": "Fri Nov 03 00:58:24 +0000 2017",
+      "has_followup": false,
+      "followup_text": NaN,
+      "thread_length": 1,
+      "response_time_minutes": 69.28333333333333
+    },
+    {
+      "customer_tweet_id": 1896353,
+      "customer_text": "Did 10k earlier with Apple Watch workout. Got home and nothing synced. Workout totally disappeared. Are there issues @AppleSupport",
+      "customer_created_at": "Tue Oct 24 13:54:18 +0000 2017",
+      "brand_tweet_id": 1896352,
+      "brand_reply_text": "@565219 We want to make sure your Workout data is syncing correctly. DM us with what type of Apple Watch you're using. https://t.co/GDrqU22YpT",
+      "brand_reply_created_at": "Tue Oct 24 14:48:00 +0000 2017",
+      "has_followup": false,
+      "followup_text": NaN,
+      "thread_length": 1,
+      "response_time_minutes": 53.7
+    },
+    {
+      "customer_tweet_id": 1849594,
+      "customer_text": "The latest iOS update has shrunk my screen, made my WiFi connection go slower, reduced my battery life and memory space. Cheers @115858",
+      "customer_created_at": "Wed Oct 18 20:53:25 +0000 2017",
+      "brand_tweet_id": 1849593,
+      "brand_reply_text": "@122601 We're here for you. Send us a DM with more details of what's happening, and your iOS version, and we'll go from there: https://t.co/GDrqU22YpT",
+      "brand_reply_created_at": "Wed Oct 18 21:06:44 +0000 2017",
+      "has_followup": false,
+      "followup_text": NaN,
+      "thread_length": 1,
+      "response_time_minutes": 13.316666666666666
+    }
+  ],
+  "out_parquet": "data/processed/applesupport_threads.parquet",
+  "out_parquet_size_mb": 19.018070220947266
+}
