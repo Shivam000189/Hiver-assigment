@@ -1,0 +1,648 @@
+{
+  "file_name": "twcs.csv",
+  "file_size_mb": 492.5810251235962,
+  "file_size_bytes": 516508641,
+  "total_rows": 2811774,
+  "total_cols": 7,
+  "unique_authors": 702777,
+  "unique_brands": 108,
+  "unique_customers": 702669,
+  "inbound_true_count": 1537843,
+  "inbound_true_pct": 54.69298030353791,
+  "inbound_false_count": 1273931,
+  "inbound_false_pct": 45.30701969646209,
+  "null_counts": {
+    "tweet_id": 0,
+    "author_id": 0,
+    "inbound": 0,
+    "created_at": 0,
+    "text": 0,
+    "response_tweet_id": 1040629,
+    "in_response_to_tweet_id": 794335
+  },
+  "null_pcts": {
+    "tweet_id": 0.0,
+    "author_id": 0.0,
+    "inbound": 0.0,
+    "created_at": 0.0,
+    "text": 0.0,
+    "response_tweet_id": 37.009695658328155,
+    "in_response_to_tweet_id": 28.250314570089913
+  },
+  "duplicate_tweet_ids": 0,
+  "top30_authors": {
+    "AmazonHelp": 169840,
+    "AppleSupport": 106860,
+    "Uber_Support": 56270,
+    "SpotifyCares": 43265,
+    "Delta": 42253,
+    "Tesco": 38573,
+    "AmericanAir": 36764,
+    "TMobileHelp": 34317,
+    "comcastcares": 33031,
+    "British_Airways": 29361,
+    "SouthwestAir": 28977,
+    "VirginTrains": 27817,
+    "Ask_Spectrum": 25860,
+    "XboxSupport": 24557,
+    "sprintcare": 22381,
+    "hulu_support": 21872,
+    "sainsburys": 19466,
+    "GWRHelp": 19364,
+    "AskPlayStation": 19098,
+    "ChipotleTweets": 18749,
+    "VerizonSupport": 17966,
+    "UPSHelp": 17817,
+    "ATVIAssist": 17650,
+    "O2": 16212,
+    "Safaricom_Care": 16077,
+    "idea_cares": 15724,
+    "AskTarget": 13218,
+    "AirAsiaSupport": 12829,
+    "BofA_Help": 12683,
+    "SW_Help": 12231
+  },
+  "samples_3b": [
+    {
+      "inbound_id": 942926,
+      "inbound_author": "173519",
+      "inbound_text": "Hi @VirginTrains I'm just trying to book trains from Manchester to Euston in January, and reservations aren't available. Why is this please?",
+      "response_id": 942924,
+      "response_author": "VirginTrains",
+      "response_inbound": false,
+      "response_text": "@173519 Which specific date is it? ^PA"
+    },
+    {
+      "inbound_id": 2079600,
+      "inbound_author": "615048",
+      "inbound_text": "I want to roll back my iOS 11 update to 10. Earlier it was battery and now my phone hangs in between. What is this nonsense @AppleSupport",
+      "response_id": 2079599,
+      "response_author": "AppleSupport",
+      "response_inbound": false,
+      "response_text": "@615048 We understand and want to help. We don't support downgrading the iOS software. DM us your iPhone model here: https://t.co/GDrqU22YpT"
+    },
+    {
+      "inbound_id": 2707925,
+      "inbound_author": "238590",
+      "inbound_text": "@115911. Worst experience with you today. Just moved to the US, purchased a new iPhone 8S and another line to my current iPhone and the lines in those were cancelled due “fraud” by you without letting me know.",
+      "response_id": 2707924,
+      "response_author": "TMobileHelp",
+      "response_inbound": false,
+      "response_text": "@238590 Manuel, we absolutely want to get to the bottom of this for you. Please send us a DM with the details so we can assist! *KittyG"
+    },
+    {
+      "inbound_id": 1156121,
+      "inbound_author": "391965",
+      "inbound_text": "@AmazonHelp @391964 Hey @AmazonHelp any progress on this query?",
+      "response_id": 1156123,
+      "response_author": "AmazonHelp",
+      "response_inbound": false,
+      "response_text": "@391965 We haven't made any announcement on this yet. Please stay tuned. ^NK"
+    },
+    {
+      "inbound_id": 2899026,
+      "inbound_author": "803146",
+      "inbound_text": "Hey @AppleSupport my 5S is on drugs since I update to the 11, is there any suggestions to rehab it? This issue appears randomly when I use the camera... https://t.co/bupsGqZe4C",
+      "response_id": 2899024,
+      "response_author": "AppleSupport",
+      "response_inbound": false,
+      "response_text": "@803146 We'd love to look into this further with you. Is this only happening with the Camera app? Does it appear this way when in other modes, such as Video?"
+    },
+    {
+      "inbound_id": 557006,
+      "inbound_author": "246013",
+      "inbound_text": "@AmazonHelp Yes Monday. And this was a prime order too. I needed that today",
+      "response_id": 557008,
+      "response_author": "AmazonHelp",
+      "response_inbound": false,
+      "response_text": "@246013 We'd like to make sure feedback is left on the carrier for you. Please reach out to us by phone at this link here: https://t.co/hApLpMlfHN ^VS"
+    },
+    {
+      "inbound_id": 1697429,
+      "inbound_author": "514884",
+      "inbound_text": "@115858 what is wrong with the QuickType suggestions?? https://t.co/Y3cBCzinzh",
+      "response_id": 1697428,
+      "response_author": "AppleSupport",
+      "response_inbound": false,
+      "response_text": "@514884 Here’s what you can do to work around the issue until it’s fixed in a future software update: https://t.co/xXaXeeSRt9"
+    },
+    {
+      "inbound_id": 859862,
+      "inbound_author": "324154",
+      "inbound_text": "@Delta Ok just checking thank you",
+      "response_id": 859864,
+      "response_author": "Delta",
+      "response_inbound": false,
+      "response_text": "@324154 You are very welcome.  *ARD"
+    },
+    {
+      "inbound_id": 1783704,
+      "inbound_author": "535931",
+      "inbound_text": "@115783 how can I report a problem from mobile? Your mobile site doesn’t have a way to do it. https://t.co/1y7GyiO5GM",
+      "response_id": 1783703,
+      "response_author": "AirbnbHelp",
+      "response_inbound": false,
+      "response_text": "@535931 Hi Timur, thank you for informing us! Could you try to delete the app and install the latest version? Please let us know how it works!"
+    },
+    {
+      "inbound_id": 2518419,
+      "inbound_author": "225654",
+      "inbound_text": "I love driving for @115873 but they may want to reconsider their partnership with @87492 if my experience is indicative of @87492 's customer service",
+      "response_id": 2518417,
+      "response_author": "Uber_Support",
+      "response_inbound": false,
+      "response_text": "@225654 Here to help! Please send us a note via  https://t.co/ZKt0NHVs3P  so our team can connect."
+    },
+    {
+      "inbound_id": 2262211,
+      "inbound_author": "658619",
+      "inbound_text": "Lol. And i meant, it's *NOT from PayPal's end.\n\nWho are we kidding? Someone has used the document for Akara. https://t.co/VFNjwwaO5C",
+      "response_id": 2262210,
+      "response_author": "AskPayPal",
+      "response_inbound": false,
+      "response_text": "@658619 Hello SK, I understand how upsetting it is to not have documents reviewed after 3 years. If you are still having issues with your PayPal account please send me a DM so I can further assist you. I look forward to hearing from you soon. ^BB"
+    },
+    {
+      "inbound_id": 1555280,
+      "inbound_author": "480978",
+      "inbound_text": "@sainsburys I got these from your store in Bishop’s Stortford but they’re nearly 3 months out of date! https://t.co/zpyHxIF5aI",
+      "response_id": 1555278,
+      "response_author": "sainsburys",
+      "response_inbound": false,
+      "response_text": "@480978 I'm so sorry about that Sam. Did you buy the popcorn yesterday? Is this the correct product: https://t.co/l0vr3B0BUn? Naomi"
+    },
+    {
+      "inbound_id": 2288893,
+      "inbound_author": "664979",
+      "inbound_text": "@AmericanAir 2 hours to move them complete fail.",
+      "response_id": 2288892,
+      "response_author": "AmericanAir",
+      "response_inbound": false,
+      "response_text": "@664979 Thanks for letting us know about this. We'll send your feedback on to our airport team."
+    },
+    {
+      "inbound_id": 1171911,
+      "inbound_author": "395636",
+      "inbound_text": "Can this be trusted, @UPSHelp? ¯\\_(ツ)_/¯ https://t.co/k3DZIWOq7l",
+      "response_id": 1171910,
+      "response_author": "UPSHelp",
+      "response_inbound": false,
+      "response_text": "@395636 We'd be happy to take a look for you, Please DM us with the tracking number. WS https://t.co/wKJHDXWGRQ"
+    },
+    {
+      "inbound_id": 2922453,
+      "inbound_author": "377540",
+      "inbound_text": "@AmazonHelp I would like to cancel my Amazon prime. How would I do this?",
+      "response_id": 2922454,
+      "response_author": "AmazonHelp",
+      "response_inbound": false,
+      "response_text": "@377540 I'm sorry for the unexpected trouble with your order. You can cancel your Prime membership here at any time: https://t.co/VCWEeYHeAW ^JN"
+    },
+    {
+      "inbound_id": 1934548,
+      "inbound_author": "575617",
+      "inbound_text": "Hey @SpotifyCares I have a problem with my subscription can you help?",
+      "response_id": 1934547,
+      "response_author": "SpotifyCares",
+      "response_inbound": false,
+      "response_text": "@575617 Hi Lauraline! Help's here. Can you DM us your account's email address and a bit more info about what's going on? /DD https://t.co/ldFdZRiNAt"
+    },
+    {
+      "inbound_id": 1554294,
+      "inbound_author": "323706",
+      "inbound_text": "@127960 help me. Uber customer care is not responding! https://t.co/FaOE7Um1cB",
+      "response_id": 1554293,
+      "response_author": "Uber_Support",
+      "response_inbound": false,
+      "response_text": "@323706 Thanks for following up, Rakend. We can see that the promotion in question applied to one of your recent trips. To keep receiving the 6th ride discount promotion keep taking trips while using the required payment method."
+    },
+    {
+      "inbound_id": 1458474,
+      "inbound_author": "458512",
+      "inbound_text": "@115765 fix your game, can’t get passed loading screen",
+      "response_id": 1458472,
+      "response_author": "ATVIAssist",
+      "response_inbound": false,
+      "response_text": "@458512 ...information: https://t.co/Nt2T6WMm3G. Let me know if this helps. ^RN"
+    },
+    {
+      "inbound_id": 2085664,
+      "inbound_author": "176101",
+      "inbound_text": "@DunkinDonuts when are we getting peppermint mocha lattes? The other place has theirs out and now I’m craving one but I hate their ☕️.  😋",
+      "response_id": 2085663,
+      "response_author": "DunkinDonuts",
+      "response_inbound": false,
+      "response_text": "@176101 No news yet! Stay tuned!"
+    },
+    {
+      "inbound_id": 2046959,
+      "inbound_author": "605368",
+      "inbound_text": "I've been on hold with Cort from @115993 for a long time.  Cort, did you forget about me?  I need your help!!",
+      "response_id": 2046958,
+      "response_author": "AskPayPal",
+      "response_inbound": false,
+      "response_text": "@605368 Hi Natalie! I'm sorry to hear about your negative experience with us. If you're still in need of assistance, feel free to DM us! ^KK"
+    }
+  ],
+  "comma_resp_count": 222426,
+  "comma_resp_pct": 7.9105219694043685,
+  "comma_examples": [
+    {
+      "tweet_id": 6,
+      "author_id": "sprintcare",
+      "response_tweet_id": "5,7",
+      "text": "@115712 Can you please send us a private message, so that I can gain further details about your account?"
+    },
+    {
+      "tweet_id": 8,
+      "author_id": "115712",
+      "response_tweet_id": "9,6,10",
+      "text": "@sprintcare is the worst customer service"
+    },
+    {
+      "tweet_id": 12,
+      "author_id": "115713",
+      "response_tweet_id": "11,13,14",
+      "text": "@sprintcare You gonna magically change your connectivity for me and my whole family ? 🤥 💯"
+    },
+    {
+      "tweet_id": 21,
+      "author_id": "Ask_Spectrum",
+      "response_tweet_id": "22,23",
+      "text": "@115716 What information is incorrect? ^JK"
+    },
+    {
+      "tweet_id": 66,
+      "author_id": "115728",
+      "response_tweet_id": "64,67",
+      "text": "@ChipotleTweets @28 \nI don't fit in my Veggie Burrito costume #Halloween https://t.co/7tJDVpzLWn"
+    }
+  ],
+  "samples_3d": [
+    {
+      "brand_id": 2523589,
+      "brand_author": "SpotifyCares",
+      "brand_text": "@718658 Hey there! Can you DM us your account's username or email address? We'll take a look backstage /AP https://t.co/ldFdZRiNAt",
+      "parent_id": 2523590,
+      "parent_author": "718658",
+      "parent_inbound": true,
+      "parent_text": "Dear @115888 @118266 @SpotifyCares .\nYesterday, suddenly my account was kicked out the family package. I asked to my brother to resent the invitation but it won't work. Something is wrong it says. I need your help. Thanks 😇"
+    },
+    {
+      "brand_id": 753771,
+      "brand_author": "UPSHelp",
+      "brand_text": "@300151 Sorry that you feel this way. Is there something that we can assist with? Click the link to DM your track # &amp; details. ^J.K https://t.co/wKJHDXWGRQ",
+      "parent_id": 753772,
+      "parent_author": "300151",
+      "parent_inbound": true,
+      "parent_text": "@UPSHelp @115817 service is terrible. Fedex is way better"
+    },
+    {
+      "brand_id": 1069371,
+      "brand_author": "ChipotleTweets",
+      "brand_text": "@372352 Me too. Lunch 1 and lunch 2 back to back. -Whit",
+      "parent_id": 1069373,
+      "parent_author": "372352",
+      "parent_inbound": true,
+      "parent_text": "@ChipotleTweets They're huge! It's usually 2 meals for me 😂"
+    },
+    {
+      "brand_id": 1072566,
+      "brand_author": "comcastcares",
+      "brand_text": "@373095 Can you please DM us the phone number and address on the account so we can help?-FRL",
+      "parent_id": 1072568,
+      "parent_author": "373095",
+      "parent_inbound": true,
+      "parent_text": "Why do I reset my modem and call you guys to reset the signal and still get \" shorten of bandwidth \" messages and ping spikes @116136"
+    },
+    {
+      "brand_id": 1676708,
+      "brand_author": "airtel_care",
+      "brand_text": "@510027 Hello  @510027, kindly state the exact challenge you are experiencing along side the mobile number via DM. Thank you. ^ID",
+      "parent_id": 1676709,
+      "parent_author": "510027",
+      "parent_inbound": true,
+      "parent_text": "@118424 u re the worst when it comes to internet service,before you were the best"
+    },
+    {
+      "brand_id": 1864897,
+      "brand_author": "Uber_Support",
+      "brand_text": "@557164 Due to our privacy policy, we will have to speak directly to the account holder. Please have them contact us via https://t.co/balq3Eyso6",
+      "parent_id": 1864899,
+      "parent_author": "557164",
+      "parent_inbound": true,
+      "parent_text": "@115873 you have charged my friend double for no reason what so ever in Miami on Wednesday - no explanation. We want this sorted please."
+    },
+    {
+      "brand_id": 1961695,
+      "brand_author": "Safaricom_Care",
+      "brand_text": "@494393 Go to settings &gt; app &gt; search for the STK menu and force stop the application from running ^ED",
+      "parent_id": 1961696,
+      "parent_author": "494393",
+      "parent_inbound": true,
+      "parent_text": "@Safaricom_Care it's a system application therefore it cannot. I have restarted, rebooted and powered off nothing works"
+    },
+    {
+      "brand_id": 1458884,
+      "brand_author": "ATT",
+      "brand_text": "@458621 Thanks for the shout out 😊💕 We're happy to hear you had a pleasant experience!",
+      "parent_id": 1458885,
+      "parent_author": "458621",
+      "parent_inbound": true,
+      "parent_text": "I have to give HUGE props to @att for making my iPhone X preorder experience super easy. I was finished in less than four minutes!!!"
+    },
+    {
+      "brand_id": 583639,
+      "brand_author": "AppleSupport",
+      "brand_text": "@153601 That's the behavior that we expect. Check out our article for more info: https://t.co/hSnkM7JIIS If you have any feedback about how Live wallpapers look, please send it to us online at: https://t.co/eTPVYVFyd8",
+      "parent_id": 583637,
+      "parent_author": "153601",
+      "parent_inbound": true,
+      "parent_text": "@AppleSupport We figured it out. Guess it worked only with the locked screen? Also has to be pressed to see the movement?"
+    },
+    {
+      "brand_id": 1991131,
+      "brand_author": "AppleSupport",
+      "brand_text": "@589281 Let's help take a closer look. Please DM us the device and version of OS you're using to get started. https://t.co/GDrqU22YpT",
+      "parent_id": 1991132,
+      "parent_author": "589281",
+      "parent_inbound": true,
+      "parent_text": "I️  can somebody explain this iPhone error???? @AppleSupport"
+    },
+    {
+      "brand_id": 452792,
+      "brand_author": "UPSHelp",
+      "brand_text": "@222422 Please DM the tracking, so we can check on the status of your shipment. ^EL https://t.co/wKJHDXWGRQ",
+      "parent_id": 452793,
+      "parent_author": "222422",
+      "parent_inbound": true,
+      "parent_text": "@UPSHelp is your website and tracking system down?"
+    },
+    {
+      "brand_id": 2732655,
+      "brand_author": "sainsburys",
+      "brand_text": "@765987 Practice makes perfect Mariah! Take care. Lauren",
+      "parent_id": 2732653,
+      "parent_author": "765987",
+      "parent_inbound": true,
+      "parent_text": "@sainsburys the little kid rapping is a tricky one, he’s just to fast😥🎄"
+    },
+    {
+      "brand_id": 1953831,
+      "brand_author": "AlaskaAir",
+      "brand_text": "@580016 I apologize. To protect your privacy can you DM me your 6-letter code and delete the public message? -Kimball https://t.co/t4ooDR29zz",
+      "parent_id": 1953829,
+      "parent_author": "580016",
+      "parent_inbound": true,
+      "parent_text": "@AlaskaAir Thank you.  UWDCWQ\nOnly other time I've seen those bucket style seats was on Cathay Pacific."
+    },
+    {
+      "brand_id": 1042725,
+      "brand_author": "ATVIAssist",
+      "brand_text": "@366568 Thanks for the video, glad to hear it's fixed! I hope you have a great game. ^TE",
+      "parent_id": 1042724,
+      "parent_author": "366568",
+      "parent_inbound": true,
+      "parent_text": "@ATVIAssist https://t.co/U6vRbnrCQC\rThat's the video. I had a problem regarding receiving keys on Beast From Beyond, but reinstalling fixed that."
+    },
+    {
+      "brand_id": 1003822,
+      "brand_author": "DellCares",
+      "brand_text": "@357590 We regret your experience. Follow us and DM the system tag, your email address and give us more details about the update after which this issue was observed. (1/2)",
+      "parent_id": 1003821,
+      "parent_author": "357590",
+      "parent_inbound": true,
+      "parent_text": "@118197 I will never buy another thing from you guys! I have a 8 year old laptop that stoped working after an update u guys send out and now you wanna make me pay $80 for you to tell me how to fix your problem!"
+    },
+    {
+      "brand_id": 1626116,
+      "brand_author": "AmazonHelp",
+      "brand_text": "@497949 Oh my! We would love to help in any way we can. Was the item shipped by Amazon or by a seller? https://t.co/aaDyEz1VgE ^AL",
+      "parent_id": 1626117,
+      "parent_author": "497949",
+      "parent_inbound": true,
+      "parent_text": "@AmazonHelp hi there. I've been waiting on a prime order since September 27th and it still says it's in transit. Can you help?"
+    },
+    {
+      "brand_id": 2470854,
+      "brand_author": "AskPayPal",
+      "brand_text": "@706721 Hi, thanks for reaching out! Can you DM us with your PayPal email address and details about what's happening or screenshots of the issue? I'm happy to help. :) Thanks! ^IVS",
+      "parent_id": 2470852,
+      "parent_author": "706721",
+      "parent_inbound": true,
+      "parent_text": "@147896 @127289 @AskPayPal We have the same problem! Not fixed yet! :-( @127289 please!! fix it!"
+    },
+    {
+      "brand_id": 1759081,
+      "brand_author": "AmazonHelp",
+      "brand_text": "@529496 Hi, I'm so sorry to heat that!\nTell me please, are you using https://t.co/nUUp5MLhYl or Amazon.fr?^FT",
+      "parent_id": 1759083,
+      "parent_author": "529496",
+      "parent_inbound": true,
+      "parent_text": "@AmazonHelp just so you know: it's sad when an order takes 1,5 day to travel Japan-France then DHL just forget it on their shelf on due day."
+    },
+    {
+      "brand_id": 1560988,
+      "brand_author": "Morrisons",
+      "brand_text": "@482263 Hey Toby - thanks for loving our range of Bitters! Raj",
+      "parent_id": 1560989,
+      "parent_author": "482263",
+      "parent_inbound": true,
+      "parent_text": "Tasty @146333 Pale - loads of Nelson Sauvin, Chinook, Centennial hops - bought at @Morrisons - will seek out again https://t.co/oETOVrmm7v"
+    },
+    {
+      "brand_id": 1665825,
+      "brand_author": "AmazonHelp",
+      "brand_text": "@507532 That's peculiar. We're sorry for the trouble. You may request for a return of your order here: https://t.co/3yqvLnyTxi. 1/2 ^RS",
+      "parent_id": 1665824,
+      "parent_author": "507532",
+      "parent_inbound": true,
+      "parent_text": "@115850 ORDER # 406-0638104-6805907, look for yourself the difference in product shown and received,bad experience after long time https://t.co/ebAZSQpWEL"
+    }
+  ],
+  "coverage_3e": {
+    "total_inbound": 1537843,
+    "inbound_non_null_resp": 1303829,
+    "pct_inbound_non_null": 84.78297199389014,
+    "resolved_first_id": 1280997,
+    "pct_resolved_first_id": 98.24885011761512,
+    "brand_author_count": 1137425,
+    "pct_brand_author": 88.79216735089935,
+    "all_resp_total": 1555781,
+    "all_resp_resolved": 1450335,
+    "pct_all_resp_resolved": 93.22231085223434
+  },
+  "coverage_3f": {
+    "sample_500_exists": 500,
+    "pct_500_exists": 100.0,
+    "total_in_resp_non_null": 2017439,
+    "total_in_resp_resolved": 2013577,
+    "pct_total_in_resp_resolved": 99.80856918102604,
+    "brand_in_resp_total": 1266942,
+    "brand_in_resp_resolved": 1265281,
+    "pct_brand_in_resp_resolved": 99.8688969187224,
+    "brand_points_to_inbound_count": 1261888,
+    "pct_brand_points_to_inbound": 99.73183822407829
+  },
+  "traced_threads": [
+    [
+      {
+        "turn": 1,
+        "tweet_id": 5,
+        "created_at": "Tue Oct 31 21:49:35 +0000 2017",
+        "author_id": "115712",
+        "inbound": true,
+        "text": "@sprintcare I did."
+      },
+      {
+        "turn": 2,
+        "tweet_id": 4,
+        "created_at": "Tue Oct 31 21:54:49 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115712 Please send us a Private Message so that we can further assist you. Just click ‘Message’ at the top of your profile."
+      },
+      {
+        "turn": 3,
+        "tweet_id": 3,
+        "created_at": "Tue Oct 31 22:08:27 +0000 2017",
+        "author_id": "115712",
+        "inbound": true,
+        "text": "@sprintcare I have sent several private messages and no one is responding as usual"
+      },
+      {
+        "turn": 4,
+        "tweet_id": 1,
+        "created_at": "Tue Oct 31 22:10:47 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115712 I understand. I would like to assist you. We would need to get you into a private secured link to further assist."
+      }
+    ],
+    [
+      {
+        "turn": 1,
+        "tweet_id": 16,
+        "created_at": "Tue Oct 31 20:00:43 +0000 2017",
+        "author_id": "115713",
+        "inbound": true,
+        "text": "@sprintcare Since I signed up with you....Since day 1"
+      },
+      {
+        "turn": 2,
+        "tweet_id": 15,
+        "created_at": "Tue Oct 31 20:03:31 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115713 We understand your concerns and we'd like for you to please send us a Direct Message, so that we can further assist you. -AA"
+      },
+      {
+        "turn": 3,
+        "tweet_id": 12,
+        "created_at": "Tue Oct 31 22:04:47 +0000 2017",
+        "author_id": "115713",
+        "inbound": true,
+        "text": "@sprintcare You gonna magically change your connectivity for me and my whole family ? 🤥 💯"
+      },
+      {
+        "turn": 4,
+        "tweet_id": 11,
+        "created_at": "Tue Oct 31 22:10:35 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115713 This is saddening to hear. Please shoot us a DM, so that we can look into this for you. -KC"
+      }
+    ],
+    [
+      {
+        "turn": 1,
+        "tweet_id": 16,
+        "created_at": "Tue Oct 31 20:00:43 +0000 2017",
+        "author_id": "115713",
+        "inbound": true,
+        "text": "@sprintcare Since I signed up with you....Since day 1"
+      },
+      {
+        "turn": 2,
+        "tweet_id": 15,
+        "created_at": "Tue Oct 31 20:03:31 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115713 We understand your concerns and we'd like for you to please send us a Direct Message, so that we can further assist you. -AA"
+      },
+      {
+        "turn": 3,
+        "tweet_id": 12,
+        "created_at": "Tue Oct 31 22:04:47 +0000 2017",
+        "author_id": "115713",
+        "inbound": true,
+        "text": "@sprintcare You gonna magically change your connectivity for me and my whole family ? 🤥 💯"
+      },
+      {
+        "turn": 4,
+        "tweet_id": 13,
+        "created_at": "Wed Nov 01 20:48:14 +0000 2017",
+        "author_id": "sprintcare",
+        "inbound": false,
+        "text": "@115713 I would really like to work with you to have this resolved. Kindly send us a DM. I'm here for you! -ResolutionSup SR"
+      }
+    ]
+  ],
+  "timestamps": {
+    "min_date": "2008-05-08 20:13:59",
+    "max_date": "2017-12-03 23:14:01"
+  },
+  "text_stats": {
+    "inbound_mean_len": 109.93614757813378,
+    "inbound_median_len": 109.0,
+    "inbound_max_len": 513,
+    "brand_mean_len": 118.66230039146548,
+    "brand_median_len": 120.0,
+    "brand_max_len": 343
+  },
+  "raw_inbound_samples": [
+    {
+      "author_id": "115712",
+      "text": "@sprintcare and how do you propose we do that"
+    },
+    {
+      "author_id": "115712",
+      "text": "@sprintcare I have sent several private messages and no one is responding as usual"
+    },
+    {
+      "author_id": "115712",
+      "text": "@sprintcare I did."
+    },
+    {
+      "author_id": "115712",
+      "text": "@sprintcare is the worst customer service"
+    },
+    {
+      "author_id": "115713",
+      "text": "@sprintcare You gonna magically change your connectivity for me and my whole family ? 🤥 💯"
+    }
+  ],
+  "raw_brand_samples": [
+    {
+      "author_id": "sprintcare",
+      "text": "@115712 I understand. I would like to assist you. We would need to get you into a private secured link to further assist."
+    },
+    {
+      "author_id": "sprintcare",
+      "text": "@115712 Please send us a Private Message so that we can further assist you. Just click ‘Message’ at the top of your profile."
+    },
+    {
+      "author_id": "sprintcare",
+      "text": "@115712 Can you please send us a private message, so that I can gain further details about your account?"
+    },
+    {
+      "author_id": "sprintcare",
+      "text": "@115713 This is saddening to hear. Please shoot us a DM, so that we can look into this for you. -KC"
+    },
+    {
+      "author_id": "sprintcare",
+      "text": "@115713 We understand your concerns and we'd like for you to please send us a Direct Message, so that we can further assist you. -AA"
+    }
+  ],
+  "parquet_size_mb": 251.52503204345703
+}

@@ -28,6 +28,8 @@ Thumbs.db
 archive/
 data/raw/*
 !data/raw/.gitkeep
+*.parquet
+scratch/
 
 # Generated results
 results/*
