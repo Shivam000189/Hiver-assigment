@@ -1,0 +1,1287 @@
+{
+  "total_raw": 106646,
+  "unique_corpus": 102551,
+  "exact_duplicates_removed": 1823,
+  "total_dedup_removed": 4095,
+  "k_results": [
+    {
+      "k": 8,
+      "silhouette": 0.0072,
+      "min_cluster_pct": 5.17,
+      "cluster_sizes": {
+        "0": 32,
+        "1": 140,
+        "2": 99,
+        "3": 62,
+        "4": 103,
+        "5": 31,
+        "6": 62,
+        "7": 71
+      }
+    },
+    {
+      "k": 9,
+      "silhouette": 0.0091,
+      "min_cluster_pct": 5.83,
+      "cluster_sizes": {
+        "0": 44,
+        "1": 38,
+        "2": 51,
+        "3": 89,
+        "4": 74,
+        "5": 97,
+        "6": 130,
+        "7": 42,
+        "8": 35
+      }
+    },
+    {
+      "k": 10,
+      "silhouette": 0.009,
+      "min_cluster_pct": 5.83,
+      "cluster_sizes": {
+        "0": 48,
+        "1": 52,
+        "2": 65,
+        "3": 35,
+        "4": 68,
+        "5": 55,
+        "6": 67,
+        "7": 67,
+        "8": 102,
+        "9": 41
+      }
+    },
+    {
+      "k": 11,
+      "silhouette": 0.0095,
+      "min_cluster_pct": 2.83,
+      "cluster_sizes": {
+        "0": 57,
+        "1": 41,
+        "2": 82,
+        "3": 39,
+        "4": 64,
+        "5": 35,
+        "6": 17,
+        "7": 89,
+        "8": 45,
+        "9": 48,
+        "10": 83
+      }
+    },
+    {
+      "k": 12,
+      "silhouette": 0.0082,
+      "min_cluster_pct": 4.17,
+      "cluster_sizes": {
+        "0": 49,
+        "1": 68,
+        "2": 46,
+        "3": 59,
+        "4": 68,
+        "5": 27,
+        "6": 44,
+        "7": 59,
+        "8": 56,
+        "9": 35,
+        "10": 25,
+        "11": 64
+      }
+    }
+  ],
+  "chosen_k": 10,
+  "chosen_silhouette": 0.009,
+  "cluster_top_tweets": {
+    "0": [
+      {
+        "rank": 1,
+        "tweet_id": 951891,
+        "text": "@AppleSupport #touchdesease my iPhone 8 stooped responding !!!!!!!",
+        "distance": 0.8960905473888776
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1505540,
+        "text": "@469413 @AppleSupport Battery life is horrible!!! My iPhone battery decreases 1% every 30 seconds !!!!!!!!!!! What the hell.  @AppleSupport",
+        "distance": 0.9130961184338603
+      },
+      {
+        "rank": 3,
+        "tweet_id": 84215,
+        "text": "Well guys ... i dropped my iPhone .. my iPhone w/ a case on it .. my iPhone that’s supposedly shatter proof .. my iPhone 8 Plus That now has a cracked screen .. any explanations @115858 🤦🏽‍♀️🤦🏽‍♀️",
+        "distance": 0.9356377595965201
+      },
+      {
+        "rank": 4,
+        "tweet_id": 81988,
+        "text": "Okay but why has my iPhone 6 battery been dying 500x faster since installing IOS11?? 🙃 @AppleSupport",
+        "distance": 0.9358129851155802
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2029484,
+        "text": "@AppleSupport Gave **",
+        "distance": 0.9369268942046141
+      },
+      {
+        "rank": 6,
+        "tweet_id": 1271108,
+        "text": "Şarj hemen bitiyor bu sorun çözülmez ise samsug almam gerekecek @AppleSupport",
+        "distance": 0.9369268942046141
+      },
+      {
+        "rank": 7,
+        "tweet_id": 1834749,
+        "text": "@AppleSupport battery on my iPhone 7 has been draining super fast since latest 11.0.3 update. What happened?! And how do I fix!",
+        "distance": 0.9371190943509078
+      },
+      {
+        "rank": 8,
+        "tweet_id": 627920,
+        "text": "Wish I didn’t update my iPhone it’s so fucked now @AppleSupport",
+        "distance": 0.9454700424649297
+      },
+      {
+        "rank": 9,
+        "tweet_id": 345693,
+        "text": "Latest @115858 software update drains my iPhone 6 battery. Frustrating! #plannedobsolescence?",
+        "distance": 0.9476737304083925
+      },
+      {
+        "rank": 10,
+        "tweet_id": 2095981,
+        "text": "@AppleSupport the latest update stinks, it kills battery life. I don’t use it at work yet it drains 20-30% of my battery during that period.",
+        "distance": 0.9482226336944021
+      },
+      {
+        "rank": 11,
+        "tweet_id": 1579841,
+        "text": "I don’t know what the purpose is in an #iPhone update that makes my battery drain from 💯 to 51% in 46 minutes. @AppleSupport #pathetic",
+        "distance": 0.9484852634411063
+      },
+      {
+        "rank": 12,
+        "tweet_id": 2734436,
+        "text": "@AppleSupport This has been happening since I got my iPhone X. It’s running 11.2.",
+        "distance": 0.9490093659600458
+      },
+      {
+        "rank": 13,
+        "tweet_id": 998063,
+        "text": "@AppleSupport my battery life is crazy don’t last a few hours since the latest update so you know when it will get sorted or how to sort it",
+        "distance": 0.951194821713608
+      },
+      {
+        "rank": 14,
+        "tweet_id": 1821952,
+        "text": "@AppleSupport Apple uk replaced the battery in my iPhone 6 at the end of August 2017. Yesterday it began expanding... https://t.co/pA1TPMd7tA",
+        "distance": 0.9527253523258946
+      },
+      {
+        "rank": 15,
+        "tweet_id": 1966573,
+        "text": "Hey @115858, it’s been many yrs that I’ve had an iPhone and this is the 1st time an iOS update kills my battery by lunch time. Fix this plz",
+        "distance": 0.9537780147669006
+      }
+    ],
+    "1": [
+      {
+        "rank": 1,
+        "tweet_id": 716499,
+        "text": "@AppleSupport iPhone 6S running iOS 11.1",
+        "distance": 0.9036823499297347
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1766667,
+        "text": "@115858 iOS 11.1 drains battery on my iPhone 7 - FIX IT",
+        "distance": 0.9122186573866459
+      },
+      {
+        "rank": 3,
+        "tweet_id": 743825,
+        "text": "@AppleSupport iOS 11.0.2 keeps crashing! 👍🏻",
+        "distance": 0.9133863567378776
+      },
+      {
+        "rank": 4,
+        "tweet_id": 537593,
+        "text": "@AppleSupport iOS 11.1.2 has left my phone unusable:",
+        "distance": 0.9201821118852553
+      },
+      {
+        "rank": 5,
+        "tweet_id": 31464,
+        "text": "Hi @AppleSupport my iPhone vibration not working after update iOS 11.0.3,mine is iPhone 6S",
+        "distance": 0.9212938724629738
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2062124,
+        "text": "Hey @AppleSupport, ios 11.0.2 drains my entire phone battery in minutes. Fix it please :)",
+        "distance": 0.9218741484100628
+      },
+      {
+        "rank": 7,
+        "tweet_id": 992089,
+        "text": "Atualizei pro iOS 11.0.3 e agora meu celular tá parecendo um ferro de passar roupa. Ajuda nós aí @AppleSupport @115858",
+        "distance": 0.9295424036625313
+      },
+      {
+        "rank": 8,
+        "tweet_id": 682070,
+        "text": "@AppleSupport After upgrading to IOS 11.1 my perfectly good battery on IPhone 6 drains before my eyes, now completely unusable!",
+        "distance": 0.9299537061494092
+      },
+      {
+        "rank": 9,
+        "tweet_id": 747797,
+        "text": "iOS 11 ruined my phone. Done with @115858 garbage",
+        "distance": 0.9302958173378278
+      },
+      {
+        "rank": 10,
+        "tweet_id": 1145102,
+        "text": "@AppleSupport IPhone 6s Plus before IOS 11 “Perfect” IPhone 6s Plus after so called update “Wrecked” Well done Apple 👏",
+        "distance": 0.931629175401576
+      },
+      {
+        "rank": 11,
+        "tweet_id": 206915,
+        "text": "@AppleSupport iOS 11 messed up my iPhone! Screens get stuck and apps don’t work right after the update 😑",
+        "distance": 0.9321943013372115
+      },
+      {
+        "rank": 12,
+        "tweet_id": 2325622,
+        "text": "@AppleSupport And I’m up to date with the latest iOS 11 installment",
+        "distance": 0.9328539094013235
+      },
+      {
+        "rank": 13,
+        "tweet_id": 1880940,
+        "text": "@AppleSupport My SE shows the artist name on the seek bar when playing a song containing tag data in the Devanagari script on iOS 11.0.3 https://t.co/sELRZlo8Cm",
+        "distance": 0.9367847958091267
+      },
+      {
+        "rank": 14,
+        "tweet_id": 1101965,
+        "text": "@AppleSupport My iPhone 8 with iOS 11.0.3 does not (often) go into hibernation mode. Display remains on. Can this be a SW or HW problem?",
+        "distance": 0.9376354938301094
+      },
+      {
+        "rank": 15,
+        "tweet_id": 9213,
+        "text": "@AppleSupport I just updated to the ios 11.1 and there isn’t any improvements in battery life!",
+        "distance": 0.9382821509655015
+      }
+    ],
+    "2": [
+      {
+        "rank": 1,
+        "tweet_id": 2731455,
+        "text": "@AppleSupport 🙏🏼 thank you",
+        "distance": 0.9278901395873372
+      },
+      {
+        "rank": 2,
+        "tweet_id": 2485854,
+        "text": "@AppleSupport Thank you for your help--I deeply appreciate it. I'll also contact my university ITS. I did find a temporary work-around: return to an older machine and reformat. Those changes are retained when I open on the system with High Sierra, but further changes are subject to same issue.",
+        "distance": 0.9415699529881442
+      },
+      {
+        "rank": 3,
+        "tweet_id": 449520,
+        "text": "@AppleSupport Thank you. It simply gives an unkwnown error has occurred.",
+        "distance": 0.9428782343882688
+      },
+      {
+        "rank": 4,
+        "tweet_id": 751761,
+        "text": "@AppleSupport Thank you for sharing the article !!",
+        "distance": 0.9433273240865965
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2837098,
+        "text": "@AppleSupport Thank you for your fast answer... I am has already reinstalled the iphone and restored  the saved old back up in icloud. if there is an error again, we will deal with it... the problem seems to be resolved. My model is: iPhone 6s Plus (MKU62CN/A) (A1687) iOS: 11.1.2 (15B202)",
+        "distance": 0.943398122099916
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2269992,
+        "text": "Hey @115858 your updates for iPhone-X breaks the others. That’s really bad for us. My iPhone 7 apps go crazy and my wife’s SE turns off itself while taking picture or video. When are you going to fix these issues?",
+        "distance": 0.9441333299266962
+      },
+      {
+        "rank": 7,
+        "tweet_id": 937440,
+        "text": "@AppleSupport 2/2 that apps in need of update or are causing phone to run slowly may not work after IOS update. This is constructive feedback for you",
+        "distance": 0.9534447611879154
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1327258,
+        "text": "@AppleSupport Thank you. That's how I did the change over, but still seem to have lost the data.",
+        "distance": 0.9538362527273667
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2573887,
+        "text": "@AppleSupport Just did update.  I’ll see how it goes, thank you!",
+        "distance": 0.9544563011299994
+      },
+      {
+        "rank": 10,
+        "tweet_id": 2045969,
+        "text": "#iOS11 is probably one of the worst software upgrades in recent memory. It makes my iPhone 6 feel like a 4. Thank you, @115858.",
+        "distance": 0.9549639452659481
+      },
+      {
+        "rank": 11,
+        "tweet_id": 1407780,
+        "text": "@AppleSupport Thank you but I think it’s bug. With all other sharing friends, any problem.",
+        "distance": 0.9552401059699631
+      },
+      {
+        "rank": 12,
+        "tweet_id": 2953754,
+        "text": "@115858 just got new headphones with the iPhone 8 and they started making a weird noise but I kept them in anyway. They just POPPED in my ear and now my ear hurts, what are you going to do about this?",
+        "distance": 0.9554232139262242
+      },
+      {
+        "rank": 13,
+        "tweet_id": 495120,
+        "text": "@AppleSupport That didn’t help. The device I’m not discovering is a Taylor Bluetooth scale. Are you aware of compatibility issues?",
+        "distance": 0.9559496234919871
+      },
+      {
+        "rank": 14,
+        "tweet_id": 2117284,
+        "text": "Dear @115858.....your letters are NOT working correctly! When you type the letter after H but before J you get I️.",
+        "distance": 0.9585086963896011
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2553975,
+        "text": "Thank you @115858 for turning my laptop and phone into cripples with latest OS updates...",
+        "distance": 0.9590191772633974
+      }
+    ],
+    "3": [
+      {
+        "rank": 1,
+        "tweet_id": 2662,
+        "text": "So why is this happening I️ I️ I️ @AppleSupport",
+        "distance": 0.8714651477092977
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1998284,
+        "text": "Dear @AppleSupport: why is this happening when typing the letter eye “I️”????",
+        "distance": 0.8947777627778914
+      },
+      {
+        "rank": 3,
+        "tweet_id": 1772195,
+        "text": "@AppleSupport why is my phone changing the letter I to an A and box with a ?",
+        "distance": 0.9042561707164845
+      },
+      {
+        "rank": 4,
+        "tweet_id": 229215,
+        "text": "@170666 I keep losing data connection. Cellular is fine, just data. @AppleSupport why is this happening?",
+        "distance": 0.9168099351258838
+      },
+      {
+        "rank": 5,
+        "tweet_id": 1541116,
+        "text": "My keyboard is messing up. Why is this happening? I️ updated my phone and everything @AppleSupport",
+        "distance": 0.9188642177250231
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2468908,
+        "text": "@115858 why is the pronoun “i” broken",
+        "distance": 0.9213250589820816
+      },
+      {
+        "rank": 7,
+        "tweet_id": 1982619,
+        "text": "@AppleSupport why does this keep happening?!? All the random capital A’s and boxed question marks?! Getting to be annoying. https://t.co/J1orpuv7QT",
+        "distance": 0.9311555748073541
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1159177,
+        "text": "@AppleSupport why is the ios11 so buggy and battery draining in the iphone 7+??????? Its annoying!!",
+        "distance": 0.9349184028033375
+      },
+      {
+        "rank": 9,
+        "tweet_id": 1529986,
+        "text": "why can’t I️ type the letter “I” after this update @115858",
+        "distance": 0.935463521254265
+      },
+      {
+        "rank": 10,
+        "tweet_id": 1164641,
+        "text": "Hey @AppleSupport why are podcasts unsubscribing themselves? This update is hot garbage.",
+        "distance": 0.9415931752411919
+      },
+      {
+        "rank": 11,
+        "tweet_id": 1585369,
+        "text": "@AppleSupport Why is @254033 podcast from 11/3/17 with @27451 temporarily unavailable?",
+        "distance": 0.9421869884800956
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1765961,
+        "text": "@115858 why does the new update not recognize the letter i when it’s uppercase? It’s really annoying.",
+        "distance": 0.9431964431756061
+      },
+      {
+        "rank": 13,
+        "tweet_id": 2293115,
+        "text": "@AppleSupport I have done everything to try and fix this, why does this keep happening? https://t.co/dYnaOdPesZ",
+        "distance": 0.9467442192201933
+      },
+      {
+        "rank": 14,
+        "tweet_id": 1674043,
+        "text": "@AppleSupport What the hell is this weird ass bug? I️ can’t type the letter I️!!!!",
+        "distance": 0.9476277057935698
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2439758,
+        "text": "@115858 why can’t i make a Genius Bar reservation online? This is annoying",
+        "distance": 0.9495169601017954
+      }
+    ],
+    "4": [
+      {
+        "rank": 1,
+        "tweet_id": 208926,
+        "text": "Ummm... @AppleSupport why is my phone downloading auto updates for apps when WiFi is off???? iPhone 6s Plus. https://t.co/QIfDupFPrq",
+        "distance": 0.9237312660939891
+      },
+      {
+        "rank": 2,
+        "tweet_id": 2043555,
+        "text": "@AppleSupport why does FaceTime keep freezing my phone and slowing everything down with iOS 11",
+        "distance": 0.9238775471997033
+      },
+      {
+        "rank": 3,
+        "tweet_id": 1037077,
+        "text": "@AppleSupport why the fuck my phone keep freezing?!!!",
+        "distance": 0.9264697320604773
+      },
+      {
+        "rank": 4,
+        "tweet_id": 2892084,
+        "text": "@115858 please tell me why somehow after using my phone with battery saver on, bluetooth off, brightness all the way down, and all my apps closed, my phone still has gone from 100% to 82% in 10 minutes",
+        "distance": 0.9276189665915552
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2639642,
+        "text": "Hey @AppleSupport why does my phone keep on freezing, lagging and wont fully load apps\nWasn’t doing this before the update just saying 🙄",
+        "distance": 0.9340468149881939
+      },
+      {
+        "rank": 6,
+        "tweet_id": 1784621,
+        "text": "@AppleSupport why does my phone keep getting set to the wrong Time Zone. It should Pacific Time https://t.co/aqkfbv3FNp",
+        "distance": 0.9383117958366939
+      },
+      {
+        "rank": 7,
+        "tweet_id": 1905441,
+        "text": "My phone keeps freezing and dies at 4% like the iPhone 4 so wassup @AppleSupport",
+        "distance": 0.9402282099018985
+      },
+      {
+        "rank": 8,
+        "tweet_id": 717573,
+        "text": "@AppleSupport I hate the new update it keeps freezing my phone wassup with that ?",
+        "distance": 0.9430537200098188
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2020779,
+        "text": "@115858 y’all update fucking up my phone",
+        "distance": 0.9443263913783453
+      },
+      {
+        "rank": 10,
+        "tweet_id": 592221,
+        "text": "@AppleSupport my phone keeps restarting itself and it doesn't turn all the way off it just gets rid of whatever I was doing and it only happened every like hour or so but now it's happening every like 3-4 minutes and I can barely even use my phone??",
+        "distance": 0.9471880708632043
+      },
+      {
+        "rank": 11,
+        "tweet_id": 1929539,
+        "text": "@AppleSupport this new update for iPhone iOS 11.0.3 is god awful everything on my phone freezes now apps don’t appear properly either #shit",
+        "distance": 0.9482348090329482
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1840675,
+        "text": "This update fucked my phone up! It keeps freezing &amp; calling random people. @115858 keep playing I’ll get a flip phone.",
+        "distance": 0.948791271277382
+      },
+      {
+        "rank": 13,
+        "tweet_id": 177821,
+        "text": "Why does my iPhone 7 Plus keep freezing? @AppleSupport",
+        "distance": 0.9489570489967677
+      },
+      {
+        "rank": 14,
+        "tweet_id": 1924564,
+        "text": "My phone is going to shit and it’s pretty depressing. Thanks @115858.",
+        "distance": 0.9491777478893176
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2406608,
+        "text": "@115858 how have a been awake for an hour and my phone is down 20% battery??? When will the new update stop killin me like this???????",
+        "distance": 0.9496040280371958
+      }
+    ],
+    "5": [
+      {
+        "rank": 1,
+        "tweet_id": 2015359,
+        "text": "@115858 fix this shit “ I️ “",
+        "distance": 0.8232619476859802
+      },
+      {
+        "rank": 2,
+        "tweet_id": 2281159,
+        "text": "@115858 FIX THIS I️ SHIT",
+        "distance": 0.8232619476859802
+      },
+      {
+        "rank": 3,
+        "tweet_id": 1575014,
+        "text": "@115858 Fix the i’s. This shit annoying.",
+        "distance": 0.8543244808543243
+      },
+      {
+        "rank": 4,
+        "tweet_id": 2445220,
+        "text": "I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ fix this shit @AppleSupport I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️ I️",
+        "distance": 0.881222446778934
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2148144,
+        "text": "@115858 FIX THE I️ GLITCH",
+        "distance": 0.8938178053532173
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2109830,
+        "text": "@115858 @AppleSupport fix this “I️” issue now!!!",
+        "distance": 0.9160851357744747
+      },
+      {
+        "rank": 7,
+        "tweet_id": 1699827,
+        "text": "So @AppleSupport  when are y’all going to fix this“I️ “? 🤔",
+        "distance": 0.9200290334427705
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1459836,
+        "text": "Honestly, @115858, fix this shit cause it’s been about 18 hours and I’m annoyed with it. https://t.co/LQKnrdI3tU",
+        "distance": 0.9210093712345144
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2308014,
+        "text": "@115858 please fix this “a ? Box” shit cuz it’s ugly to look at",
+        "distance": 0.9264888664388656
+      },
+      {
+        "rank": 10,
+        "tweet_id": 1752388,
+        "text": "When the heck is @115858 going to fix this glitch with the letter, “I” (I️) and the word, “it” (I️t)?!?!\nI KNOW YOU’VE NOTICED! 🙄 #fb",
+        "distance": 0.9272455779885113
+      },
+      {
+        "rank": 11,
+        "tweet_id": 2106397,
+        "text": "Ok @115858 \nCut the 💩\nFix this foolishness with “I️”",
+        "distance": 0.9293293701652829
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1647798,
+        "text": "@115858 fix these goddamn I️",
+        "distance": 0.9293825846247541
+      },
+      {
+        "rank": 13,
+        "tweet_id": 2485813,
+        "text": "Dear, @115858 \n\nY’all really got me fucked up. A whole update and i still can’t see the letter I. I ain’t pay all this damn money for a phone to look at a damn box 😐\n\nFIX THIS SHIT 🤬",
+        "distance": 0.9304596968603134
+      },
+      {
+        "rank": 14,
+        "tweet_id": 1762282,
+        "text": "Arite sooo is  @115858 gonna fix this whole question mark issue orrrrrr",
+        "distance": 0.9328125091880087
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2286816,
+        "text": "Okay but actually. When is @115858 going to fix this “I️” situation?",
+        "distance": 0.934833865118589
+      }
+    ],
+    "6": [
+      {
+        "rank": 1,
+        "tweet_id": 446496,
+        "text": "@AppleSupport hi there any idea how I can get a duplicate copy of my work request sheet for recent work carried out in my MacBook - lost original",
+        "distance": 0.9204723822749996
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1594999,
+        "text": "@AppleSupport How can i use the reachability for my iPhone X like this one, it doesn’t work! https://t.co/shT5KhqkNm",
+        "distance": 0.9416860582516132
+      },
+      {
+        "rank": 3,
+        "tweet_id": 245259,
+        "text": "@AppleSupport I can no longer view in landscape. I can’t figure out how to fix that.",
+        "distance": 0.9452632582495352
+      },
+      {
+        "rank": 4,
+        "tweet_id": 699586,
+        "text": "@AppleSupport Hi, UPS-Mexico delivered my iPhone X in another address by mistake. What can I do?",
+        "distance": 0.9464426590994187
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2130236,
+        "text": "@AppleSupport Hi, I downloaded a few text tones from the App Store, but I can’t seem to find them on my phone to actually set them as my text tone. Can you help?",
+        "distance": 0.9488078874337744
+      },
+      {
+        "rank": 6,
+        "tweet_id": 1311522,
+        "text": "@AppleSupport \nHi, I can’t access my photo gallery from any App. I’ve iOS 11.0.2 😤",
+        "distance": 0.9534328744928624
+      },
+      {
+        "rank": 7,
+        "tweet_id": 665791,
+        "text": "@AppleSupport Ever since the 11.1.1 update I keep receiving this message every time I get a notification or message of any sort on my iPhone. Very irritating, will there be another update to stop it or can I turn it off? https://t.co/xPiQwJulWP",
+        "distance": 0.9559730409544954
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1408195,
+        "text": "@AppleSupport Hi if I buy a refurbished iPhone in USA when I'm on my holiday, will the warranty be valid in the UK? Thanks",
+        "distance": 0.9573198823154011
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2114784,
+        "text": "@AppleSupport Hi, I'm not able to update my apps. Why payment option is been de coined? Please help.",
+        "distance": 0.9584086771718829
+      },
+      {
+        "rank": 10,
+        "tweet_id": 937411,
+        "text": "@342218 @115858 And by the way, six of my apps (from the App Store) no longer work because this new iOS has decided they're no longer compatible.",
+        "distance": 0.9590169386177799
+      },
+      {
+        "rank": 11,
+        "tweet_id": 320918,
+        "text": "@AppleSupport iPhone 6\nI can use the navigation in my MBP",
+        "distance": 0.960048533056277
+      },
+      {
+        "rank": 12,
+        "tweet_id": 612978,
+        "text": "@AppleSupport This didnt work for my iPhone X. Any other suggestions?",
+        "distance": 0.9609296125939198
+      },
+      {
+        "rank": 13,
+        "tweet_id": 1961429,
+        "text": "@AppleSupport the music on my iPhone keeps pausing whilst I’m driving in my car it’s via Bluetooth. It’s only happened since the update.",
+        "distance": 0.961215826452192
+      },
+      {
+        "rank": 14,
+        "tweet_id": 965352,
+        "text": "@AppleSupport Ok so once I can get in to the tv app it’s fine.  It I have to be connected to the store to get it. Can I change that?",
+        "distance": 0.9614558565076937
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2427265,
+        "text": "hey @AppleSupport can u teach me how to fix my macbook pro fan? it keeps produce noise",
+        "distance": 0.9617888199451375
+      }
+    ],
+    "7": [
+      {
+        "rank": 1,
+        "tweet_id": 1748755,
+        "text": "@AppleSupport  This is a big spoof I complain about Apple https://t.co/76QcpTAyTh",
+        "distance": 0.8835631488806291
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1083907,
+        "text": "@AppleSupport @115858 ??? What is this? Is this a trap? https://t.co/XzG6zNyc9y",
+        "distance": 0.8869290890041208
+      },
+      {
+        "rank": 3,
+        "tweet_id": 2128266,
+        "text": "@AppleSupport is there a plan to fix this? https://t.co/RfMparTOtH",
+        "distance": 0.891102253280384
+      },
+      {
+        "rank": 4,
+        "tweet_id": 826127,
+        "text": "@AppleSupport this is confusing. My personal best is 0 and have burned 2000+ but still no achievement? https://t.co/gAF0RFrYjx",
+        "distance": 0.8983910001663395
+      },
+      {
+        "rank": 5,
+        "tweet_id": 1714780,
+        "text": "@115858 @AppleSupport wtf is this glitch https://t.co/eDvyW2Okvq",
+        "distance": 0.9015546160595135
+      },
+      {
+        "rank": 6,
+        "tweet_id": 853177,
+        "text": "@AppleSupport \nI received this suspicious e-mail. Is this an phishing email? https://t.co/rsAdOn7LwS",
+        "distance": 0.9138361940975169
+      },
+      {
+        "rank": 7,
+        "tweet_id": 165796,
+        "text": "@AppleSupport can you help on this ??  This is the 3rd time in 2 months. https://t.co/jXdsdmmvbK",
+        "distance": 0.9155594742648134
+      },
+      {
+        "rank": 8,
+        "tweet_id": 2015679,
+        "text": "@AppleSupport @115858 please could I have a contact email address to submit a complaint to https://t.co/AJwzV4KUJ0",
+        "distance": 0.9183135918326962
+      },
+      {
+        "rank": 9,
+        "tweet_id": 646876,
+        "text": "How can this happen 🙄I’m fucked. @115858 #magsafe #apple #macbook https://t.co/ZmqQJymW0R",
+        "distance": 0.9216058432328996
+      },
+      {
+        "rank": 10,
+        "tweet_id": 2241236,
+        "text": "@AppleSupport @115858 gotta love this new iPhone X camera... #iphonexcamera https://t.co/xgnCgmmFdO",
+        "distance": 0.9225433924937062
+      },
+      {
+        "rank": 11,
+        "tweet_id": 107368,
+        "text": "@AppleSupport my app suddenly is not working https://t.co/VkbBZsH8bW",
+        "distance": 0.9253244792953005
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1834681,
+        "text": "@115858 My IPhone7plus is updated but randomly restarts? Is there a bug fix for this? #Help #SocialMedia https://t.co/FjurvtAln7",
+        "distance": 0.9256140385400601
+      },
+      {
+        "rank": 13,
+        "tweet_id": 1761069,
+        "text": ".@115858 #iPhone7 #iOS #iOS11 #bug https://t.co/Q80eVmgIEc",
+        "distance": 0.9272767946666004
+      },
+      {
+        "rank": 14,
+        "tweet_id": 399932,
+        "text": "@AppleSupport same as everyone here: https://t.co/nCgJOvue0E",
+        "distance": 0.9283743414943689
+      },
+      {
+        "rank": 15,
+        "tweet_id": 2454610,
+        "text": "Shit you not, I went down stairs to get food after plugging my phone in n I came back up to find it smoking from the charging port.🔥 I pulled the charger out and this is what it looked like.. SOS @115858 @AppleSupport https://t.co/8QuKANhOW7",
+        "distance": 0.9293003254807558
+      }
+    ],
+    "8": [
+      {
+        "rank": 1,
+        "tweet_id": 1621190,
+        "text": "@AppleSupport My driveway shows as a road in Maps. I’ve reported the issue repeatedly in Maps and it hasn’t been fixed. How do I escalate?",
+        "distance": 0.9376016960946567
+      },
+      {
+        "rank": 2,
+        "tweet_id": 585897,
+        "text": "@AppleSupport dears am really frustrated due to the service provided by your team in UAE, 2nd time am facing issue with my device and they refusing to replace the device and it's still under warranty. this is really unacceptable.I need an immediate action",
+        "distance": 0.9564961773018907
+      },
+      {
+        "rank": 3,
+        "tweet_id": 2739488,
+        "text": "@AppleSupport I wont DM you and take the situation in private and not let the ppl know that the issue wasnt actually resolved. The support team asked me to go and buy a USB-C converter/cable and use it to solve the issue. Very practical of you @115858.",
+        "distance": 0.957143271993576
+      },
+      {
+        "rank": 4,
+        "tweet_id": 950408,
+        "text": "@AppleSupport Yes, I’ve tried both to see if it made a difference and it didn’t.",
+        "distance": 0.9593990612068963
+      },
+      {
+        "rank": 5,
+        "tweet_id": 1233600,
+        "text": "@AppleSupport The keyboard got struck and not moving. Only after restarting the issue solved but again occurs often.",
+        "distance": 0.9603516959461494
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2692836,
+        "text": "@115858 \n@116333 \n\nSo just to be clear, my phone got bricked by a flaw in one of your software updates (11.1.1 to be more precise) and am the one who is supposed to pay around $300 to replace it?",
+        "distance": 0.9618314451185433
+      },
+      {
+        "rank": 7,
+        "tweet_id": 300643,
+        "text": "@115858 @AppleSupport The back button is kinda feeling sticky and not working well as before.",
+        "distance": 0.9624669237045598
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1714167,
+        "text": "So who broke the i and the IT ???? @115858",
+        "distance": 0.9625073756796771
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2113953,
+        "text": "Ok @115858 when is the update? Cuz I’m really over this. Yes, I️ did the keyboard settings already and it works only for text and not apps🙄",
+        "distance": 0.9625780847857078
+      },
+      {
+        "rank": 10,
+        "tweet_id": 1702992,
+        "text": "@AppleSupport That is NOT a fix, it still happens depending on where the I️ is in my sentence",
+        "distance": 0.9639943786409083
+      },
+      {
+        "rank": 11,
+        "tweet_id": 2770827,
+        "text": "@AppleSupport I see it happening after I’ve been using it. It happens usually with Twitter and Snapchat &amp; I am on iOS 11.2.",
+        "distance": 0.9644861930905508
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1860571,
+        "text": "@AppleSupport Yes, weve tried on and off multiple times. Has only really occured since the update that was done to the device prior to the issue occuring",
+        "distance": 0.9653132010038196
+      },
+      {
+        "rank": 13,
+        "tweet_id": 2412983,
+        "text": "@AppleSupport I think it’s mainly when Im outside side and on cellular, but all the music and audio I listen to downloaded ans on my phone and I’m not streaming it over cellular. It effects all audio apps including iTunes, Spotify and apple podcast app.",
+        "distance": 0.9653189327648568
+      },
+      {
+        "rank": 14,
+        "tweet_id": 543694,
+        "text": "- @115858 y'all need some help over there? You fixed the \"i\" issue not now you're autocorrecting \"it\" to \"I.T.\" A bit ironic don't you think?",
+        "distance": 0.9661026427657635
+      },
+      {
+        "rank": 15,
+        "tweet_id": 397539,
+        "text": "@AppleSupport Yeah i can do that.But i am repeatedly getting this issue.Pissed off with Apple. It's annoying getting the devices for huge amount and fail",
+        "distance": 0.9665363306056842
+      }
+    ],
+    "9": [
+      {
+        "rank": 1,
+        "tweet_id": 717611,
+        "text": "@AppleSupport I have seen that lots of other people having the same problems! Thanks in advance.",
+        "distance": 0.9061042556650192
+      },
+      {
+        "rank": 2,
+        "tweet_id": 1243840,
+        "text": "@AppleSupport I have a problem with my battery on iOS 11. I know more people have the same problem. Will you repair in the next rework? When?",
+        "distance": 0.9253095254087826
+      },
+      {
+        "rank": 3,
+        "tweet_id": 340198,
+        "text": "@AppleSupport @197246 It’s a few days I have the same problem, how Can I solve??",
+        "distance": 0.9280632242434969
+      },
+      {
+        "rank": 4,
+        "tweet_id": 1973635,
+        "text": "@584497 @AppleSupport I lhave the same issues too",
+        "distance": 0.9355737819104146
+      },
+      {
+        "rank": 5,
+        "tweet_id": 2045071,
+        "text": "It’s insane that @115858 devices mess up with a new release. I paid $60 to get my camera fixed less than a month ago and now I’m having the same problems. Seriously!",
+        "distance": 0.937859266817777
+      },
+      {
+        "rank": 6,
+        "tweet_id": 2146651,
+        "text": "@AppleSupport I have iPhone X with iOS 11.1 I restored my backup from iPhone 7 Plus It works for a few hours to a day then crashes &amp;get the phone on the apple logo and it gets hot till it completely discharges. I visited the service center &amp; many people with ios 11 the same issue",
+        "distance": 0.9410523490727539
+      },
+      {
+        "rank": 7,
+        "tweet_id": 1689333,
+        "text": "@AppleSupport I️ did that a couple times but it keep going back to doing the same thing",
+        "distance": 0.9430256633425494
+      },
+      {
+        "rank": 8,
+        "tweet_id": 1776304,
+        "text": "@115858 @AppleSupport I am having a problem and find others with the same. Typing \"I\" on my iphone changes to A and a symbol. Started with latest iOS upgrade. #HELP!",
+        "distance": 0.9444248716458453
+      },
+      {
+        "rank": 9,
+        "tweet_id": 2117209,
+        "text": "@622781 @116333 @115858 I have the same issue.\nI also have no battery life. Fully charged, I get less than one full hour of use.",
+        "distance": 0.9445124662910905
+      },
+      {
+        "rank": 10,
+        "tweet_id": 2731422,
+        "text": "@AppleSupport Thanks i also have another question. For my iPhone 6 i have a password for it and i don’t remember it. Is there a way to save everything that is on it at the moment and back it up on a laptop?",
+        "distance": 0.9505113916584707
+      },
+      {
+        "rank": 11,
+        "tweet_id": 883986,
+        "text": "@329920 @115858 Im also having the same issue .. im on ios11.0.2",
+        "distance": 0.9508003340419429
+      },
+      {
+        "rank": 12,
+        "tweet_id": 1913243,
+        "text": "@AppleSupport I have never had so many problems like I have with the iPhone 8 IT FREEZES SO MUCH WHYYY???!!!!",
+        "distance": 0.9564008220865826
+      },
+      {
+        "rank": 13,
+        "tweet_id": 2925619,
+        "text": "@AppleSupport Updated my new 2 days old ipad pro to 11.1.2. \nFaceTime quality has dropped remarkably. Person on the other side says image looks blurred, as if a glass is placed on camera. When I FaceTime using iphone X using the same wifi, there is no issue. Is this a ios bug?",
+        "distance": 0.956718107886681
+      },
+      {
+        "rank": 14,
+        "tweet_id": 335288,
+        "text": "@AppleSupport @115858 iphone 7 repeatedly freezing and randomly switching off since update?? Anyone else with the same problem??",
+        "distance": 0.9582367757503887
+      },
+      {
+        "rank": 15,
+        "tweet_id": 184434,
+        "text": "@AppleSupport I need my password resetting as I forgot it loads of times etc... it’s saying that I have to wait until a certain date. Help",
+        "distance": 0.9586442784301537
+      }
+    ]
+  },
+  "label_distribution_sample": {
+    "system_performance_freeze": 262,
+    "keyboard_autocorrect_bug": 132,
+    "battery_drain_power": 79,
+    "other": 42,
+    "audio_music_playback": 29,
+    "account_icloud_login": 16,
+    "connectivity_network": 14,
+    "billing_app_store": 13,
+    "camera_photos_media": 13
+  },
+  "label_pcts_sample": {
+    "system_performance_freeze": 43.67,
+    "keyboard_autocorrect_bug": 22.0,
+    "battery_drain_power": 13.17,
+    "other": 7.0,
+    "audio_music_playback": 4.83,
+    "account_icloud_login": 2.67,
+    "connectivity_network": 2.33,
+    "billing_app_store": 2.17,
+    "camera_photos_media": 2.17
+  },
+  "distribution_comparison": [
+    {
+      "intent": "system_performance_freeze",
+      "sample_count": 262,
+      "sample_pct": 43.67,
+      "full_count": 46876,
+      "full_pct": 45.71,
+      "ratio": 1.05
+    },
+    {
+      "intent": "keyboard_autocorrect_bug",
+      "sample_count": 132,
+      "sample_pct": 22.0,
+      "full_count": 22642,
+      "full_pct": 22.08,
+      "ratio": 1.0
+    },
+    {
+      "intent": "battery_drain_power",
+      "sample_count": 79,
+      "sample_pct": 13.17,
+      "full_count": 11366,
+      "full_pct": 11.08,
+      "ratio": 0.84
+    },
+    {
+      "intent": "other",
+      "sample_count": 42,
+      "sample_pct": 7.0,
+      "full_count": 12756,
+      "full_pct": 12.44,
+      "ratio": 1.78
+    },
+    {
+      "intent": "audio_music_playback",
+      "sample_count": 29,
+      "sample_pct": 4.83,
+      "full_count": 3970,
+      "full_pct": 3.87,
+      "ratio": 0.8
+    },
+    {
+      "intent": "account_icloud_login",
+      "sample_count": 16,
+      "sample_pct": 2.67,
+      "full_count": 1906,
+      "full_pct": 1.86,
+      "ratio": 0.7
+    },
+    {
+      "intent": "connectivity_network",
+      "sample_count": 14,
+      "sample_pct": 2.33,
+      "full_count": 1453,
+      "full_pct": 1.42,
+      "ratio": 0.61
+    },
+    {
+      "intent": "billing_app_store",
+      "sample_count": 13,
+      "sample_pct": 2.17,
+      "full_count": 981,
+      "full_pct": 0.96,
+      "ratio": 0.44
+    },
+    {
+      "intent": "camera_photos_media",
+      "sample_count": 13,
+      "sample_pct": 2.17,
+      "full_count": 601,
+      "full_pct": 0.59,
+      "ratio": 0.27
+    }
+  ],
+  "cv_macro_f1": 0.4834,
+  "cv_weighted_f1": 0.6445,
+  "classification_report": {
+    "account_icloud_login": {
+      "precision": 0.6666666666666666,
+      "recall": 0.375,
+      "f1-score": 0.48,
+      "support": 16.0
+    },
+    "audio_music_playback": {
+      "precision": 0.7692307692307693,
+      "recall": 0.3448275862068966,
+      "f1-score": 0.47619047619047616,
+      "support": 29.0
+    },
+    "battery_drain_power": {
+      "precision": 0.7936507936507936,
+      "recall": 0.6329113924050633,
+      "f1-score": 0.704225352112676,
+      "support": 79.0
+    },
+    "billing_app_store": {
+      "precision": 0.25,
+      "recall": 0.07692307692307693,
+      "f1-score": 0.11764705882352941,
+      "support": 13.0
+    },
+    "camera_photos_media": {
+      "precision": 1.0,
+      "recall": 0.15384615384615385,
+      "f1-score": 0.26666666666666666,
+      "support": 13.0
+    },
+    "connectivity_network": {
+      "precision": 1.0,
+      "recall": 0.21428571428571427,
+      "f1-score": 0.35294117647058826,
+      "support": 14.0
+    },
+    "keyboard_autocorrect_bug": {
+      "precision": 0.5725190839694656,
+      "recall": 0.5681818181818182,
+      "f1-score": 0.5703422053231939,
+      "support": 132.0
+    },
+    "other": {
+      "precision": 0.4868421052631579,
+      "recall": 0.8809523809523809,
+      "f1-score": 0.6271186440677966,
+      "support": 42.0
+    },
+    "system_performance_freeze": {
+      "precision": 0.7090301003344481,
+      "recall": 0.8091603053435115,
+      "f1-score": 0.7557932263814616,
+      "support": 262.0
+    },
+    "accuracy": 0.66,
+    "macro avg": {
+      "precision": 0.6942155021239222,
+      "recall": 0.4506764920160684,
+      "f1-score": 0.48343608955959877,
+      "support": 600.0
+    },
+    "weighted avg": {
+      "precision": 0.6795142424423654,
+      "recall": 0.66,
+      "f1-score": 0.6445042683230633,
+      "support": 600.0
+    }
+  },
+  "intent_examples": {
+    "keyboard_autocorrect_bug": [
+      "I️ don’t even have to type anything to get the #predictivetext #iosglitch @AppleSupport @34173 #apple @175600 https://t.co/p8IqzbDyD0",
+      "@115858 Fix the i’s. This shit annoying.",
+      "@AppleSupport I can’t make calls. It just keeps ending the call before it’s even rung. WTF."
+    ],
+    "system_performance_freeze": [
+      "@AppleSupport On 11.0.2. Planning to update tonight.",
+      "@AppleSupport I phone 7 with 11.0.3",
+      "@AppleSupport Tried that. No different i’m afraid"
+    ],
+    "battery_drain_power": [
+      "So... @115858 still hasnt charged me for my phone, despite confirming my order by email and phone several days ago. What up with that?",
+      "@AppleSupport My MacBook Pro just went blank and won’t turn on. It’s fully charged😫😫🙁",
+      "@AppleSupport hi Apple. I bought a new iPhone 7 yesterday! It already had iOS 11 on it. I do feel however like my battery is dropping quickly despite it being new! What do I do?"
+    ],
+    "audio_music_playback": [
+      "@515161 @AppleSupport So lame😡 me too 😡",
+      "@115858 just got new headphones with the iPhone 8 and they started making a weird noise but I kept them in anyway. They just POPPED in my ear and now my ear hurts, what are you going to do about this?",
+      "Spent $170 on @115858 AirPods at @127271 not even a month later the left one quits working. Nice to know something so expensive that doesn’t come with an extended warranty craps out so quick. @AppleSupport @138244"
+    ],
+    "connectivity_network": [
+      "@AppleSupport the music on my iPhone keeps pausing whilst I’m driving in my car it’s via Bluetooth. It’s only happened since the update.",
+      "@170666 I keep losing data connection. Cellular is fine, just data. @AppleSupport why is this happening?",
+      "Ever since the most recent iOS update my Bluetooth works about 30% as well, phone freezes and generally sucks. Please fix @115858"
+    ],
+    "camera_photos_media": [
+      "@AppleSupport my FaceTime Live Photo’s are not saving",
+      "@AppleSupport hi ever since I updated my phone to ios11 my rear camera hasn't worked properly please help",
+      "I’ve read so many great reviews for the #iPhoneX’s camera and man I am severely disappointed. I hope I just got a defective unit cause this is worse than my 7+ massively. @AppleSupport"
+    ],
+    "account_icloud_login": [
+      "@AppleSupport how can I remove a file I’ve downloaded within Files locally to my iPhone X and leave it in iCloud Drive without deleting the file entirely?",
+      "@115858 I need help with my Apple ID",
+      "@AppleSupport Oh now it wants to sign me out my fucking iCloud dude!!!!!!!! I am literallly having a BF"
+    ],
+    "billing_app_store": [
+      "Hello @AppleSupport - Why macOS Sierra no longer appears in the “my purchases” section ?",
+      "@AppleSupport Hi, I downloaded a few text tones from the App Store, but I can’t seem to find them on my phone to actually set them as my text tone. Can you help?",
+      "@AppleSupport Old Film purchasers disappeared from my account. Please help."
+    ],
+    "other": [
+      "@115858 It's saying it can't connect to the server.",
+      "@AppleSupport my app suddenly is not working https://t.co/VkbBZsH8bW",
+      "Only to break File Sharing! Sigh :-( /cc @115858 https://t.co/QGw2mX4igg"
+    ]
+  },
+  "taxonomy_dict": {
+    "keyboard_autocorrect_bug": {
+      "title": "Keyboard Glitches & Autocorrect Bugs",
+      "definition": "Customer reports abnormal keyboard behavior, specifically the infamous iOS autocorrect glitch where typing the letter 'I' produces strange symbols (e.g., 'A [?]' or 'I️'), frozen keyboards, or predictive text corruption.",
+      "distinguish_from": "Distinguish from `system_performance_freeze` (which covers general OS slowdowns/app crashes rather than specific keyboard/typing malfunctions).",
+      "typical_resolution": "AppleSupport acknowledges the known keyboard autocorrect bug, points the customer to the official workaround in Settings > General > Keyboard > Text Replacement (e.g. shortcut 'I' for 'i'), and advises updating to the latest iOS patch."
+    },
+    "system_performance_freeze": {
+      "title": "System Performance, Freezing & iOS Updates",
+      "definition": "Customer experiences device lockups, sluggish animation response, apps crashing upon opening, touch screen unresponsiveness, or unexpected restarts following a system software update.",
+      "distinguish_from": "Distinguish from `battery_drain_power` (where power loss is the primary issue) and `keyboard_autocorrect_bug` (isolated text input glitches).",
+      "typical_resolution": "AppleSupport asks for the exact iOS build version and device model, recommends performing a force restart, and requests a Direct Message (DM) to troubleshoot background processes."
+    },
+    "battery_drain_power": {
+      "title": "Battery Drain, Overheating & Power Issues",
+      "definition": "Customer complains about rapid battery percentage drop, unexpected device shutdowns at high percentages (e.g., dying at 30%), overheating while in use or charging, or failure to charge.",
+      "distinguish_from": "Distinguish from `system_performance_freeze` (general OS slowness without explicit power/battery degradation complaints).",
+      "typical_resolution": "AppleSupport prompts the user to check Battery Usage under Settings > Battery, verifies if the drain occurs on Wi-Fi or cellular, and directs the user to an automated battery diagnostic link via DM."
+    },
+    "audio_music_playback": {
+      "title": "Apple Music, Audio & Media Playback",
+      "definition": "Customer reports Apple Music playback stops, downloaded songs disappearing, headphone/adapter audio crackling, or Spotify/music app crashing during playback.",
+      "distinguish_from": "Distinguish from `connectivity_network` (Bluetooth pairing protocol failures) and `system_performance_freeze` (general app crashes unrelated to audio).",
+      "typical_resolution": "AppleSupport checks if playback errors happen across downloaded vs. streamed songs, advises toggling iCloud Music Library / Sync Library, and suggests reinstalling the Music app."
+    },
+    "connectivity_network": {
+      "title": "Wi-Fi, Bluetooth & Cellular Connectivity",
+      "definition": "Customer reports persistent Wi-Fi disconnects, failure to pair Bluetooth peripherals (AirPods, car stereo), AirDrop failures, or 'No Service' cellular data drops.",
+      "distinguish_from": "Distinguish from `audio_music_playback` (audio streaming buffer errors) and `system_performance_freeze` (system UI freezing).",
+      "typical_resolution": "AppleSupport suggests resetting Network Settings (`Settings > General > Reset > Reset Network Settings`), toggling Airplane Mode, and testing on an alternate Wi-Fi network before escalating via DM."
+    },
+    "camera_photos_media": {
+      "title": "Camera, Flashlight & Photos App Glitches",
+      "definition": "Customer encounters a black screen in the Camera app, blurry focus, flashlight disabled due to temperature warnings, or photos failing to save to Camera Roll.",
+      "distinguish_from": "Distinguish from `system_performance_freeze` (general app launch freezes) and physical hardware cracked lenses.",
+      "typical_resolution": "AppleSupport asks if the camera issue occurs across both front and rear lenses as well as in third-party apps, recommends closing all camera-related apps, and requests a DM."
+    },
+    "account_icloud_login": {
+      "title": "Apple ID, iCloud, 2FA & Account Access",
+      "definition": "Customer is locked out of their Apple ID, fails to receive two-factor authentication verification codes, encounters password reset loops, or cannot sync iCloud storage backups.",
+      "distinguish_from": "Distinguish from `billing_app_store` (which focuses on charges and refunds rather than authentication and identity security).",
+      "typical_resolution": "AppleSupport provides direct links to iforgot.apple.com, guides the user through two-factor authentication account recovery protocols, and offers account security verification guidance."
+    },
+    "billing_app_store": {
+      "title": "App Store, In-App Purchases & Subscriptions",
+      "definition": "Customer reports unexpected credit card charges from Apple, struggles to cancel active subscriptions, encounters App Store download/update verification errors, or requests a refund.",
+      "distinguish_from": "Distinguish from `account_icloud_login` (account credentials and storage tiers vs transaction billing).",
+      "typical_resolution": "AppleSupport directs the customer to reportaproblem.apple.com to inspect their purchase history, cancel active subscriptions, and submit formal refund requests."
+    },
+    "other": {
+      "title": "General Feedback, Praise & Ambiguous Inquiries",
+      "definition": "Customer sends general brand feedback, praise, emojis, complaints without actionable technical context, or brief follow-up replies.",
+      "distinguish_from": "Used exclusively when the inquiry does not fall into any of the 8 structured technical support categories.",
+      "typical_resolution": "AppleSupport provides a polite acknowledgment, asks for clarifying details regarding the issue, or directs general product suggestions to apple.com/feedback."
+    }
+  }
+}
