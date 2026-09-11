@@ -61,7 +61,7 @@ The complete golden evaluation set is committed in [`data/golden_set/`](data/gol
 ## 🤖 LLM Execution Modes
 
 ### Mode A: Offline / Cache Mode (Default — No API Key Required)
-- If `OPENAI_API_KEY` is not set, the evaluation pipeline automatically uses the **527 cached LLM responses** committed in [`results/cache/`](results/cache/) (1.23 MB).
+- If `OPENAI_API_KEY` is not set, the evaluation pipeline automatically uses the **828 cached LLM responses** committed in [`results/cache/`](results/cache/) (2.22 MB).
 - **Guarantee**: Produces exact, 100% deterministic numbers matching the final report.
 
 ### Mode B: Live LLM Mode (Optional)
