@@ -25,6 +25,7 @@ Thumbs.db
 .idea/
 
 # Large/raw datasets
+archive/
 data/raw/*
 !data/raw/.gitkeep
 
