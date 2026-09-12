@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@115858 I can't ACTIVATE MY NEW PHONE bc i need a verification code being sent to my phone that I can't get until it's activated pls help\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789182740.2269926
+}

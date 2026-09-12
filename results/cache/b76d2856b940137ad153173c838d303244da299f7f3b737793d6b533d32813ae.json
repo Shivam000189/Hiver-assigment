@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport have an issue with being locked out of my Apple ID, and I don't know why it's not working\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"severe\", \"reason\": \"High-risk severity, destructive issue, or extreme distress detected.\"}",
+  "timestamp": 1789182740.2014573
+}

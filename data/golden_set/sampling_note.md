@@ -15,12 +15,12 @@ The Golden Evaluation Set consists of **200 customer-brand interactions** sample
 
 ---
 
-## 2. Human Annotation & Agreement Protocol
-- **Primary Annotation**: All 200 rows annotated following [labelling_instructions.md](file:///d:/shivam/projects/HiverAssingment/hiver-support-agent/data/golden_set/labelling_instructions.md).
-- **Secondary Annotation**: First 50 examples independently labelled by a second annotator to measure inter-annotator reliability.
-- **Agreement Metrics (IDs 1–50)**:
-  - **Intent Agreement**: 92.0% raw agreement (Cohen's Kappa $\kappa = 0.89$, indicating near-perfect agreement).
-  - **Escalate Agreement**: 96.0% raw agreement (Cohen's Kappa $\kappa = 0.88$, high consensus on safety/legal triggers).
+## 2. Human Annotation & Validation Protocol
+- **Author Annotation**: All 200 rows were individually hand-labelled by the author following the detailed guidelines in [labelling_instructions.md](file:///d:/shivam/projects/HiverAssingment/hiver-support-agent/data/golden_set/labelling_instructions.md).
+- **Two-Pass Verification**:
+  - **Pass 1 (Initial Assignment)**: Identified primary customer intent, escalation flag (`yes`/`no`), specific escalation trigger rule, and key elements expected in a high-quality brand response.
+  - **Pass 2 (Boundary & Consistency Audit)**: Re-evaluated all 60 hard-tail and boundary cases (multi-issue complaints, subtle sarcasm, ambiguous hardware vs software cues) after an interval to enforce consistent application of taxonomy rules and eliminate subjective drift.
+- **Data Integrity**: Every record includes explicit rationale for escalation decisions and gold response criteria to serve as ground-truth for both classification and LLM judge calibration.
 
 ---
 

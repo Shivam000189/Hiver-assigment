@@ -66,6 +66,14 @@ from src.config import (
 )
 from src.baselines import TrivialBaseline, SimpleBaseline, FullAgentSystem
 from src.judge import evaluate_reply, CRITERIA
+from src.sla_gate import (
+    route_message,
+    MIN_AUTO_SEND_SIMILARITY,
+    MAX_AUTO_SEND_SLA_RISK,
+    ROUTING_TIER_AUTO_SEND,
+    ROUTING_TIER_DRAFT_FOR_REVIEW,
+    ROUTING_TIER_ESCALATE
+)
 from src.intents import TAXONOMY_INTENTS
 from src.llm import get_llm_metrics
 
@@ -238,6 +246,19 @@ def main():
             # Run LLM-as-a-Judge Evaluation (Version 1)
             scores_v1 = evaluate_reply(c_text, pred_draft, ret_replies, version="v1")
 
+            # SLA Gate 3-way routing
+            sla_info = pred.get("sla_routing")
+            if not sla_info:
+                top_sim = float(pred.get("retrieval_similarity", 0.0))
+                sla_info = route_message(
+                    customer_text=c_text,
+                    intent=pred_intent,
+                    is_escalated=pred_esc,
+                    escalate_reason=pred_esc_reason,
+                    retrieval_similarity=top_sim,
+                    intent_confidence=pred_conf
+                )
+
             record = {
                 "example_id": g_id,
                 "golden_id": g_id,
@@ -256,6 +277,10 @@ def main():
                 "gold_escalate_reason": g_esc_reason,
                 "predicted_escalate_reason": pred_esc_reason,
                 "pred_escalate_reason": pred_esc_reason,
+                "routing_tier": sla_info.get("routing_tier", ROUTING_TIER_DRAFT_FOR_REVIEW),
+                "sla_risk_score": sla_info.get("sla_risk_score", 0.50),
+                "routing_reason": sla_info.get("routing_reason", ""),
+                "retrieval_similarity": sla_info.get("retrieval_similarity", 0.0),
                 "sample_layer": layer,
                 "draft": pred_draft,
                 "draft_reply": pred_draft,
@@ -560,6 +585,56 @@ def main():
         r2_rho = round2_results[crit]['spearman_rho']
         c_name = crit.replace('_', ' ').title()
         print(f"  * {c_name:<15}: Round 1 rho = {r1_rho:.4f}  -->  Round 2 (Calibrated) rho = {r2_rho:.4f}")
+
+    # 7. SLA-Aware Confidence Gate 3-Way Routing Metrics
+    fa_records = [r for r in all_runs_records if r["system"] == "FullAgent"]
+    total_fa = len(fa_records)
+    tier_counts = {ROUTING_TIER_AUTO_SEND: 0, ROUTING_TIER_DRAFT_FOR_REVIEW: 0, ROUTING_TIER_ESCALATE: 0}
+    for r in fa_records:
+        tier = r.get("routing_tier", ROUTING_TIER_DRAFT_FOR_REVIEW)
+        tier_counts[tier] = tier_counts.get(tier, 0) + 1
+
+    routing_dist = {
+        tier: {
+            "count": tier_counts[tier],
+            "percentage": round(tier_counts[tier] / total_fa * 100, 2) if total_fa > 0 else 0.0
+        }
+        for tier in [ROUTING_TIER_AUTO_SEND, ROUTING_TIER_DRAFT_FOR_REVIEW, ROUTING_TIER_ESCALATE]
+    }
+
+    # DRAFT_FOR_REVIEW quality issue precision
+    review_items = [r for r in fa_records if r.get("routing_tier") == ROUTING_TIER_DRAFT_FOR_REVIEW]
+    quality_issue_items = [
+        r for r in review_items
+        if any(r.get(f"judge_{c}", 5) < 5 for c in CRITERIA)
+    ]
+    strict_quality_issue_items = [
+        r for r in review_items
+        if any(r.get(f"judge_{c}", 5) <= 3 for c in CRITERIA)
+    ]
+    draft_review_prec = round(len(quality_issue_items) / len(review_items), 4) if review_items else 0.0
+
+    sla_gate_metrics = {
+        "total_evaluated": total_fa,
+        "routing_distribution": routing_dist,
+        "draft_for_review_precision": draft_review_prec,
+        "draft_for_review_quality_issue_count": len(quality_issue_items),
+        "draft_for_review_total": len(review_items),
+        "draft_for_review_strict_issue_count": len(strict_quality_issue_items),
+        "thresholds": {
+            "min_auto_send_similarity": MIN_AUTO_SEND_SIMILARITY,
+            "max_auto_send_sla_risk": MAX_AUTO_SEND_SLA_RISK
+        }
+    }
+    with open(out_dir / "sla_gate_metrics.json", "w", encoding="utf-8") as f:
+        json.dump(sla_gate_metrics, f, indent=2)
+
+    print("\n[SLA-Aware Confidence Gate 3-Way Routing (N=80 Locked TEST)]")
+    print("-" * 80)
+    print(f"  * AUTO_SEND        : {routing_dist['AUTO_SEND']['count']:>2} ({routing_dist['AUTO_SEND']['percentage']:>5.1f}%) -> Instant zero-touch dispatch")
+    print(f"  * DRAFT_FOR_REVIEW : {routing_dist['DRAFT_FOR_REVIEW']['count']:>2} ({routing_dist['DRAFT_FOR_REVIEW']['percentage']:>5.1f}%) -> AI QA Queue (Precision: {draft_review_prec*100:.1f}%)")
+    print(f"  * ESCALATE         : {routing_dist['ESCALATE']['count']:>2} ({routing_dist['ESCALATE']['percentage']:>5.1f}%) -> Tier-2 Human Specialist Queue")
+    print("-" * 80)
 
     # 7. Generate Headline Summary Table (Programmatic Markdown)
     summary_md = f"""# Benchmark Summary Table: AppleSupport AI Agent Evaluation

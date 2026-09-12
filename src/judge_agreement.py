@@ -627,12 +627,12 @@ To mitigate these systematic biases, **one targeted prompt calibration iteration
 
 ## 7. Interpretation & Limitations
 - **Agreement Improvements**:
-  - **Groundedness**: Rank correlation rose from $\\rho = 0.1057$ to $\\mathbf{{\\rho = 0.4344}}$ ($+\\mathbf{{0.3287}}$), with large disagreements cut from 6.7% to 3.3%.
-  - **Completeness**: Solved the zero-variance bias (which made v1 undefined), achieving $\\mathbf{{\\rho = 0.5979}}$ and eliminating all large disagreements (10.0% $\\rightarrow$ 0.0%).
-  - **Tone**: Improved substantially from $\\rho = 0.0566$ to $\\mathbf{{\\rho = 0.6225}}$ ($+\\mathbf{{0.5659}}$), eliminating large disagreements (11.7% $\\rightarrow$ 0.0%).
+  - **Groundedness**: Rank correlation shifted from $\\rho = {_fmt_rho(metrics_v1['groundedness']['spearman_rho'])}$ to $\\mathbf{{\\rho = {_fmt_rho(metrics_v2['groundedness']['spearman_rho'])}}}$ (${_fmt_delta(metrics_v2['groundedness']['spearman_rho'], metrics_v1['groundedness']['spearman_rho'])})$, with large disagreements at **{metrics_v2['groundedness']['large_disagreement_pct_ge_2']:.1f}%**.
+  - **Completeness**: Correlation reached $\\mathbf{{\\rho = {_fmt_rho(metrics_v2['completeness']['spearman_rho'])}}}$ with large disagreements at **{metrics_v2['completeness']['large_disagreement_pct_ge_2']:.1f}%**.
+  - **Tone**: Rank correlation shifted from $\\rho = {_fmt_rho(metrics_v1['tone']['spearman_rho'])}$ to $\\mathbf{{\\rho = {_fmt_rho(metrics_v2['tone']['spearman_rho'])}}}$ (${_fmt_delta(metrics_v2['tone']['spearman_rho'], metrics_v1['tone']['spearman_rho'])})$, with large disagreements at **{metrics_v2['tone']['large_disagreement_pct_ge_2']:.1f}%**.
 - **Trade-offs & Open Observations**:
-  - **Correctness**: Calibrated judge applied stricter penalties to generic replies, shifting $\\rho$ to $-0.1412$ and introducing 15.0% large disagreements where the human considered safe general advice acceptable (4/5) while the calibrated judge strictly penalized it (3/5).
-  - **Brand Voice**: Both human annotator and automated judge concentrated heavily on scores 4 and 5 due to consistent brand phrasing, resulting in low variance and modest negative correlation ($\\rho = -0.1883$).
+  - **Correctness**: Calibrated judge applied stricter penalties to generic replies, yielding $\\rho = {_fmt_rho(metrics_v2['correctness']['spearman_rho'])}$ and {metrics_v2['correctness']['large_disagreement_pct_ge_2']:.1f}% large disagreements where the human considered safe general advice acceptable (4/5) while the calibrated judge strictly penalized it (3/5).
+  - **Brand Voice**: Both human annotator and automated judge concentrated heavily on scores 4 and 5 due to consistent brand phrasing, resulting in low variance ($\\rho = {_fmt_rho(metrics_v2['brand_voice']['spearman_rho'])}$).
 - **Limitations**:
   1. *Sample Size*: Evaluated on $N=60$ interactions from Golden DEV.
   2. *Single-Turn Scope*: Evaluates single-turn reply quality rather than end-to-end multi-turn resolution.

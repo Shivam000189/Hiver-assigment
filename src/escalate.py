@@ -107,6 +107,36 @@ def check_rules(text: str) -> Tuple[bool, Optional[str], Optional[str]]:
 
     return False, None, None
 
+def get_sentiment_severity(text: str) -> Tuple[str, str]:
+    """
+    Classifies customer inquiry severity into routine, frustrated, or severe.
+    Reuses the cached LLM prompt for deterministic offline evaluation.
+    
+    Returns:
+        (severity: str, reason: str) where severity in {'routine', 'frustrated', 'severe'}.
+    """
+    sanitized_text, _, _ = redact_pii(text)
+    prompt = (
+        "Analyze the following customer support inquiry. "
+        "Classify severity into {routine, frustrated, severe}.\n"
+        "Return JSON with 'severity' and 'reason'.\n\n"
+        f"INQUIRY: \"{sanitized_text}\"\n"
+        "Output JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}"
+    )
+
+    try:
+        res = call_llm_json(
+            prompt=prompt,
+            temperature=TEMPERATURE_ESCALATE,
+            required_fields=["severity"]
+        )
+        severity = str(res.get("severity", "routine")).strip().lower()
+        reason = str(res.get("reason", ""))
+        return severity, reason
+    except Exception as e:
+        logger.warning(f"Model severity check encountered error: {e}. Defaulting safely.")
+        return "routine", "error_fallback"
+
 def check_model_layer(text: str, intent: str, confidence: float) -> Tuple[bool, str]:
     """
     Evaluates model-based heuristics: low confidence, sensitive intent, and LLM severity check.
@@ -140,28 +170,11 @@ def check_model_layer(text: str, intent: str, confidence: float) -> Tuple[bool, 
         return True, reason
 
     # Condition C: Extreme Negative Sentiment / Severity Check
-    sanitized_text, _, _ = redact_pii(text)
-    prompt = (
-        "Analyze the following customer support inquiry. "
-        "Classify severity into {routine, frustrated, severe}.\n"
-        "Return JSON with 'severity' and 'reason'.\n\n"
-        f"INQUIRY: \"{sanitized_text}\"\n"
-        "Output JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}"
-    )
-
-    try:
-        res = call_llm_json(
-            prompt=prompt,
-            temperature=TEMPERATURE_ESCALATE,
-            required_fields=["severity"]
-        )
-        severity = str(res.get("severity", "routine")).strip().lower()
-        if severity == "severe":
-            reason = "model:severe_sentiment"
-            logger.info(f"Model Layer triggered: {reason}")
-            return True, reason
-    except Exception as e:
-        logger.warning(f"Model severity check encountered error: {e}. Defaulting safely.")
+    severity, _ = get_sentiment_severity(text)
+    if severity == "severe":
+        reason = "model:severe_sentiment"
+        logger.info(f"Model Layer triggered: {reason}")
+        return True, reason
 
     return False, "auto_handle"
 

@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"@AppleSupport 2007 iMac running 10.11.6.  Suddenly keep getting warning about this Mac can’t connect to iCloud error. However messages and FaceTime calls keep coming through.\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789182740.2443585
+}

@@ -1,0 +1,25 @@
+{
+  "total_evaluated": 80,
+  "routing_distribution": {
+    "AUTO_SEND": {
+      "count": 34,
+      "percentage": 42.5
+    },
+    "DRAFT_FOR_REVIEW": {
+      "count": 33,
+      "percentage": 41.25
+    },
+    "ESCALATE": {
+      "count": 13,
+      "percentage": 16.25
+    }
+  },
+  "draft_for_review_precision": 0.5455,
+  "draft_for_review_quality_issue_count": 18,
+  "draft_for_review_total": 33,
+  "draft_for_review_strict_issue_count": 0,
+  "thresholds": {
+    "min_auto_send_similarity": 0.4,
+    "max_auto_send_sla_risk": 0.45
+  }
+}

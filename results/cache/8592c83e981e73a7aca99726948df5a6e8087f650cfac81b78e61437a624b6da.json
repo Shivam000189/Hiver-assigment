@@ -1,0 +1,8 @@
+{
+  "model": "gpt-4o-mini",
+  "temperature": 0.0,
+  "system_prompt": null,
+  "prompt": "Analyze the following customer support inquiry. Classify severity into {routine, frustrated, severe}.\nReturn JSON with 'severity' and 'reason'.\n\nINQUIRY: \"um @AppleSupport @115948 can someone explain why an album I preordered and purchased is no longer in my library and doesn’t let me play anything other than previews\"\nOutput JSON: {\"severity\": \"<routine|frustrated|severe>\", \"reason\": \"<one_line_explanation>\"}",
+  "response": "{\"severity\": \"frustrated\", \"reason\": \"Customer agitation without immediate destructive risk.\"}",
+  "timestamp": 1789182740.2635787
+}
