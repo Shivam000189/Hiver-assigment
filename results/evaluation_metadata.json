@@ -16,18 +16,18 @@
   "confidence_routing_threshold": 0.5,
   "escalation_confidence_threshold": 0.4,
   "escalation_prone_intents": [
-    "billing_app_store",
-    "account_icloud_login"
+    "account_icloud_login",
+    "billing_app_store"
   ],
   "judge_model": "gpt-4o-mini",
   "judge_temperature": 0.0,
   "failed_examples_count": 0,
-  "runtime_seconds": 16.36,
+  "runtime_seconds": 15.85,
   "llm_audit_metrics": {
-    "cache_hits": 745,
-    "cache_misses": 11,
+    "cache_hits": 756,
+    "cache_misses": 0,
     "retries": 0,
     "parse_fallbacks": 0
   },
-  "timestamp": "2026-09-12T03:12:36Z"
+  "timestamp": "2026-09-12T03:29:23Z"
 }

@@ -1,0 +1,17 @@
+{
+  "intent_median_minutes": {
+    "account_icloud_login": 75.43,
+    "audio_music_playback": 62.53,
+    "battery_drain_power": 101.7,
+    "billing_app_store": 100.0,
+    "camera_photos_media": 38.15,
+    "connectivity_network": 41.58,
+    "keyboard_autocorrect_bug": 82.33,
+    "other": 41.79,
+    "system_performance_freeze": 64.48
+  },
+  "global_median_minutes": 72.98,
+  "min_response_time_minutes": 35.0,
+  "max_response_time_minutes": 105.0,
+  "source": "sample600_labelled.csv joined with applesupport_threads_repro.parquet"
+}
